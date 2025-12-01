@@ -1,0 +1,9 @@
+flask
+google-generativeai
+matplotlib
+ollama
+openpyxl
+pandas
+plotly
+python-dotenv
+pymongo

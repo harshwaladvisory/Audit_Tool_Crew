@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Budget Preparation Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="container">
+            <div class="logo-left">
+                <img src="{{ url_for('static', filename='Logo_.png') }}" alt="Company Logo" class="company-logo">
+            </div>
+            <div class="logo-right">
+                <img src="{{ url_for('static', filename='Coverlogo.png') }}" alt="Budget Assistant" class="project-logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="container">
+            <a href="#" class="nav-item active">Dashboard</a>
+            <a href="#" class="nav-item">File Upload</a>
+            <a href="#" class="nav-item">Budget Prep</a>
+            <a href="#" class="nav-item">Analysis</a>
+            <a href="#" class="nav-item">Reports</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <div class="dashboard-title">
+                <div class="dashboard-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                </div>
+                Budget Preparation Dashboard
+            </div>
+            <button class="refresh-btn" onclick="location.reload()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                Refresh
+            </button>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div class="stat-label">Total Budgets</div>
+                    <div class="stat-value" id="totalBudgetsValue">$0.00</div>
+                    <div class="stat-description">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        All budgets tracked
+                    </div>
+                </div>
+                <div class="stat-icon stat-icon-purple">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div class="stat-label">Active Projects</div>
+                    <div class="stat-value" id="activeProjectsValue">0</div>
+                    <div class="stat-description">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                        Currently active
+                    </div>
+                </div>
+                <div class="stat-icon stat-icon-purple-light">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div class="stat-label">Files Uploaded</div>
+                    <div class="stat-value" id="filesUploadedValue">0</div>
+                    <div class="stat-description">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        Ready to process
+                    </div>
+                </div>
+                <div class="stat-icon stat-icon-purple-medium">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                        <polyline points="13 2 13 9 20 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div class="stat-label">Status</div>
+                    <div class="stat-value" id="statusValue">Ready</div>
+                    <div class="stat-description">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        System active
+                    </div>
+                </div>
+                <div class="stat-icon stat-icon-purple-dark">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Method Selection -->
+        <section class="method-selection-section">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Select Budget Preparation Method</h2>
+                </div>
+                <div class="method-grid">
+                    <div class="method-card" id="method1Card">
+                        <h3>Method 1: Detailed Budget Analysis</h3>
+                        <p>Upload prior year budget and GL transaction data for comprehensive analysis with carryover calculations</p>
+                        <button class="btn btn-secondary" id="selectMethod1">Select Method</button>
+                    </div>
+                    <div class="method-card" id="method2Card">
+                        <h3>Method 2: Lump Sum Allocation</h3>
+                        <p>Enter total budget amount and allocate proportionally based on prior year GL account percentages</p>
+                        <button class="btn btn-secondary" id="selectMethod2">Select Method</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Method 1 Section -->
+        <section class="workflow-section" id="method1Section" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Step 1: Upload Files (Optional)</h2>
+                </div>
+                <p class="info-text">Upload your budget files to get started. You can upload a prior year budget, GL/transaction data, or both.</p>
+                
+                <div class="upload-grid">
+                    <div class="upload-column">
+                        <h3>Prior Year Budget</h3>
+                        <p class="help-text">Upload last year's budget file (keeps GL Account details intact)</p>
+                        <div class="upload-area" id="priorBudgetUploadArea">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p>Click or drag to upload</p>
+                            <p class="file-info">CSV or Excel</p>
+                            <input type="file" id="priorBudgetInput" accept=".csv,.xlsx,.xls" hidden>
+                        </div>
+                        <div id="priorBudgetPreview" class="file-preview" style="display: none;">
+                            <strong>✓ Uploaded:</strong> <span id="priorBudgetName"></span>
+                        </div>
+                    </div>
+
+                    <div class="upload-column">
+                        <h3>GL / Transaction Data</h3>
+                        <p class="help-text">Upload general ledger or transaction history</p>
+                        <div class="upload-area" id="glDataUploadArea">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p>Click or drag to upload</p>
+                            <p class="file-info">CSV or Excel</p>
+                            <input type="file" id="glDataInput" accept=".csv,.xlsx,.xls" hidden>
+                        </div>
+                        <div id="glDataPreview" class="file-preview" style="display: none;">
+                            <strong>✓ Uploaded:</strong> <span id="glDataName"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Step 2: Budget Information</h2>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="clientName">Client Name</label>
+                        <input type="text" id="clientName" placeholder="Enter client/organization name" required>
+                        <p class="help-text">Name of the client or organization</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="userName">Prepared By (Name)</label>
+                        <input type="text" id="userName" placeholder="Enter your name" required>
+                        <p class="help-text">Name of the person preparing this budget</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="budgetPeriod">Budget Period</label>
+                        <input type="text" id="budgetPeriod" placeholder="e.g., FY 2025-2026" required>
+                        <p class="help-text">Fiscal year or period for this budget</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Step 3: Configure Budget Parameters</h2>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="inflationRate">Inflationary Adjustment (%)</label>
+                        <input type="number" id="inflationRate" value="3" step="0.1" min="0">
+                        <p class="help-text">Expected inflation rate for the upcoming year</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="plannedAdjustments">Planned Changes & Adjustments</label>
+                    <textarea id="plannedAdjustments" rows="4" placeholder="e.g., Hiring 2 new staff members, reducing travel by 15%, new software subscription $10,000/year, salary increases 5%, new grant funding for specific programs"></textarea>
+                    <p class="help-text">Describe any planned increases, decreases, or special projects</p>
+                </div>
+
+                <button class="btn btn-primary" id="prepareBudgetBtn">Prepare Proposed Budget</button>
+            </div>
+        </section>
+
+        <!-- Method 2 Section -->
+        <section class="workflow-section" id="method2Section" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Step 1: Upload Prior Year Budget</h2>
+                </div>
+                <p class="info-text">Upload your prior year budget file to allocate the lump sum proportionally</p>
+                
+                <div class="upload-column">
+                    <div class="upload-area" id="lumpSumBudgetUploadArea">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <p>Click or drag to upload</p>
+                        <p class="file-info">CSV or Excel</p>
+                        <input type="file" id="lumpSumBudgetInput" accept=".csv,.xlsx,.xls" hidden>
+                    </div>
+                    <div id="lumpSumBudgetPreview" class="file-preview" style="display: none;">
+                        <strong>✓ Uploaded:</strong> <span id="lumpSumBudgetName"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Step 2: Budget Information</h2>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="lumpSumClientName">Client Name</label>
+                        <input type="text" id="lumpSumClientName" placeholder="Enter client/organization name" required>
+                        <p class="help-text">Name of the client or organization</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lumpSumUserName">Prepared By (Name)</label>
+                        <input type="text" id="lumpSumUserName" placeholder="Enter your name" required>
+                        <p class="help-text">Name of the person preparing this budget</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="lumpSumBudgetPeriod">Budget Period</label>
+                        <input type="text" id="lumpSumBudgetPeriod" placeholder="e.g., FY 2025-2026" required>
+                        <p class="help-text">Fiscal year or period for this budget</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Step 3: Enter Total Budget Amount</h2>
+                </div>
+                
+                <div class="form-group">
+                    <label for="totalFunding">Total Budget Amount ($)</label>
+                    <input type="number" id="totalFunding" value="0" step="0.01" min="0" placeholder="Enter total budget amount">
+                    <p class="help-text">This amount will be allocated proportionally across GL accounts based on prior year percentages</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="lumpSumInflationRate">Inflationary Adjustment (%)</label>
+                    <input type="number" id="lumpSumInflationRate" value="0" step="0.1" min="0">
+                    <p class="help-text">Optional inflation adjustment</p>
+                </div>
+
+                <button class="btn btn-primary" id="prepareLumpSumBtn">Allocate Budget</button>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Proposed Budget</h2>
+                </div>
+                <div class="budget-summary" id="budgetSummary"></div>
+                <div id="resultsTable"></div>
+                <button class="btn btn-success" id="downloadBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download Proposed Budget (Excel)
+                </button>
+            </div>
+
+            <div class="card recommendations-card">
+                <div class="card-header">
+                    <h2>AI Budget Recommendations & Analysis</h2>
+                </div>
+                <div id="aiRecommendations" class="recommendations-content">
+                    <div class="loading">Generating recommendations...</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="help-section">
+            <button class="btn btn-link" id="newBudgetBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                Start New Budget
+            </button>
+        </div>
+    </div>
+
+    <!-- Progress Bar Overlay -->
+    <div class="progress-overlay" id="progressOverlay">
+        <div class="progress-container">
+            <div class="progress-title">
+                <span class="progress-spinner"></span>
+                Preparing Your Budget
+            </div>
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;">
+                    <span id="progressPercent">0%</span>
+                </div>
+            </div>
+            <div class="progress-status" id="progressStatus">
+                Initializing...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentBudgetId = '';
+        let budgetData = [];
+
+        const method1Section = document.getElementById('method1Section');
+        const method2Section = document.getElementById('method2Section');
+        const resultsSection = document.getElementById('resultsSection');
+
+        // Dashboard Stats Update Function
+        async function updateDashboardStats() {
+            try {
+                const response = await fetch('/dashboard-stats');
+                const data = await response.json();
+                
+                if (data.success && data.stats) {
+                    // Update Total Budgets
+                    const totalBudgetElement = document.getElementById('totalBudgetsValue');
+                    if (totalBudgetElement) {
+                        totalBudgetElement.textContent = '$' + data.stats.total_budgets.toLocaleString('en-US', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        });
+                    }
+                    
+                    // Update Active Projects
+                    const activeProjectsElement = document.getElementById('activeProjectsValue');
+                    if (activeProjectsElement) {
+                        activeProjectsElement.textContent = data.stats.active_projects;
+                    }
+                    
+                    // Update Files Uploaded
+                    const filesUploadedElement = document.getElementById('filesUploadedValue');
+                    if (filesUploadedElement) {
+                        filesUploadedElement.textContent = data.stats.files_uploaded;
+                    }
+                    
+                    // Update Status
+                    const statusElement = document.getElementById('statusValue');
+                    if (statusElement) {
+                        statusElement.textContent = data.stats.status;
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching dashboard stats:', error);
+            }
+        }
+
+        // Call updateDashboardStats when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDashboardStats();
+        });
+
+        function showProgress() {
+            document.getElementById('progressOverlay').style.display = 'flex';
+            updateProgress(0, 'Initializing...');
+        }
+
+        function hideProgress() {
+            document.getElementById('progressOverlay').style.display = 'none';
+            updateProgress(0, 'Initializing...');
+        }
+
+        function updateProgress(percent, status) {
+            const fill = document.getElementById('progressBarFill');
+            const percentText = document.getElementById('progressPercent');
+            const statusText = document.getElementById('progressStatus');
+            
+            fill.style.width = percent + '%';
+            percentText.textContent = percent + '%';
+            statusText.textContent = status;
+        }
+
+        document.getElementById('selectMethod1').addEventListener('click', () => {
+            document.querySelector('.method-selection-section').style.display = 'none';
+            method1Section.style.display = 'block';
+        });
+
+        document.getElementById('selectMethod2').addEventListener('click', () => {
+            document.querySelector('.method-selection-section').style.display = 'none';
+            method2Section.style.display = 'block';
+        });
+
+        const priorBudgetUploadArea = document.getElementById('priorBudgetUploadArea');
+        const priorBudgetInput = document.getElementById('priorBudgetInput');
+        const glDataUploadArea = document.getElementById('glDataUploadArea');
+        const glDataInput = document.getElementById('glDataInput');
+        const lumpSumBudgetUploadArea = document.getElementById('lumpSumBudgetUploadArea');
+        const lumpSumBudgetInput = document.getElementById('lumpSumBudgetInput');
+
+        priorBudgetUploadArea.addEventListener('click', () => priorBudgetInput.click());
+        glDataUploadArea.addEventListener('click', () => glDataInput.click());
+        lumpSumBudgetUploadArea.addEventListener('click', () => lumpSumBudgetInput.click());
+
+        function setupDragDrop(area, input, handler) {
+            area.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                area.classList.add('drag-over');
+            });
+
+            area.addEventListener('dragleave', () => {
+                area.classList.remove('drag-over');
+            });
+
+            area.addEventListener('drop', (e) => {
+                e.preventDefault();
+                area.classList.remove('drag-over');
+                const file = e.dataTransfer.files[0];
+                if (file) handler(file);
+            });
+
+            input.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) handler(file);
+            });
+        }
+
+        setupDragDrop(priorBudgetUploadArea, priorBudgetInput, async (file) => {
+            await uploadFile(file, '/upload-prior-budget', 'priorBudgetName', 'priorBudgetPreview');
+        });
+
+        setupDragDrop(glDataUploadArea, glDataInput, async (file) => {
+            await uploadFile(file, '/upload-gl-data', 'glDataName', 'glDataPreview');
+        });
+
+        setupDragDrop(lumpSumBudgetUploadArea, lumpSumBudgetInput, async (file) => {
+            await uploadFile(file, '/upload-prior-budget', 'lumpSumBudgetName', 'lumpSumBudgetPreview');
+        });
+
+        async function uploadFile(file, endpoint, nameElementId, previewElementId) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    document.getElementById(nameElementId).textContent = data.filename;
+                    document.getElementById(previewElementId).style.display = 'block';
+                    
+                    // Update dashboard stats after file upload
+                    updateDashboardStats();
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Upload failed: ' + error.message);
+            }
+        }
+
+        document.getElementById('prepareBudgetBtn').addEventListener('click', async () => {
+            const clientName = document.getElementById('clientName').value.trim();
+            const userName = document.getElementById('userName').value.trim();
+            const budgetPeriod = document.getElementById('budgetPeriod').value.trim();
+            const inflationRate = parseFloat(document.getElementById('inflationRate').value) || 0;
+            const plannedAdjustments = document.getElementById('plannedAdjustments').value;
+
+            if (!clientName || !userName || !budgetPeriod) {
+                alert('Please enter client name, your name, and budget period');
+                return;
+            }
+
+            showProgress();
+
+            try {
+                updateProgress(20, 'Reading uploaded files...');
+                
+                await new Promise(resolve => setTimeout(resolve, 500));
+                updateProgress(40, 'Processing budget data...');
+                
+                const response = await fetch('/prepare-budget', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        clientName,
+                        userName,
+                        budgetPeriod,
+                        inflationRate,
+                        plannedAdjustments
+                    })
+                });
+
+                updateProgress(60, 'Analyzing financial patterns...');
+                const data = await response.json();
+
+                if (data.success) {
+                    updateProgress(80, 'Generating AI recommendations...');
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                    
+                    updateProgress(100, 'Complete! Displaying results...');
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                    
+                    displayResults(data);
+                    hideProgress();
+                    resultsSection.style.display = 'block';
+                    resultsSection.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Update dashboard stats after budget creation
+                    updateDashboardStats();
+                } else {
+                    hideProgress();
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                hideProgress();
+                alert('Budget preparation failed: ' + error.message);
+            }
+        });
+
+        document.getElementById('prepareLumpSumBtn').addEventListener('click', async () => {
+            const clientName = document.getElementById('lumpSumClientName').value.trim();
+            const userName = document.getElementById('lumpSumUserName').value.trim();
+            const budgetPeriod = document.getElementById('lumpSumBudgetPeriod').value.trim();
+            const totalFunding = parseFloat(document.getElementById('totalFunding').value) || 0;
+            const inflationRate = parseFloat(document.getElementById('lumpSumInflationRate').value) || 0;
+
+            if (!clientName || !userName || !budgetPeriod) {
+                alert('Please enter client name, your name, and budget period');
+                return;
+            }
+
+            if (totalFunding <= 0) {
+                alert('Please enter a valid total budget amount greater than zero');
+                return;
+            }
+
+            showProgress();
+
+            try {
+                updateProgress(25, 'Reading prior year budget...');
+                
+                await new Promise(resolve => setTimeout(resolve, 500));
+                updateProgress(50, 'Allocating budget proportionally...');
+                
+                const response = await fetch('/prepare-budget-lump-sum', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        clientName,
+                        userName,
+                        budgetPeriod,
+                        totalFunding,
+                        inflationRate
+                    })
+                });
+
+                updateProgress(75, 'Generating AI recommendations...');
+                const data = await response.json();
+
+                if (data.success) {
+                    updateProgress(100, 'Complete! Displaying results...');
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                    
+                    displayResults(data);
+                    hideProgress();
+                    resultsSection.style.display = 'block';
+                    resultsSection.scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Update dashboard stats after budget creation
+                    updateDashboardStats();
+                } else {
+                    hideProgress();
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                hideProgress();
+                alert('Budget allocation failed: ' + error.message);
+            }
+        });
+
+        function displayResults(data) {
+            budgetData = data.data;
+            currentBudgetId = data.budget_id;
+
+            const summaryDiv = document.getElementById('budgetSummary');
+            summaryDiv.innerHTML = `
+                <div class="summary-box">
+                    <h3>Total Proposed Budget</h3>
+                    <p class="total-amount">$${data.totalBudget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
+                </div>
+                <div class="info-text" style="margin-top: 15px; color: #6e6e73;">
+                    <strong>Note:</strong> You can reclassify budget between GL accounts in the "Reclass Budget" column. The total must always equal zero.
+                </div>
+            `;
+
+            renderTable();
+
+            const recommendationsDiv = document.getElementById('aiRecommendations');
+            recommendationsDiv.innerHTML = `<pre class="recommendations-text">${data.recommendations}</pre>`;
+        }
+
+        function renderTable() {
+            const tableDiv = document.getElementById('resultsTable');
+            const columns = ['GL Account details', 'Prior Year Budget', 'Actual Expenses', 'Carryover', 'Proposed Budget', 'Reclass Budget', 'Final Proposed Budget'];
+            
+            let html = '<div class="table-responsive"><table class="results-table" id="budgetTable"><thead><tr>';
+            
+            columns.forEach(col => {
+                html += `<th>${col}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+
+            budgetData.forEach((row, idx) => {
+                const isTotal = row['GL Account details'] === 'TOTAL';
+                html += `<tr ${isTotal ? 'class="total-row"' : ''}>`;
+                
+                columns.forEach(col => {
+                    const value = row[col];
+                    let formatted = value;
+                    if (typeof value === 'number') {
+                        formatted = value.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    }
+                    
+                    if (col === 'Reclass Budget' && !isTotal) {
+                        html += `<td><input type="number" step="0.01" value="${value}" class="reclass-input" data-row-idx="${idx}" /></td>`;
+                    } else if (col === 'Reclass Budget' && isTotal) {
+                        html += `<td>${value}</td>`;
+                    } else {
+                        html += `<td>${formatted}</td>`;
+                    }
+                });
+                html += '</tr>';
+            });
+
+            html += '</tbody></table></div>';
+            
+            const reclassTotal = budgetData.reduce((sum, row) => {
+                return row['GL Account details'] !== 'TOTAL' ? sum + (parseFloat(row['Reclass Budget']) || 0) : sum;
+            }, 0);
+            
+            const statusColor = Math.abs(reclassTotal) < 0.01 ? '#34c759' : '#ff3b30';
+            html += `<div class="reclass-status" style="margin-top: 15px; padding: 12px; background: ${statusColor}15; border-left: 4px solid ${statusColor}; color: ${statusColor}; font-weight: 600; border-radius: 8px;">
+                Reclass Budget Total: $${reclassTotal.toFixed(2)} ${Math.abs(reclassTotal) < 0.01 ? '✓ Balanced' : '⚠ Must equal $0.00'}
+            </div>`;
+            
+            tableDiv.innerHTML = html;
+            
+            document.querySelectorAll('.reclass-input').forEach(input => {
+                input.addEventListener('input', handleReclassChange);
+            });
+        }
+
+        function handleReclassChange(e) {
+            const rowIdx = parseInt(e.target.dataset.rowIdx);
+            const newValue = parseFloat(e.target.value) || 0;
+            
+            budgetData[rowIdx]['Reclass Budget'] = newValue;
+            budgetData[rowIdx]['Final Proposed Budget'] = budgetData[rowIdx]['Proposed Budget'] + newValue;
+            
+            const reclassTotal = budgetData.reduce((sum, row) => {
+                return row['GL Account details'] !== 'TOTAL' ? sum + (parseFloat(row['Reclass Budget']) || 0) : sum;
+            }, 0);
+            
+            const totalIdx = budgetData.findIndex(row => row['GL Account details'] === 'TOTAL');
+            if (totalIdx !== -1) {
+                budgetData[totalIdx]['Reclass Budget'] = reclassTotal;
+                budgetData[totalIdx]['Final Proposed Budget'] = budgetData.filter(r => r['GL Account details'] !== 'TOTAL')
+                    .reduce((sum, r) => sum + r['Final Proposed Budget'], 0);
+            }
+            
+            renderTable();
+        }
+
+        document.getElementById('downloadBtn').addEventListener('click', async () => {
+            const reclassTotal = budgetData.reduce((sum, row) => {
+                return row['GL Account details'] !== 'TOTAL' ? sum + (parseFloat(row['Reclass Budget']) || 0) : sum;
+            }, 0);
+            
+            if (Math.abs(reclassTotal) >= 0.01) {
+                alert(`Cannot download: Reclass Budget total must equal $0.00. Current total: $${reclassTotal.toFixed(2)}\n\nPlease adjust the reclass amounts so they balance to zero.`);
+                return;
+            }
+            
+            if (!currentBudgetId) {
+                alert('Budget ID not found. Please prepare the budget again.');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/update-budget-data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        budgetData: budgetData
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (!response.ok) {
+                    alert(`Error: ${result.error || 'Failed to update budget'}`);
+                    return;
+                }
+                
+                window.location.href = `/download-budget/${currentBudgetId}`;
+                
+                // Update dashboard stats after download
+                setTimeout(() => {
+                    updateDashboardStats();
+                }, 1000);
+            } catch (error) {
+                console.error('Error updating budget:', error);
+                alert('Error updating budget data. Please try again.');
+            }
+        });
+
+        document.getElementById('newBudgetBtn').addEventListener('click', async () => {
+            if (confirm('Start a new budget? This will clear current session data.')) {
+                await fetch('/clear-session', { method: 'POST' });
+                location.reload();
+            }
+        });
+    </script>
+</body>
+</html>
