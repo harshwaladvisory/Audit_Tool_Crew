@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}Journal Entries - Prepaid Expense Analyzer{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-start">
+            <div>
+                <h1 class="mb-2">
+                    <i class="fas fa-book text-brand me-3"></i>
+                    Proposed Journal Entries
+                </h1>
+                <p class="text-muted mb-0">Review and approve adjusting journal entries for discrepancies</p>
+            </div>
+            {% if grouped_entries %}
+            <a href="{{ url_for('export_all_journal_entries') }}" class="btn btn-success">
+                <i class="fas fa-file-excel me-2"></i>
+                Export All
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="row g-4 mb-5">
+    <div class="col-md-6">
+        <div class="stat-card" style="border-left: 4px solid var(--brand);">
+            <div class="stat-card-value">{{ grouped_entries|length }}</div>
+            <div class="stat-card-label">Total Proposed Entries</div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="stat-card" style="border-left: 4px solid var(--info);">
+            <div class="stat-card-label">Status</div>
+            <div class="stat-card-value" style="font-size: 24px;">Pending Approval</div>
+        </div>
+    </div>
+</div>
+
+<!-- Journal Entries -->
+<div class="row">
+    <div class="col-12">
+        {% if grouped_entries %}
+            {% for entry_number, group in grouped_entries.items() %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                        <div>
+                            <h5 class="mb-1">
+                                <i class="fas fa-file-invoice me-2"></i>
+                                Entry #{{ entry_number }}
+                            </h5>
+                            <small class="text-muted">
+                                <i class="far fa-calendar me-1"></i>
+                                {{ group.created_at.strftime('%B %d, %Y at %I:%M %p') }}
+                            </small>
+                        </div>
+                        <div class="d-flex gap-2 align-items-center flex-wrap">
+                            {% if group.balanced %}
+                                <span class="badge bg-success">
+                                    <i class="fas fa-check"></i>
+                                    Balanced
+                                </span>
+                            {% else %}
+                                <span class="badge bg-danger">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    Unbalanced
+                                </span>
+                            {% endif %}
+                            
+                            <a href="{{ url_for('export_journal_entry', entry_number=entry_number) }}" 
+                               class="btn btn-sm btn-outline-success">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </a>
+                            
+                            <a href="{{ url_for('approve_journal_entry', entry_number=entry_number) }}" 
+                               class="btn btn-sm btn-primary"
+                               onclick="return confirm('Approve this journal entry?')">
+                                <i class="fas fa-check"></i>
+                                Approve
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead style="background: var(--surface-tint-a);">
+                                <tr>
+                                    <th>Account</th>
+                                    <th>Description</th>
+                                    <th class="text-end">Debit</th>
+                                    <th class="text-end">Credit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for entry in group.entries %}
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <code>{{ entry.account_number }}</code>
+                                            <div class="small text-muted">{{ entry.account_name }}</div>
+                                        </div>
+                                    </td>
+                                    <td>{{ entry.description }}</td>
+                                    <td class="text-end">
+                                        {% if entry.debit_amount > 0 %}
+                                            <strong class="text-success">${{ "%.2f"|format(entry.debit_amount|float) }}</strong>
+                                        {% else %}
+                                            <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-end">
+                                        {% if entry.credit_amount > 0 %}
+                                            <strong class="text-danger">${{ "%.2f"|format(entry.credit_amount|float) }}</strong>
+                                        {% else %}
+                                            <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                <tr style="background: var(--surface-tint-a); font-weight: 600;">
+                                    <td colspan="2" class="text-end">
+                                        <strong>TOTALS:</strong>
+                                    </td>
+                                    <td class="text-end">
+                                        <strong class="text-success">${{ "%.2f"|format(group.total_debit) }}</strong>
+                                    </td>
+                                    <td class="text-end">
+                                        <strong class="text-danger">${{ "%.2f"|format(group.total_credit) }}</strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    {% if not group.balanced %}
+                    <div class="alert alert-danger m-3 mb-0">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        <strong>Warning:</strong> This entry is not balanced. 
+                        Difference: <strong>${{ "%.2f"|format((group.total_debit - group.total_credit)|abs) }}</strong>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="card">
+                <div class="card-body empty-state">
+                    <i class="fas fa-inbox"></i>
+                    <h3>No Journal Entries</h3>
+                    <p>There are no proposed journal entries yet. Resolve discrepancies to generate entries.</p>
+                    <a href="{{ url_for('discrepancies_page') }}" class="btn btn-primary">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        View Discrepancies
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Information Card -->
+{% if grouped_entries %}
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card" style="background: var(--surface-tint-a); border-left: 4px solid var(--brand);">
+            <div class="card-body">
+                <h6 class="mb-3">
+                    <i class="fas fa-info-circle me-2"></i>
+                    About Journal Entries
+                </h6>
+                <p class="mb-2 text-muted">
+                    <i class="fas fa-check me-2"></i>
+                    All entries are automatically generated based on identified discrepancies
+                </p>
+                <p class="mb-2 text-muted">
+                    <i class="fas fa-check me-2"></i>
+                    Entries are balanced (debits = credits) before approval
+                </p>
+                <p class="mb-0 text-muted">
+                    <i class="fas fa-check me-2"></i>
+                    Export to Excel for easy integration with your accounting system
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

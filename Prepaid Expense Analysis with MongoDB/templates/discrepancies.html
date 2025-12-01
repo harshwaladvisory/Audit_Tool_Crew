@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block title %}Discrepancies - Prepaid Expense Analyzer{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h1 class="mb-2">
+            <i class="fas fa-exclamation-triangle text-warning me-3"></i>
+            Identified Discrepancies
+        </h1>
+        <p class="text-muted mb-0">Review discrepancies found between recorded balances and calculated amounts</p>
+    </div>
+</div>
+
+<!-- Summary Cards -->
+<div class="row g-4 mb-5">
+    {% set high_priority = namespace(count=0) %}
+    {% set medium_priority = namespace(count=0) %}
+    {% set low_priority = namespace(count=0) %}
+    {% for disc in discrepancies %}
+        {% if disc.difference %}
+            {% set abs_diff = disc.difference if disc.difference >= 0 else -disc.difference %}
+            {% if abs_diff >= 1000 %}
+                {% set high_priority.count = high_priority.count + 1 %}
+            {% elif abs_diff >= 100 %}
+                {% set medium_priority.count = medium_priority.count + 1 %}
+            {% else %}
+                {% set low_priority.count = low_priority.count + 1 %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    
+    <div class="col-md-4">
+        <div class="stat-card" style="border-left: 4px solid var(--danger);">
+            <div class="stat-card-value" style="color: var(--danger);">{{ high_priority.count }}</div>
+            <div class="stat-card-label">High Priority (>$1,000)</div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card" style="border-left: 4px solid var(--warning);">
+            <div class="stat-card-value" style="color: var(--warning);">{{ medium_priority.count }}</div>
+            <div class="stat-card-label">Medium Priority ($100-$1,000)</div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card" style="border-left: 4px solid var(--brand);">
+            <div class="stat-card-value">{{ discrepancies|length }}</div>
+            <div class="stat-card-label">Total Discrepancies</div>
+        </div>
+    </div>
+</div>
+
+<!-- Filter Buttons -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="btn-group" role="group" aria-label="Filter discrepancies">
+            <button type="button" class="btn btn-outline-primary active" onclick="filterDiscrepancies('all')">
+                All Discrepancies
+            </button>
+            <button type="button" class="btn btn-outline-danger" onclick="filterDiscrepancies('high')">
+                High Priority
+            </button>
+            <button type="button" class="btn btn-outline-warning" onclick="filterDiscrepancies('medium')">
+                Medium Priority
+            </button>
+            <button type="button" class="btn btn-outline-info" onclick="filterDiscrepancies('low')">
+                Low Priority
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Discrepancies Table -->
+<div class="row">
+    <div class="col-12">
+        {% if discrepancies %}
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-list me-2"></i>
+                    <strong>Discrepancy Details</strong>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0" id="discrepanciesTable">
+                            <thead>
+                                <tr>
+                                    <th>Account</th>
+                                    <th>Type</th>
+                                    <th>Recorded</th>
+                                    <th>Calculated</th>
+                                    <th>Difference</th>
+                                    <th>Priority</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for disc in discrepancies %}
+                                {% if disc.difference %}
+                                    {% set abs_diff = disc.difference if disc.difference >= 0 else -disc.difference %}
+                                {% else %}
+                                    {% set abs_diff = 0 %}
+                                {% endif %}
+                                {% if abs_diff >= 1000 %}
+                                    {% set priority = 'high' %}
+                                    {% set priority_class = 'danger' %}
+                                    {% set priority_label = 'HIGH' %}
+                                {% elif abs_diff >= 100 %}
+                                    {% set priority = 'medium' %}
+                                    {% set priority_class = 'warning' %}
+                                    {% set priority_label = 'MEDIUM' %}
+                                {% else %}
+                                    {% set priority = 'low' %}
+                                    {% set priority_class = 'info' %}
+                                    {% set priority_label = 'LOW' %}
+                                {% endif %}
+                                <tr data-priority="{{ priority }}">
+                                    <td>
+                                        <div>
+                                            <code>{{ disc.account_number }}</code>
+                                            <div class="small text-muted">{{ disc.account_name }}</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge" style="background: var(--surface-tint-b); color: var(--brand);">
+                                            {{ disc.discrepancy_type }}
+                                        </span>
+                                    </td>
+                                    <td>${{ "%.2f"|format(disc.recorded_amount|float) }}</td>
+                                    <td>${{ "%.2f"|format(disc.calculated_amount|float) }}</td>
+                                    <td>
+                                        <strong class="text-{{ 'danger' if disc.difference and disc.difference < 0 else 'success' }}">
+                                            ${{ "%.2f"|format(abs_diff) }}
+                                        </strong>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{{ priority_class }}">
+                                            {{ priority_label }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {% if disc.status == 'OPEN' %}
+                                            <span class="badge bg-warning">
+                                                <i class="fas fa-clock"></i>
+                                                Open
+                                            </span>
+                                        {% else %}
+                                            <span class="badge bg-success">
+                                                <i class="fas fa-check"></i>
+                                                Resolved
+                                            </span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if disc.status == 'OPEN' %}
+                                        <a href="{{ url_for('resolve_discrepancy', discrepancy_id=disc.id) }}" 
+                                           class="btn btn-sm btn-primary"
+                                           onclick="return confirm('Generate journal entries for this discrepancy?')">
+                                            <i class="fas fa-tools"></i>
+                                            Resolve
+                                        </a>
+                                        {% else %}
+                                            <span class="text-muted small">Resolved</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="card">
+                <div class="card-body empty-state">
+                    <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                    <h3>No Discrepancies Found</h3>
+                    <p>All prepaid expense accounts are balanced. Great work!</p>
+                    <a href="{{ url_for('analysis_page') }}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>
+                        Run Another Analysis
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function filterDiscrepancies(priority) {
+    const table = document.getElementById('discrepanciesTable');
+    const rows = table.querySelectorAll('tbody tr');
+    const buttons = document.querySelectorAll('.btn-group .btn');
+    
+    // Update button states
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    // Filter rows
+    rows.forEach(row => {
+        const rowPriority = row.getAttribute('data-priority');
+        if (priority === 'all' || rowPriority === priority) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+</script>
+{% endblock %}

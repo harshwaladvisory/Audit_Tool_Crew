@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis - Prepaid Expense Analyzer{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h1 class="mb-2">
+            <i class="fas fa-chart-line text-brand me-3"></i>
+            Prepaid Expense Analysis
+        </h1>
+        <p class="text-muted mb-0">Run comprehensive analysis to compare balances with recalculated amounts</p>
+    </div>
+</div>
+
+<!-- Missing Files Alert -->
+{% if not (gl_uploads and tb_uploads and invoice_uploads) %}
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="alert alert-warning">
+            <div class="d-flex">
+                <div class="me-3">
+                    <i class="fas fa-exclamation-triangle fa-2x"></i>
+                </div>
+                <div class="flex-grow-1">
+                    <h5 class="alert-heading mb-2">Missing Required Files</h5>
+                    <p class="mb-3">To run the analysis, you need to upload all three file types:</p>
+                    <div class="d-flex gap-2 flex-wrap">
+                        {% if not gl_uploads %}
+                        <span class="badge bg-danger">General Ledger Missing</span>
+                        {% endif %}
+                        {% if not tb_uploads %}
+                        <span class="badge bg-danger">Trial Balance Missing</span>
+                        {% endif %}
+                        {% if not invoice_uploads %}
+                        <span class="badge bg-danger">Invoices Missing</span>
+                        {% endif %}
+                    </div>
+                    <hr class="my-3">
+                    <a href="{{ url_for('upload_page') }}" class="btn btn-warning">
+                        <i class="fas fa-upload me-2"></i>
+                        Upload Missing Files
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Analysis Configuration -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-cogs me-2"></i>
+                <strong>Analysis Configuration</strong>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('run_analysis') }}">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <label for="gl_upload_id" class="form-label">
+                                <i class="fas fa-book me-2"></i>
+                                General Ledger File <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select" id="gl_upload_id" name="gl_upload_id" required>
+                                <option value="">Select GL file...</option>
+                                {% for upload in gl_uploads %}
+                                <option value="{{ upload.id }}">
+                                    {{ upload.filename }} ({{ upload.records_count }} records)
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label for="tb_upload_id" class="form-label">
+                                <i class="fas fa-balance-scale me-2"></i>
+                                Trial Balance File <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select" id="tb_upload_id" name="tb_upload_id" required>
+                                <option value="">Select TB file...</option>
+                                {% for upload in tb_uploads %}
+                                <option value="{{ upload.id }}">
+                                    {{ upload.filename }} ({{ upload.records_count }} records)
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label for="invoice_upload_id" class="form-label">
+                                <i class="fas fa-file-invoice me-2"></i>
+                                Invoice File <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select" id="invoice_upload_id" name="invoice_upload_id" required>
+                                <option value="">Select Invoice file...</option>
+                                {% for upload in invoice_uploads %}
+                                <option value="{{ upload.id }}">
+                                    {{ upload.filename }} ({{ upload.records_count }} records)
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg" {% if not (gl_uploads and tb_uploads and invoice_uploads) %}disabled{% endif %}>
+                            <i class="fas fa-play me-2"></i>
+                            Run Prepaid Expense Analysis
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Analyses -->
+<div class="row">
+    <div class="col-12 mb-4">
+        <h2>
+            <i class="fas fa-history me-2"></i>
+            Recent Analysis Results
+        </h2>
+    </div>
+    
+    <div class="col-12">
+        {% if recent_analyses %}
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Account</th>
+                                    <th>GL Balance</th>
+                                    <th>TB Balance</th>
+                                    <th>Recalculated</th>
+                                    <th>GL Variance</th>
+                                    <th>TB Variance</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for analysis in recent_analyses %}
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <code>{{ analysis.account_number }}</code>
+                                            <div class="small text-muted">{{ analysis.account_name }}</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {% if analysis.gl_balance %}
+                                            ${{ "{:,.2f}".format(analysis.gl_balance) }}
+                                        {% else %}
+                                            <span class="text-muted">N/A</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if analysis.tb_balance %}
+                                            ${{ "{:,.2f}".format(analysis.tb_balance) }}
+                                        {% else %}
+                                            <span class="text-muted">N/A</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <strong class="text-success">
+                                            ${{ "{:,.2f}".format(analysis.recalculated_balance) }}
+                                        </strong>
+                                    </td>
+                                    <td>
+                                        {% if analysis.discrepancy_gl %}
+                                            {% set abs_disc = analysis.discrepancy_gl if analysis.discrepancy_gl >= 0 else -analysis.discrepancy_gl %}
+                                            <span class="{% if abs_disc >= 100 %}badge bg-danger{% elif abs_disc >= 50 %}badge bg-warning{% else %}text-muted{% endif %}">
+                                                ${{ "{:,.2f}".format(analysis.discrepancy_gl) }}
+                                            </span>
+                                        {% else %}
+                                            <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if analysis.discrepancy_tb %}
+                                            {% set abs_disc = analysis.discrepancy_tb if analysis.discrepancy_tb >= 0 else -analysis.discrepancy_tb %}
+                                            <span class="{% if abs_disc >= 100 %}badge bg-danger{% elif abs_disc >= 50 %}badge bg-warning{% else %}text-muted{% endif %}">
+                                                ${{ "{:,.2f}".format(analysis.discrepancy_tb) }}
+                                            </span>
+                                        {% else %}
+                                            <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-muted small">
+                                        {{ analysis.analysis_date.strftime('%Y-%m-%d %H:%M') }}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="card">
+                <div class="card-body empty-state">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>No Analyses Performed Yet</h3>
+                    <p>Upload your files and run your first analysis to see results here</p>
+                    {% if gl_uploads and tb_uploads and invoice_uploads %}
+                        <button class="btn btn-primary" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                            <i class="fas fa-arrow-up me-2"></i>
+                            Run First Analysis
+                        </button>
+                    {% else %}
+                        <a href="{{ url_for('upload_page') }}" class="btn btn-primary">
+                            <i class="fas fa-upload me-2"></i>
+                            Upload Files First
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- How It Works -->
+<div class="row mt-5">
+    <div class="col-12 mb-4">
+        <h2>
+            <i class="fas fa-info-circle me-2"></i>
+            How Analysis Works
+        </h2>
+    </div>
+    
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h6 class="mb-3 mt-2">Data Matching</h6>
+                <p class="text-muted small mb-0">Match invoice data to prepaid expense accounts based on account numbers and categories</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h6 class="mb-3 mt-2">Balance Recalculation</h6>
+                <p class="text-muted small mb-0">Recalculate prepaid balances based on invoice amounts and amortization schedules</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h6 class="mb-3 mt-2">Discrepancy Detection</h6>
+                <p class="text-muted small mb-0">Identify significant discrepancies between recorded and calculated amounts</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <h6 class="mb-3 mt-2">Journal Entry Generation</h6>
+                <p class="text-muted small mb-0">Automatically propose correcting journal entries for identified discrepancies</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

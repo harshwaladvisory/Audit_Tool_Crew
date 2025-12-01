@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Files - Prepaid Expense Analyzer{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h1 class="mb-2">
+            <i class="fas fa-cloud-upload-alt text-brand me-3"></i>
+            Upload Files
+        </h1>
+        <p class="text-muted mb-0">Upload your General Ledger, Trial Balance, and Invoice files to begin analysis</p>
+    </div>
+</div>
+
+<!-- File Requirements Info -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="card" style="border-left: 4px solid var(--brand);">
+            <div class="card-header">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>File Upload Requirements</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <h6 class="mb-3">
+                            <i class="fas fa-book me-2 text-brand"></i>
+                            General Ledger (GL)
+                        </h6>
+                        <ul class="list-unstyled mb-0 text-muted small">
+                            <li><i class="fas fa-check text-success me-2"></i>Account Number</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Account Name</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Balance</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <h6 class="mb-3">
+                            <i class="fas fa-balance-scale me-2 text-brand"></i>
+                            Trial Balance (TB)
+                        </h6>
+                        <ul class="list-unstyled mb-0 text-muted small">
+                            <li><i class="fas fa-check text-success me-2"></i>Account Number</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Account Name</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Balance</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h6 class="mb-3">
+                            <i class="fas fa-file-invoice me-2 text-brand"></i>
+                            Invoices
+                        </h6>
+                        <ul class="list-unstyled mb-0 text-muted small">
+                            <li><i class="fas fa-check text-success me-2"></i>Invoice Number</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Date</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Amount</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Category</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="my-4">
+                <div class="text-muted small">
+                    <i class="fas fa-file me-2"></i>
+                    <strong>Supported formats:</strong> Excel (.xlsx, .xls), CSV (.csv), and PDF files up to 16MB
+                    <span class="mx-3">|</span>
+                    <i class="fas fa-lightbulb me-2" style="color: var(--warning);"></i>
+                    <strong>Note:</strong> PDF files must contain readable text or tables
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Upload Form -->
+<div class="row mb-5">
+    <div class="col-lg-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-upload me-2"></i>
+                    Upload File
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" id="uploadForm">
+                    <!-- Drag & Drop Zone -->
+                    <div class="file-drop-zone mb-4" id="dropZone">
+                        <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                        <h5 class="mt-3 mb-2">Drag and drop your file here</h5>
+                        <p class="text-muted mb-0">or click to browse</p>
+                    </div>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="file_type" class="form-label">
+                                <i class="fas fa-tag me-2"></i>
+                                File Type
+                            </label>
+                            <select class="form-select" id="file_type" name="file_type" required>
+                                <option value="">-- Select File Type --</option>
+                                <option value="GL">General Ledger (GL)</option>
+                                <option value="TB">Trial Balance (TB)</option>
+                                <option value="INVOICE">Invoices</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="file" class="form-label">
+                                <i class="fas fa-file me-2"></i>
+                                Choose File
+                            </label>
+                            <input type="file" class="form-control" id="file" name="file" 
+                                   accept=".xlsx,.xls,.csv,.pdf" required>
+                            <div class="form-text">
+                                Max size: 16MB
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- File Preview -->
+                    <div id="filePreview" class="mt-4 p-3" style="background: var(--surface-tint-a); border-radius: var(--radius-sm); display: none;">
+                        <h6 class="mb-3">
+                            <i class="fas fa-eye me-2"></i>
+                            File Preview
+                        </h6>
+                        <div id="fileInfo"></div>
+                    </div>
+                    
+                    <!-- Upload Progress -->
+                    <div id="uploadProgress" class="mt-4" style="display: none;">
+                        <div class="d-flex align-items-center">
+                            <div class="spinner-border spinner-border-sm me-3" role="status">
+                                <span class="visually-hidden">Processing...</span>
+                            </div>
+                            <span class="text-muted">Processing your file, please wait...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg" id="uploadBtn">
+                            <i class="fas fa-upload me-2"></i>
+                            Upload and Process
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Uploads -->
+<div class="row">
+    <div class="col-12 mb-4">
+        <h2>
+            <i class="fas fa-history me-2"></i>
+            Recent Uploads
+        </h2>
+    </div>
+    
+    <div class="col-12">
+        {% if recent_uploads %}
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Filename</th>
+                                    <th>Type</th>
+                                    <th>Upload Date</th>
+                                    <th>Status</th>
+                                    <th>Records</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for upload in recent_uploads %}
+                                <tr>
+                                    <td>
+                                        <i class="fas fa-file-{{ 'excel' if upload.filename.endswith(('.xlsx', '.xls')) else 'csv' if upload.filename.endswith('.csv') else 'pdf' }} me-2 text-brand"></i>
+                                        <strong>{{ upload.filename }}</strong>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{{ 'primary' if upload.file_type == 'GL' else 'info' if upload.file_type == 'TB' else 'success' }}">
+                                            {{ upload.file_type }}
+                                        </span>
+                                    </td>
+                                    <td class="text-muted">
+                                        <i class="far fa-calendar me-1"></i>
+                                        {{ upload.upload_date.strftime('%Y-%m-%d %H:%M') }}
+                                    </td>
+                                    <td>
+                                        {% if upload.processed %}
+                                            <span class="badge bg-success">
+                                                <i class="fas fa-check"></i>
+                                                Processed
+                                            </span>
+                                        {% else %}
+                                            <span class="badge bg-warning">
+                                                <i class="fas fa-clock"></i>
+                                                Pending
+                                            </span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if upload.processed %}
+                                            <strong>{{ upload.records_count }}</strong> records
+                                        {% else %}
+                                            <span class="text-muted">-</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="card">
+                <div class="card-body empty-state">
+                    <i class="fas fa-inbox"></i>
+                    <h3>No Files Uploaded Yet</h3>
+                    <p>Upload your first file to begin the analysis process</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

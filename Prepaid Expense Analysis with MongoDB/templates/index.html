@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Prepaid Expense Analyzer{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h1 class="mb-2">
+            <i class="fas fa-chart-pie text-brand me-3"></i>
+            Dashboard
+        </h1>
+        <p class="text-muted mb-0">Welcome to your Prepaid Expense Analysis dashboard</p>
+    </div>
+</div>
+
+<!-- KPI Cards -->
+<div class="row g-4 mb-5">
+    <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+            <div class="stat-card-value">{{ total_analyses }}</div>
+            <div class="stat-card-label">Total Analyses</div>
+            {% if total_analyses > 0 %}
+            <div class="stat-card-trend">
+                <i class="fas fa-arrow-up"></i>
+                Active
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+            <div class="stat-card-value">{{ open_discrepancies }}</div>
+            <div class="stat-card-label">Open Discrepancies</div>
+            {% if open_discrepancies > 0 %}
+            <div class="stat-card-trend" style="color: #F59E0B;">
+                <i class="fas fa-exclamation-circle"></i>
+                Needs Review
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+            <div class="stat-card-value">{{ proposed_ajes }}</div>
+            <div class="stat-card-label">Proposed AJEs</div>
+            {% if proposed_ajes > 0 %}
+            <div class="stat-card-trend" style="color: #3B82F6;">
+                <i class="fas fa-clipboard-check"></i>
+                Pending
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+            <div class="stat-card-value">{{ recent_uploads|length }}</div>
+            <div class="stat-card-label">Recent Uploads</div>
+            {% if recent_uploads|length > 0 %}
+            <div class="stat-card-trend">
+                <i class="fas fa-check-circle"></i>
+                Processed
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mb-5">
+    <div class="col-12 mb-4">
+        <h2>
+            <i class="fas fa-bolt me-2"></i>
+            Quick Actions
+        </h2>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center py-5">
+                <h5 class="mb-3">Upload Files</h5>
+                <p class="text-muted mb-4">Upload General Ledger, Trial Balance, and Invoice files for analysis</p>
+                <a href="{{ url_for('upload_page') }}" class="btn btn-primary">
+                    <i class="fas fa-upload"></i>
+                    Start Upload
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center py-5">
+                <h5 class="mb-3">Run Analysis</h5>
+                <p class="text-muted mb-4">Perform automated prepaid expense analysis and balance comparisons</p>
+                <a href="{{ url_for('analysis_page') }}" class="btn btn-primary">
+                    <i class="fas fa-play"></i>
+                    Run Analysis
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center py-5">
+                <h5 class="mb-3">Review Discrepancies</h5>
+                <p class="text-muted mb-4">Review identified discrepancies and generate correcting journal entries</p>
+                <a href="{{ url_for('discrepancies_page') }}" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                    Review Now
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activity -->
+<div class="row">
+    <div class="col-12 mb-4">
+        <h2>
+            <i class="fas fa-clock me-2"></i>
+            Recent File Uploads
+        </h2>
+    </div>
+    
+    <div class="col-12">
+        {% if recent_uploads %}
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Filename</th>
+                                    <th>Type</th>
+                                    <th>Records</th>
+                                    <th>Upload Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for upload in recent_uploads %}
+                                <tr>
+                                    <td>
+                                        <i class="fas fa-file-{{ 'excel' if upload.filename.endswith(('.xlsx', '.xls')) else 'csv' if upload.filename.endswith('.csv') else 'pdf' }} me-2 text-brand"></i>
+                                        <strong>{{ upload.filename }}</strong>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{{ 'primary' if upload.file_type == 'GL' else 'info' if upload.file_type == 'TB' else 'success' }}">
+                                            {{ upload.file_type }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <strong>{{ upload.records_count }}</strong> records
+                                    </td>
+                                    <td class="text-muted">
+                                        <i class="far fa-calendar me-1"></i>
+                                        {{ upload.upload_date.strftime('%Y-%m-%d %H:%M') }}
+                                    </td>
+                                    <td>
+                                        {% if upload.processed %}
+                                            <span class="badge bg-success">
+                                                <i class="fas fa-check"></i>
+                                                Processed
+                                            </span>
+                                        {% elif upload.error_message %}
+                                            <span class="badge bg-danger">
+                                                <i class="fas fa-times"></i>
+                                                Error
+                                            </span>
+                                        {% else %}
+                                            <span class="badge bg-warning">
+                                                <i class="fas fa-clock"></i>
+                                                Pending
+                                            </span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="card">
+                <div class="card-body empty-state">
+                    <i class="fas fa-inbox"></i>
+                    <h3>No Files Uploaded Yet</h3>
+                    <p>Upload your first General Ledger, Trial Balance, or Invoice file to get started</p>
+                    <a href="{{ url_for('upload_page') }}" class="btn btn-primary">
+                        <i class="fas fa-upload"></i>
+                        Upload Files
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Process Flow -->
+<div class="row mt-5">
+    <div class="col-12 mb-4">
+        <h2>
+            <i class="fas fa-sitemap me-2"></i>
+            Analysis Process Flow
+        </h2>
+    </div>
+    
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body py-5">
+                <div class="row text-center align-items-center">
+                    <div class="col-md-2 mb-3 mb-md-0">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <h6 class="mb-2">Upload Files</h6>
+                            <small class="text-muted">GL, TB, Invoices</small>
+                        </div>
+                    </div>
+                    <div class="col-md-1 d-none d-md-flex justify-content-center">
+                        <i class="fas fa-arrow-right text-brand"></i>
+                    </div>
+                    <div class="col-md-2 mb-3 mb-md-0">
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <h6 class="mb-2">Extract Data</h6>
+                            <small class="text-muted">Parse & Validate</small>
+                        </div>
+                    </div>
+                    <div class="col-md-1 d-none d-md-flex justify-content-center">
+                        <i class="fas fa-arrow-right text-brand"></i>
+                    </div>
+                    <div class="col-md-2 mb-3 mb-md-0">
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <h6 class="mb-2">Analyze</h6>
+                            <small class="text-muted">Recalculate</small>
+                        </div>
+                    </div>
+                    <div class="col-md-1 d-none d-md-flex justify-content-center">
+                        <i class="fas fa-arrow-right text-brand"></i>
+                    </div>
+                    <div class="col-md-2 mb-3 mb-md-0">
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <h6 class="mb-2">Review</h6>
+                            <small class="text-muted">Find Issues</small>
+                        </div>
+                    </div>
+                    <div class="col-md-1 d-none d-md-flex justify-content-center">
+                        <i class="fas fa-arrow-right text-brand"></i>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="process-step">
+                            <div class="step-number">5</div>
+                            <h6 class="mb-2">Generate AJEs</h6>
+                            <small class="text-muted">Propose Solutions</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
