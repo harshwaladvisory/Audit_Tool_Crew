@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Files - Audit Liability Tool{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="mb-4">
+            {% if session %}
+                Upload Files for {{ session.session_name }}
+            {% else %}
+                Create New Audit Session
+            {% endif %}
+        </h1>
+
+        {% if not session %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Session Information</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/session/new">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="session_name" class="form-label">Session Name *</label>
+                            <input type="text" class="form-control" id="session_name" name="session_name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="client_name" class="form-label">Client Name *</label>
+                            <input type="text" class="form-control" id="client_name" name="client_name" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="fiscal_year_end" class="form-label">Fiscal Year End Date *</label>
+                            <input type="date" class="form-control" id="fiscal_year_end" name="fiscal_year_end" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="materiality_threshold" class="form-label">Materiality Threshold</label>
+                            <input type="number" class="form-control" id="materiality_threshold" name="materiality_threshold" 
+                                   value="10000" step="100">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-arrow-right"></i> Continue to File Upload
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Upload Transaction Files</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" id="uploadForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title">Check Register (Preferred)</h6>
+                                    <p class="card-text text-muted">Upload Excel file containing all check payments for the 3-month subsequent period.</p>
+                                    <input type="file" class="form-control" id="check_register" name="check_register" accept=".xlsx,.xls">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title">Subsequent General Ledger (Alternative)</h6>
+                                    <p class="card-text text-muted">Upload if Check Register is not available. Should include all GL transactions for subsequent period.</p>
+                                    <input type="file" class="form-control" id="subsequent_gl" name="subsequent_gl" accept=".xlsx,.xls">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <h6><strong>File Requirements</strong></h6>
+                        <ul class="mb-0">
+                            <li>Files must be in Excel format (.xlsx or .xls)</li>
+                            <li>At least one file (Check Register OR Subsequent GL) is required</li>
+                            <li>Files should contain transaction data with dates, amounts, vendors, and descriptions</li>
+                            <li>Maximum file size: 16MB per file</li>
+                        </ul>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-upload"></i> Upload Files & Start Analysis
+                    </button>
+                    <a href="/" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-times"></i> Cancel
+                    </a>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="modal fade" id="processingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center p-5">
+                <div class="spinner-border text-primary mb-3" style="width: 4rem; height: 4rem;" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <h5>Processing Files...</h5>
+                <p class="text-muted">Please wait while we analyze your data.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('uploadForm')?.addEventListener('submit', function(e) {
+    const checkRegister = document.getElementById('check_register').files.length;
+    const subsequentGL = document.getElementById('subsequent_gl').files.length;
+    
+    if (checkRegister === 0 && subsequentGL === 0) {
+        e.preventDefault();
+        alert('Please upload at least one file (Check Register or Subsequent GL)');
+        return;
+    }
+    
+    // Show processing modal
+    const modal = new bootstrap.Modal(document.getElementById('processingModal'));
+    modal.show();
+});
+</script>
+{% endblock %}

@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}Audit Report - {{ session.session_name }}{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 1200px;">
+    <!-- Page Header -->
+    <div class="page-header text-center mb-5">
+        <h1 class="page-title justify-content-center">
+            <i class="fas fa-file-alt"></i> Audit Report
+        </h1>
+        <p class="page-subtitle">{{ session.session_name }} - {{ session.client_name }}</p>
+    </div>
+
+    <!-- Executive Summary Card -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5><i class="fas fa-chart-pie"></i> Executive Summary</h5>
+        </div>
+        <div class="card-body">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="text-muted" style="font-size: 0.875rem;">Client Name</label>
+                        <p class="mb-0"><strong>{{ report_data.session_info.client_name }}</strong></p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-muted" style="font-size: 0.875rem;">Fiscal Year End</label>
+                        <p class="mb-0"><strong>{{ report_data.session_info.fiscal_year_end }}</strong></p>
+                    </div>
+                    <div>
+                        <label class="text-muted" style="font-size: 0.875rem;">Materiality Threshold</label>
+                        <p class="mb-0"><strong>${{ "{:,.2f}".format(report_data.session_info.materiality_threshold) }}</strong></p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="text-muted" style="font-size: 0.875rem;">Report Generated</label>
+                        <p class="mb-0"><strong>{{ report_data.generated_at }}</strong></p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-muted" style="font-size: 0.875rem;">Total Findings</label>
+                        <p class="mb-0"><strong>{{ report_data.findings_summary.total_findings }}</strong></p>
+                    </div>
+                    <div>
+                        <label class="text-muted" style="font-size: 0.875rem;">High Risk Findings</label>
+                        <p class="mb-0" style="color: var(--brand-700);"><strong>{{ report_data.findings_summary.high_risk }}</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary Statistics -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card" style="background: var(--surface-tint-a); border: 1px solid var(--border);">
+                <div class="card-body text-center">
+                    <h3 style="color: var(--brand); font-weight: 800;">{{ report_data.summary_statistics.total_transactions }}</h3>
+                    <p class="text-muted mb-0" style="font-size: 0.875rem;">Total Transactions</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card" style="background: var(--surface-tint-b); border: 1px solid var(--border);">
+                <div class="card-body text-center">
+                    <h3 style="color: var(--brand-600); font-weight: 800;">{{ report_data.summary_statistics.sampled_transactions }}</h3>
+                    <p class="text-muted mb-0" style="font-size: 0.875rem;">Sampled</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card" style="background: var(--surface-tint-c); border: 1px solid var(--border);">
+                <div class="card-body text-center">
+                    <h3 style="color: var(--brand-500); font-weight: 800;">${{ "{:,.0f}".format(report_data.summary_statistics.total_amount) }}</h3>
+                    <p class="text-muted mb-0" style="font-size: 0.875rem;">Total Amount</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card" style="background: var(--surface-tint-a); border: 1px solid var(--border);">
+                <div class="card-body text-center">
+                    <h3 style="color: var(--brand-400); font-weight: 800;">{{ "{:.1f}".format(report_data.summary_statistics.sampling_percentage) }}%</h3>
+                    <p class="text-muted mb-0" style="font-size: 0.875rem;">Sampling %</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Findings -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5><i class="fas fa-search"></i> Detailed Findings</h5>
+        </div>
+        <div class="card-body">
+            {% if report_data.detailed_findings %}
+                {% for finding in report_data.detailed_findings %}
+                <div class="card mb-3" style="border-left: 4px solid {% if finding.risk_level == 'high' %}var(--brand-700){% elif finding.risk_level == 'medium' %}var(--brand-400){% else %}var(--brand-200){% endif %};">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h6 class="mb-0">
+                                <span class="badge bg-{% if finding.risk_level == 'high' %}danger{% elif finding.risk_level == 'medium' %}warning{% else %}success{% endif %} me-2">
+                                    {{ finding.risk_level|upper }}
+                                </span>
+                                {{ finding.finding_type.replace('_', ' ')|title }}
+                            </h6>
+                            <strong style="color: var(--brand);">${{ "{:,.2f}".format(finding.amount) }}</strong>
+                        </div>
+                        <p class="text-muted mb-0" style="font-size: 0.875rem;">{{ finding.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-check-circle"></i>
+                    <h5>No findings identified</h5>
+                    <p>All transactions appear to be in order.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Recommendations -->
+    {% if report_data.recommendations %}
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h5><i class="fas fa-lightbulb"></i> Recommendations</h5>
+        </div>
+        <div class="card-body">
+            {% for rec in report_data.recommendations %}
+            <div class="mb-4">
+                <div class="d-flex align-items-center mb-2">
+                    <span class="badge bg-{% if rec.priority == 'High' %}danger{% else %}warning{% endif %} me-2">
+                        {{ rec.priority }} Priority
+                    </span>
+                    <h6 class="mb-0">{{ rec.recommendation }}</h6>
+                </div>
+                <ul class="mb-0" style="font-size: 0.875rem;">
+                    {% for action in rec.action_items %}
+                    <li>{{ action }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Action Buttons -->
+    <div class="d-flex gap-2 justify-content-center mb-5">
+        <a href="{{ url_for('export_report', session_id=session.id) }}" class="btn btn-success btn-lg">
+            <i class="fas fa-download"></i> Download Excel Report
+        </a>
+        <a href="{{ url_for('view_analysis', session_id=session.id) }}" class="btn btn-secondary btn-lg">
+            <i class="fas fa-arrow-left"></i> Back to Analysis
+        </a>
+    </div>
+</div>
+{% endblock %}

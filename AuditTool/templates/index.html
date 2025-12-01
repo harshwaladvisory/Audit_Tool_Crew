@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Audit Liability Tool{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="page-header d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="page-title">
+                <i class="fas fa-chart-pie"></i> Dashboard
+            </h1>
+            <p class="page-subtitle">Manage your audit sessions and findings</p>
+        </div>
+        <a href="{{ url_for('new_session') }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-plus-circle"></i> New Audit Session
+        </a>
+    </div>
+
+    <!-- Dashboard Cards - ALL SAME PURPLE ICON COLOR -->
+    <div class="row g-4 mb-4">
+        <!-- Total Sessions - Primary Purple -->
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="dashboard-card">
+                <div class="card-content">
+                    <span class="card-label">TOTAL SESSIONS</span>
+                    <div class="card-value">{{ sessions|length }}</div>
+                    <p class="card-description">
+                        <i class="fas fa-check-circle"></i> All sessions tracked
+                    </p>
+                </div>
+                <div class="card-icon-wrapper icon-primary">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Sessions - SAME Purple as Total Sessions -->
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="dashboard-card">
+                <div class="card-content">
+                    <span class="card-label">ACTIVE SESSIONS</span>
+                    <div class="card-value">{{ sessions|selectattr('status', 'equalto', 'analyzed')|list|length }}</div>
+                    <p class="card-description">
+                        <i class="fas fa-check-circle"></i> Currently active
+                    </p>
+                </div>
+                <div class="card-icon-wrapper icon-primary">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Sessions - SAME Purple -->
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="dashboard-card">
+                <div class="card-content">
+                    <span class="card-label">PENDING SESSIONS</span>
+                    <div class="card-value">{{ sessions|selectattr('status', 'equalto', 'pending')|list|length }}</div>
+                    <p class="card-description">
+                        <i class="fas fa-clock"></i> Awaiting upload
+                    </p>
+                </div>
+                <div class="card-icon-wrapper icon-primary">
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity - SAME Purple -->
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="dashboard-card">
+                <div class="card-content">
+                    <span class="card-label">RECENT ACTIVITY</span>
+                    <div class="card-value">{{ sessions[:3]|length }}</div>
+                    <p class="card-description">
+                        <i class="fas fa-history"></i> Last 3 sessions
+                    </p>
+                </div>
+                <div class="card-icon-wrapper icon-primary">
+                    <i class="fas fa-list-check"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Audit Sessions Table -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5><i class="fas fa-folder"></i> Audit Sessions</h5>
+                </div>
+                <div class="card-body">
+                    {% if sessions %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Session Name</th>
+                                    <th>Client</th>
+                                    <th>Fiscal Year End</th>
+                                    <th>Status</th>
+                                    <th>Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for session in sessions %}
+                                <tr>
+                                    <td><strong>{{ session.session_name }}</strong></td>
+                                    <td>{{ session.client_name }}</td>
+                                    <td>{{ session.fiscal_year_end.strftime('%Y-%m-%d') }}</td>
+                                    <td>
+                                        {% if session.status == 'pending' %}
+                                            <span class="badge bg-warning">Pending</span>
+                                        {% elif session.status == 'analyzed' %}
+                                            <span class="badge bg-success">Analyzed</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">{{ session.status|title }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ session.created_at.strftime('%Y-%m-%d') }}</td>
+                                    <td>
+                                        <div class="d-flex gap-1">
+                                            {% if session.status == 'pending' %}
+                                                <a href="{{ url_for('upload_files', session_id=session.id) }}" 
+                                                   class="btn btn-primary btn-sm"
+                                                   title="Upload Files">
+                                                    <i class="fas fa-upload"></i>
+                                                </a>
+                                            {% elif session.status == 'analyzed' %}
+                                                <a href="{{ url_for('view_analysis', session_id=session.id) }}" 
+                                                   class="btn btn-info btn-sm"
+                                                   title="View Analysis">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="{{ url_for('generate_report', session_id=session.id) }}" 
+                                                   class="btn btn-success btn-sm"
+                                                   title="Generate Report">
+                                                    <i class="fas fa-file-alt"></i>
+                                                </a>
+                                            {% endif %}
+                                            <form action="{{ url_for('delete_session', session_id=session.id) }}" 
+                                                  method="POST" 
+                                                  style="display:inline;">
+                                                <button type="submit" 
+                                                        class="btn btn-danger btn-sm" 
+                                                        title="Delete Session"
+                                                        onclick="return confirm('Are you sure you want to delete this session?');">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-folder-open"></i>
+                        <h5>No audit sessions found</h5>
+                        <p>Create your first audit session to get started.</p>
+                        <a href="{{ url_for('new_session') }}" class="btn btn-primary mt-3">
+                            <i class="fas fa-plus-circle"></i> Create New Session
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Quick Actions Card - ALL PURPLE BUTTONS -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5><i class="fas fa-bolt"></i> Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-3">
+                        <a href="{{ url_for('new_session') }}" class="btn btn-primary">
+                            <i class="fas fa-plus-circle"></i> New Audit Session
+                        </a>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-calculator"></i> Calculate Interest
+                        </button>
+                        <button class="btn btn-info">
+                            <i class="fas fa-clock"></i> Run Aging Analysis
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Start Guide -->
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5><i class="fas fa-question-circle"></i> Quick Start Guide</h5>
+                </div>
+                <div class="card-body">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h6>Create Audit Session</h6>
+                            <p>Set up client information and materiality thresholds</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h6>Upload Excel Files</h6>
+                            <p>Upload Check Register or Subsequent GL files</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h6>Process & Analyze</h6>
+                            <p>Automated analysis of vendor payments</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h6>Review Findings</h6>
+                            <p>Examine identified unrecorded liabilities</p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h6>Generate Report</h6>
+                            <p>Export comprehensive audit report</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

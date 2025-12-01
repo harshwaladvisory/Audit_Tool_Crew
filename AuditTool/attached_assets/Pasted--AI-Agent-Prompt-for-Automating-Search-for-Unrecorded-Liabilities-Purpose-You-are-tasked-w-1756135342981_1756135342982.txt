@@ -1,0 +1,62 @@
+# AI Agent Prompt for Automating Search for Unrecorded Liabilities
+
+**Purpose**:
+You are tasked with automating the workflow for searching unrecorded liabilities as part of an audit procedure. This involves reviewing a company's subsequent period accounts, filtering out vendor payments, and identifying any liabilities that were incurred but not recorded in the financial statements.
+
+**Input Files**:
+- Check Register: Excel file containing payment data for three months after fiscal year-end.
+- Subsequent General Ledger (GL): Excel file in the absence of Check Register.
+
+**Steps to Automate**:
+
+1. **Initial Data Extraction**:
+    - Extract recorded liabilities from the provided files (Check Register and Subsequent GL).
+    - Filter out accounts payable, accrued expenses, and other liabilities.
+
+2. **Vendor Transaction Filtering**:
+    - If Check Register is available, filter payments to vendors and sort by value.
+    - If using Subsequent GL, filter out cash & cash equivalents and payment types like “Bill Pmt” or “Check” to isolate vendor payments.
+
+3. **Transaction Sampling**:
+    - Based on materiality, sample transactions from the first month and a few from the second and third months.
+    - Ensure the sample size and amount are based on risk assessment or as per the preliminary materiality worksheet.
+
+4. **Analysis of Unrecorded Liabilities**:
+    - Identify any large, unrecorded liabilities by cross-referencing payments to invoices.
+    - Analyze invoice descriptions and match payments to prior fiscal year obligations if applicable.
+
+5. **Communication with Client**:
+    - If any unrecorded liabilities are identified, confirm findings with client management.
+    - Request any necessary adjustments or disclosures related to the liabilities.
+
+6. **Financial Statement Adjustments**:
+    - If adjustments are needed, guide the agent to adjust financial statements and disclosures accordingly.
+
+**Output**:
+- A report summarizing the identified unrecorded liabilities, detailing adjustments needed, and the next steps.
+
+**Tech Stack**:
+- **Backend**: Python, Flask
+- **Frontend**: HTML, CSS, JavaScript
+- **Database**: PostgreSQL (PSQL)
+
+Please ensure the following:
+- The data from the provided Excel files is correctly imported and processed.
+- All filtering, sorting, and sampling are based on the logic described above.
+- The results are stored in a PostgreSQL database for future reference.
+
+---
+
+### **Interaction Flow**:
+
+1. **Input**: Upload the Check Register and Subsequent GL Excel files.
+2. **Step 1**: Extract liabilities for three months after fiscal year-end.
+3. **Step 2**: Filter payments to vendors and sort by amount.
+4. **Step 3**: Sample transactions and identify unrecorded liabilities.
+5. **Step 4**: Confirm findings with client management.
+6. **Step 5**: Adjust financial statements and disclosures if necessary.
+
+---
+
+Ensure the agent provides clear feedback during each step of the process, with prompts for user intervention when needed. Ensure that any unrecorded liabilities or discrepancies found are logged with detailed explanations for the audit team to review.
+

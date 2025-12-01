@@ -1,0 +1,371 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis Results - {{ session.session_name }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="page-header d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="page-title">
+                <i class="fas fa-chart-bar"></i> Analysis Results
+            </h1>
+            <p class="page-subtitle">{{ session.session_name }} - {{ session.client_name }}</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('generate_report', session_id=session.id) }}" class="btn btn-primary">
+                <i class="fas fa-file-alt"></i> Generate Report
+            </a>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </div>
+    </div>
+    
+    <!-- KPI Cards - All Purple Spectrum -->
+    <div class="row g-4 mb-4">
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="dashboard-card">
+                <div class="card-content">
+                    <span class="card-label">TOTAL TRANSACTIONS</span>
+                    <div class="card-value">{{ total_transactions }}</div>
+                    <p class="card-description">
+                        <i class="fas fa-check-circle"></i> All transactions processed
+                    </p>
+                </div>
+                <div class="card-icon-wrapper icon-primary">
+                    <i class="fas fa-receipt"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="dashboard-card">
+                <div class="card-content">
+                    <span class="card-label">SAMPLED TRANSACTIONS</span>
+                    <div class="card-value">{{ sampled_transactions }}</div>
+                    <p class="card-description">
+                        <i class="fas fa-filter"></i> Risk-based sampling
+                    </p>
+                </div>
+                <div class="card-icon-wrapper icon-info">
+                    <i class="fas fa-tasks"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="dashboard-card">
+                <div class="card-content">
+                    <span class="card-label">TOTAL FINDINGS</span>
+                    <div class="card-value">{{ findings|length }}</div>
+                    <p class="card-description">
+                        <i class="fas fa-flag"></i> Potential issues identified
+                    </p>
+                </div>
+                <div class="card-icon-wrapper icon-tertiary">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-lg-6 col-md-6">
+            <div class="dashboard-card">
+                <div class="card-content">
+                    <span class="card-label">HIGH RISK FINDINGS</span>
+                    <div class="card-value" style="color: var(--brand-700);">{{ high_risk_findings|length }}</div>
+                    <p class="card-description">
+                        <i class="fas fa-exclamation-triangle"></i> Requires attention
+                    </p>
+                </div>
+                <div class="card-icon-wrapper icon-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="row g-4 mb-4">
+        <!-- Monthly Distribution Chart -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5><i class="fas fa-chart-line"></i> Monthly Sampling Distribution</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="monthlyChart" height="80"></canvas>
+                    <div class="mt-4">
+                        <table class="table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Period</th>
+                                    <th>Sampled Count</th>
+                                    <th>Total Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for stat in monthly_stats %}
+                                <tr>
+                                    <td><strong>Month {{ stat.sample_month }}</strong></td>
+                                    <td><span class="badge bg-primary">{{ stat.count }}</span></td>
+                                    <td><strong>${{ "{:,.2f}".format(stat.total_amount) }}</strong></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk Distribution Chart -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5><i class="fas fa-shield-alt"></i> Risk Distribution</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="riskChart"></canvas>
+                    <div class="mt-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted" style="font-size: 0.875rem;">
+                                <i class="fas fa-circle" style="color: var(--brand-700);"></i> High Risk
+                            </span>
+                            <strong>{{ findings|selectattr('risk_level', 'equalto', 'high')|list|length }}</strong>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted" style="font-size: 0.875rem;">
+                                <i class="fas fa-circle" style="color: var(--brand-400);"></i> Medium Risk
+                            </span>
+                            <strong>{{ findings|selectattr('risk_level', 'equalto', 'medium')|list|length }}</strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted" style="font-size: 0.875rem;">
+                                <i class="fas fa-circle" style="color: var(--brand-200);"></i> Low Risk
+                            </span>
+                            <strong>{{ findings|selectattr('risk_level', 'equalto', 'low')|list|length }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Findings Table - Purple Badges -->
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5><i class="fas fa-list-ul"></i> Detailed Findings</h5>
+        </div>
+        <div class="card-body">
+            {% if findings %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Risk Level</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for finding in findings %}
+                        <tr>
+                            <td>
+                                {% if finding.risk_level == 'high' %}
+                                <span class="badge risk-high">
+                                    <i class="fas fa-exclamation-triangle"></i> HIGH
+                                </span>
+                                {% elif finding.risk_level == 'medium' %}
+                                <span class="badge risk-medium">
+                                    <i class="fas fa-exclamation-circle"></i> MEDIUM
+                                </span>
+                                {% else %}
+                                <span class="badge risk-low">
+                                    <i class="fas fa-check-circle"></i> LOW
+                                </span>
+                                {% endif %}
+                            </td>
+                            <td><strong>{{ finding.finding_type.replace('_', ' ')|title }}</strong></td>
+                            <td>{{ finding.description[:100] }}...</td>
+                            <td><strong>${{ "{:,.2f}".format(finding.amount) if finding.amount else 'N/A' }}</strong></td>
+                            <td>
+                                <span class="badge bg-secondary">{{ finding.status|title }}</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <i class="fas fa-check-circle"></i>
+                <h5>No findings identified</h5>
+                <p>All transactions appear to be in order. No unrecorded liabilities detected.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="mt-4 mb-4 d-flex gap-2">
+        <a href="{{ url_for('generate_report', session_id=session.id) }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-file-alt"></i> Generate Full Report
+        </a>
+        <a href="{{ url_for('export_report', session_id=session.id) }}" class="btn btn-success btn-lg">
+            <i class="fas fa-download"></i> Export to Excel
+        </a>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary btn-lg">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<script>
+// 100% Monochromatic Purple Palette
+const purpleScale = {
+    darkest: '#211940',
+    darker: '#2a2150',
+    dark: '#342961',         // High risk
+    base: '#413178',         // Primary
+    medium: '#5a4a9a',
+    light: '#6C5BB5',
+    lighter: '#8A7BC4',      // Medium risk
+    lightest: '#C5B8EB',
+    tint: '#D9D1F3',         // Low risk
+    pale: '#EEEAFB',
+    white: '#ffffff',
+    muted: '#67627F',
+    border: '#E9E7F2'
+};
+
+// Purple gradient for bars
+const purpleGradients = [
+    purpleScale.base,
+    purpleScale.medium,
+    purpleScale.light
+];
+
+// Monthly Chart - Purple Bars
+const monthlyCtx = document.getElementById('monthlyChart').getContext('2d');
+const monthlyChart = new Chart(monthlyCtx, {
+    type: 'bar',
+    data: {
+        labels: [
+            {% for stat in monthly_stats %}
+            'Month {{ stat.sample_month }}'{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ],
+        datasets: [{
+            label: 'Sampled Transactions',
+            data: [
+                {% for stat in monthly_stats %}
+                {{ stat.count }}{% if not loop.last %},{% endif %}
+                {% endfor %}
+            ],
+            backgroundColor: purpleGradients,
+            borderColor: purpleScale.dark,
+            borderWidth: 2,
+            borderRadius: 12,
+            barThickness: 60
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: 'Transaction Sampling by Month',
+                color: purpleScale.base,
+                font: { size: 15, weight: 'bold' },
+                padding: { top: 10, bottom: 20 }
+            },
+            tooltip: {
+                backgroundColor: 'rgba(65, 49, 120, 0.95)',
+                titleColor: purpleScale.white,
+                bodyColor: purpleScale.white,
+                padding: 12,
+                cornerRadius: 8,
+                borderColor: purpleScale.medium,
+                borderWidth: 1
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: { 
+                    color: purpleScale.muted,
+                    precision: 0
+                },
+                grid: { 
+                    color: purpleScale.border,
+                    drawBorder: false
+                }
+            },
+            x: {
+                ticks: { 
+                    color: purpleScale.base,
+                    font: { weight: 'bold' }
+                },
+                grid: { display: false }
+            }
+        }
+    }
+});
+
+// Risk Distribution - Pure Purple Doughnut
+const riskCtx = document.getElementById('riskChart').getContext('2d');
+const highRisk = {{ findings|selectattr('risk_level', 'equalto', 'high')|list|length }};
+const mediumRisk = {{ findings|selectattr('risk_level', 'equalto', 'medium')|list|length }};
+const lowRisk = {{ findings|selectattr('risk_level', 'equalto', 'low')|list|length }};
+
+const riskChart = new Chart(riskCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['High Risk', 'Medium Risk', 'Low Risk'],
+        datasets: [{
+            data: [highRisk, mediumRisk, lowRisk],
+            backgroundColor: [
+                purpleScale.dark,      // High risk - Dark purple
+                purpleScale.lighter,   // Medium risk - Light purple
+                purpleScale.tint       // Low risk - Very light purple
+            ],
+            borderColor: purpleScale.white,
+            borderWidth: 3,
+            hoverOffset: 15
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        cutout: '70%',
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                backgroundColor: 'rgba(65, 49, 120, 0.95)',
+                titleColor: purpleScale.white,
+                bodyColor: purpleScale.white,
+                padding: 12,
+                cornerRadius: 8,
+                callbacks: {
+                    label: function(context) {
+                        const label = context.label || '';
+                        const value = context.parsed || 0;
+                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                        const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
+                        return label + ': ' + value + ' (' + percentage + '%)';
+                    }
+                }
+            }
+        }
+    }
+});
+</script>
+{% endblock %}
