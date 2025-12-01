@@ -1,9 +1,0 @@
-flask
-google-genai
-openpyxl
-pandas
-requests
-werkzeug
-python-dotenv
-pymongo
-dnspython
