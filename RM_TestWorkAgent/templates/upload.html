@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Files - R&M TestWork Agent</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="/static/css/app.css" rel="stylesheet">
+    <style>
+        .upload-zone {
+            border: 2px dashed #413178;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            background-color: #F1EEFA;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .upload-zone:hover {
+            background-color: #E5DFF7;
+            border-color: #342961;
+        }
+        
+        .upload-zone.dragover {
+            background-color: #D9D1F3;
+            border-color: #342961;
+        }
+        
+        .file-info {
+            background-color: #E5DFF7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: #413178;
+            margin-bottom: 15px;
+        }
+        
+        .card {
+            background: #FFFFFF;
+            border: 1px solid #E9E7F2;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(65, 49, 120, 0.08);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Ribbon with Both Logos -->
+    <div class="header-ribbon">
+        <div class="logo-container">
+            <img src="/static/images/Logo_.png" alt="Company Logo" class="company-logo">
+            <img src="/static/images/Coverlogo.png" alt="R&M TestWork Agent" class="project-logo">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid" style="padding: 0 2rem;">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-clipboard-data"></i> Upload Files
+            </a>
+            <div>
+                <a href="/" class="btn btn-sm" style="background: rgba(255,255,255,0.2); border: none;">
+                    <i class="bi bi-house"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 900px; margin-top: 2rem; margin-bottom: 3rem;">
+        <!-- Upload Form Card -->
+        <div class="card" style="padding: 0; margin-bottom: 2rem;">
+            <div style="background: #413178; color: white; padding: 1rem 1.5rem;">
+                <h4 class="mb-0" style="font-weight: 600;"><i class="bi bi-cloud-upload"></i> Upload Files</h4>
+            </div>
+            <div style="padding: 2rem;">
+                <form id="uploadForm" action="/api/upload" method="POST" enctype="multipart/form-data">
+                    <!-- Run Name -->
+                    <div class="mb-4">
+                        <label for="run_name" class="form-label" style="color: #413178; font-weight: 600;">Run Name <span style="color: #342961;">*</span></label>
+                        <input type="text" class="form-control form-control-lg" id="run_name" name="run_name" 
+                               placeholder="e.g., R&M FY2025-26" required>
+                        <small class="text-muted">Enter a descriptive name for this audit run</small>
+                    </div>
+
+                    <!-- GL File Upload -->
+                    <div class="mb-4">
+                        <label class="form-label" style="color: #413178; font-weight: 600;">GL Population File <span style="color: #342961;">*</span> (Required)</label>
+                        <div class="upload-zone" id="glZone" onclick="document.getElementById('gl_file').click()">
+                            <i class="bi bi-cloud-upload upload-icon"></i>
+                            <p class="mb-2" style="color: #413178; font-weight: 600;">Click to upload GL Population file</p>
+                            <p class="text-muted mb-0">or drag and drop</p>
+                            <small class="text-muted">Excel files (.xlsx, .xls) or CSV</small>
+                        </div>
+                        <input type="file" class="form-control d-none" id="gl_file" name="gl_file" 
+                               accept=".xlsx,.xls,.csv" required>
+                        <div id="glFileInfo" class="file-info d-none"></div>
+                    </div>
+
+                    <!-- TB File Upload -->
+                    <div class="mb-4">
+                        <label class="form-label" style="color: #413178; font-weight: 600;">Trial Balance File (Optional)</label>
+                        <div class="upload-zone" id="tbZone" onclick="document.getElementById('tb_file').click()">
+                            <i class="bi bi-file-earmark-spreadsheet upload-icon"></i>
+                            <p class="mb-2" style="color: #413178; font-weight: 600;">Click to upload TB file</p>
+                            <p class="text-muted mb-0">or drag and drop</p>
+                            <small class="text-muted">Excel files (.xlsx, .xls) or CSV</small>
+                        </div>
+                        <input type="file" class="form-control d-none" id="tb_file" name="tb_file" 
+                               accept=".xlsx,.xls,.csv">
+                        <div id="tbFileInfo" class="file-info d-none"></div>
+                    </div>
+
+                    <!-- Config File Upload -->
+                    <div class="mb-4">
+                        <label class="form-label" style="color: #413178; font-weight: 600;">Configuration File (Optional)</label>
+                        <div class="upload-zone" id="configZone" onclick="document.getElementById('config_file').click()">
+                            <i class="bi bi-gear upload-icon"></i>
+                            <p class="mb-2" style="color: #413178; font-weight: 600;">Click to upload config file</p>
+                            <p class="text-muted mb-0">or drag and drop</p>
+                            <small class="text-muted">Excel or CSV with parameters</small>
+                        </div>
+                        <input type="file" class="form-control d-none" id="config_file" name="config_file" 
+                               accept=".xlsx,.xls,.csv">
+                        <div id="configFileInfo" class="file-info d-none"></div>
+                        <small class="text-muted">Config file should have columns: <strong>Parameter</strong>, <strong>Value</strong></small>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-lg" style="background: #413178; color: white; border: none; font-weight: 600; padding: 12px 30px;" id="submitBtn">
+                            <i class="bi bi-cloud-upload"></i> 
+                            <span id="submitText">Upload and Create Run</span>
+                            <span id="submitSpinner" class="spinner-border spinner-border-sm d-none ms-2" role="status"></span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Progress -->
+                <div id="uploadProgress" class="mt-4 d-none">
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                             role="progressbar" style="width: 100%; background-color: #413178;">Processing files...</div>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div id="successMessage" class="alert mt-4 d-none" style="background: #E5DFF7; color: #342961; border-left: 4px solid #413178; border-radius: 8px;">
+                    <i class="bi bi-check-circle"></i> <strong>Success!</strong> Files uploaded successfully. Redirecting to dashboard...
+                </div>
+
+                <!-- Error Message -->
+                <div id="errorMessage" class="alert alert-danger mt-4 d-none" style="background: #F1EEFA; color: #342961; border-left: 4px solid #342961; border-radius: 8px;"></div>
+            </div>
+        </div>
+
+        <!-- File Requirements Card -->
+        <div class="card" style="padding: 0;">
+            <div style="background: #413178; color: white; padding: 1rem 1.5rem;">
+                <h6 class="mb-0" style="font-weight: 600;"><i class="bi bi-info-circle"></i> File Requirements</h6>
+            </div>
+            <div style="padding: 1.5rem;">
+                <ul class="mb-0" style="color: #413178; line-height: 1.8;">
+                    <li><strong>GL Population:</strong> Must contain columns: Account Code, Account Name, Description, Amount</li>
+                    <li><strong>Trial Balance:</strong> Must contain columns: Account Code, Account Name, TB Amount (or Balance/Amount)</li>
+                    <li><strong>Configuration:</strong> Must contain columns: Parameter, Value</li>
+                    <li><strong>File Format:</strong> Excel (.xlsx, .xls) or CSV files</li>
+                    <li><strong>Maximum Size:</strong> 16 MB per file</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('gl_file').addEventListener('change', function(e) {
+            showFileInfo(e.target, 'glFileInfo');
+        });
+
+        document.getElementById('tb_file').addEventListener('change', function(e) {
+            showFileInfo(e.target, 'tbFileInfo');
+        });
+
+        document.getElementById('config_file').addEventListener('change', function(e) {
+            showFileInfo(e.target, 'configFileInfo');
+        });
+
+        function showFileInfo(input, infoId) {
+            const infoDiv = document.getElementById(infoId);
+            if (input.files.length > 0) {
+                const file = input.files[0];
+                const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+                infoDiv.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="bi bi-file-earmark-check" style="color: #413178;"></i>
+                            <strong style="color: #413178;">Selected:</strong> ${file.name} <span class="badge" style="background: #413178;">${sizeInMB} MB</span>
+                        </div>
+                        <button type="button" class="btn btn-sm" style="background: #342961; color: white; border: none;" 
+                                onclick="clearFile('${input.id}', '${infoId}')">
+                            <i class="bi bi-x-circle"></i> Remove
+                        </button>
+                    </div>
+                `;
+                infoDiv.classList.remove('d-none');
+            } else {
+                infoDiv.classList.add('d-none');
+            }
+        }
+
+        function clearFile(inputId, infoId) {
+            document.getElementById(inputId).value = '';
+            document.getElementById(infoId).classList.add('d-none');
+        }
+
+        function setupDragDrop(zoneId, inputId, infoId) {
+            const zone = document.getElementById(zoneId);
+            
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zone.classList.add('dragover');
+            });
+            
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('dragover');
+            });
+            
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zone.classList.remove('dragover');
+                const input = document.getElementById(inputId);
+                input.files = e.dataTransfer.files;
+                showFileInfo(input, infoId);
+            });
+        }
+
+        setupDragDrop('glZone', 'gl_file', 'glFileInfo');
+        setupDragDrop('tbZone', 'tb_file', 'tbFileInfo');
+        setupDragDrop('configZone', 'config_file', 'configFileInfo');
+
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const submitSpinner = document.getElementById('submitSpinner');
+            const uploadProgress = document.getElementById('uploadProgress');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            
+            errorMessage.classList.add('d-none');
+            successMessage.classList.add('d-none');
+            
+            submitBtn.disabled = true;
+            submitText.textContent = 'Uploading...';
+            submitSpinner.classList.remove('d-none');
+            uploadProgress.classList.remove('d-none');
+            
+            const formData = new FormData(this);
+            
+            try {
+                const response = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                uploadProgress.classList.add('d-none');
+                
+                if (data.success) {
+                    successMessage.classList.remove('d-none');
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 1500);
+                } else {
+                    errorMessage.innerHTML = '<i class="bi bi-exclamation-triangle"></i> <strong>Error:</strong> ' + (data.error || 'Upload failed');
+                    errorMessage.classList.remove('d-none');
+                    submitBtn.disabled = false;
+                    submitText.textContent = 'Upload and Create Run';
+                    submitSpinner.classList.add('d-none');
+                }
+            } catch (error) {
+                uploadProgress.classList.add('d-none');
+                errorMessage.innerHTML = '<i class="bi bi-exclamation-triangle"></i> <strong>Error:</strong> ' + error.message;
+                errorMessage.classList.remove('d-none');
+                submitBtn.disabled = false;
+                submitText.textContent = 'Upload and Create Run';
+                submitSpinner.classList.add('d-none');
+            }
+        });
+    </script>
+</body>
+</html>

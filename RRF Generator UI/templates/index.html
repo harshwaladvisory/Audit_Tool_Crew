@@ -1,0 +1,328 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - LOI Generator Agent{% endblock %}
+
+{% block content %}
+<!-- KPI Grid -->
+<div class="kpi-grid">
+    <div class="kpi-card">
+        <div class="kpi-content">
+            <div class="kpi-label">Total Documents</div>
+            <div class="kpi-value">{{ stats.total_documents }}</div>
+            <div class="kpi-meta">
+                <svg class="kpi-trend up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                <span>Successfully processed</span>
+            </div>
+        </div>
+        <div class="kpi-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+        </div>
+    </div>
+
+    <div class="kpi-card">
+        <div class="kpi-content">
+            <div class="kpi-label">Active Templates</div>
+            <div class="kpi-value">{{ stats.active_templates }}</div>
+            <div class="kpi-meta">
+                <svg class="kpi-trend up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                <span>Ready to use</span>
+            </div>
+        </div>
+        <div class="kpi-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+        </div>
+    </div>
+
+    <div class="kpi-card">
+        <div class="kpi-content">
+            <div class="kpi-label">Processing Time</div>
+            <div class="kpi-value">{{ stats.avg_processing_time }}<span class="kpi-unit">s</span></div>
+            <div class="kpi-meta">
+                <svg class="kpi-trend down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
+                    <polyline points="17 18 23 18 23 12"></polyline>
+                </svg>
+                <span>Average time</span>
+            </div>
+        </div>
+        <div class="kpi-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+        </div>
+    </div>
+
+    <div class="kpi-card">
+        <div class="kpi-content">
+            <div class="kpi-label">Success Rate</div>
+            <div class="kpi-value">{{ stats.success_rate }}<span class="kpi-unit">%</span></div>
+            <div class="kpi-meta">
+                <svg class="kpi-trend up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                <span>Overall success rate</span>
+            </div>
+        </div>
+        <div class="kpi-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<!-- Main Card - File Upload -->
+<div class="dashboard-section">
+    <div class="section-header">
+        <h2>Upload Your Document Here</h2>
+        <p>Upload RRF-1 PDF form and Word template to automatically generate a completed letter</p>
+    </div>
+
+    <div class="card">
+        <form method="POST" action="{{ url_for('upload_files') }}" enctype="multipart/form-data" id="uploadForm">
+            <div class="form-grid">
+                <!-- PDF Upload -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                        </svg>
+                        RRF-1 PDF Form
+                    </label>
+                    <div class="file-upload-area" id="pdfDropZone">
+                        <input type="file" class="file-input" id="pdf_file" name="pdf_file" accept=".pdf" required>
+                        <div class="file-upload-placeholder">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p><strong>Click to upload</strong> or drag and drop</p>
+                            <span class="file-hint">PDF files only, max 16MB</span>
+                        </div>
+                        <div class="file-selected" style="display: none;">
+                            <svg class="file-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                            <span class="file-name"></span>
+                            <button type="button" class="file-remove">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-help">Upload the completed RRF-1 form containing the data to be extracted</div>
+                </div>
+
+                <!-- Word Upload -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                        Letter Template (Word)
+                    </label>
+                    <div class="file-upload-area" id="wordDropZone">
+                        <input type="file" class="file-input" id="word_file" name="word_file" accept=".doc,.docx" required>
+                        <div class="file-upload-placeholder">
+                            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                            <p><strong>Click to upload</strong> or drag and drop</p>
+                            <span class="file-hint">.doc or .docx files, max 16MB</span>
+                        </div>
+                        <div class="file-selected" style="display: none;">
+                            <svg class="file-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                            <span class="file-name"></span>
+                            <button type="button" class="file-remove">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-help">Upload the Word template with placeholders like &lt;&lt;Date&gt;&gt;, &lt;&lt;Client Name&gt;&gt;</div>
+                </div>
+
+                <!-- Approval Date -->
+                <div class="form-group full-width">
+                    <label class="form-label">
+                        <svg class="form-label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        Approval Date
+                    </label>
+                    <input type="date" class="form-control" id="approval_date" name="approval_date" required>
+                    <div class="form-help">Select the approval date to be inserted as &lt;&lt;date1&gt;&gt; in the document</div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Generate Letter of Instruction
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Info Cards -->
+<div class="info-grid">
+    <div class="info-card">
+        <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+        </div>
+        <h3>1. Upload Files</h3>
+        <p>Upload your RRF-1 PDF and Word template files</p>
+    </div>
+
+    <div class="info-card">
+        <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 1v6m0 6v6m8.66-8.66l-5.2 3M8.54 14.34l-5.2 3m13.32-13.32l-5.2 3M8.54 9.66l-5.2-3"></path>
+            </svg>
+        </div>
+        <h3>2. AI Processing</h3>
+        <p>AI extracts data and calculates fees automatically</p>
+    </div>
+
+    <div class="info-card">
+        <div class="info-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+        </div>
+        <h3>3. Download Result</h3>
+        <p>Get your completed letter ready for use</p>
+    </div>
+</div>
+
+<!-- Supported Fields -->
+<div class="card">
+    <div class="card-tip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <span><strong>Tip:</strong> The fee is automatically calculated based on gross receipts from the RRF-1 form according to standard fee schedules.</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// File upload handlers
+function setupFileUpload(dropZoneId, inputId) {
+    const dropZone = document.getElementById(dropZoneId);
+    const input = document.getElementById(inputId);
+    const placeholder = dropZone.querySelector('.file-upload-placeholder');
+    const selected = dropZone.querySelector('.file-selected');
+    const fileName = selected.querySelector('.file-name');
+    const removeBtn = selected.querySelector('.file-remove');
+
+    // Click to upload
+    dropZone.addEventListener('click', (e) => {
+        if (!e.target.closest('.file-remove')) {
+            input.click();
+        }
+    });
+
+    // File selection
+    input.addEventListener('change', (e) => {
+        if (input.files.length > 0) {
+            fileName.textContent = input.files[0].name;
+            placeholder.style.display = 'none';
+            selected.style.display = 'flex';
+        }
+    });
+
+    // Remove file
+    removeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        input.value = '';
+        placeholder.style.display = 'flex';
+        selected.style.display = 'none';
+    });
+
+    // Drag and drop
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            input.files = files;
+            fileName.textContent = files[0].name;
+            placeholder.style.display = 'none';
+            selected.style.display = 'flex';
+        }
+    });
+}
+
+setupFileUpload('pdfDropZone', 'pdf_file');
+setupFileUpload('wordDropZone', 'word_file');
+
+// Form submission
+document.getElementById('uploadForm').addEventListener('submit', function(e) {
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle></svg> Processing...';
+});
+</script>
+{% endblock %}

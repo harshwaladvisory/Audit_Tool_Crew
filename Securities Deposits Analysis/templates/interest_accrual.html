@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interest Accrual - Securities Deposits</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Logo Ribbon -->
+    <div class="top-logo-ribbon">
+        <div class="container-fluid">
+            <div class="ribbon-content">
+                <!-- Company Logo - Left Side -->
+                <div class="company-logo">
+                    <img src="{{ url_for('static', filename='images/Logo_.png') }}" alt="Company Logo" class="logo-img">
+                </div>
+                
+                <!-- Project Logo - Right Side -->
+                <div class="project-logo">
+                    <img src="{{ url_for('static', filename='images/Coverlogo.png') }}" alt="Project Logo" class="project-logo-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-chart-line me-2"></i>Securities Deposits Analysis
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-tachometer-alt me-1"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/file-upload"><i class="fas fa-upload me-1"></i> File Upload</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/deposits-analysis"><i class="fas fa-table me-1"></i> Deposits</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-chart-bar me-1"></i> Analysis
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/aging-analysis">
+                                <i class="fas fa-clock me-1"></i> Aging Analysis
+                            </a></li>
+                            <li><a class="dropdown-item active" href="/interest-accrual">
+                                <i class="fas fa-percentage me-1"></i> Interest Accrual
+                            </a></li>
+                            <li><a class="dropdown-item" href="/unclaimed-deposits">
+                                <i class="fas fa-exclamation-triangle me-1"></i> Unclaimed Deposits
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/audit-program"><i class="fas fa-clipboard-list me-1"></i> Audit Program</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reports"><i class="fas fa-file-alt me-1"></i> Reports</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1><i class="fas fa-percentage me-2 text-primary"></i>Interest Accrual Analysis</h1>
+            <button class="btn btn-primary btn-lg" onclick="calculateInterest()">
+                <i class="fas fa-calculator me-2"></i>Calculate Interest
+            </button>
+        </div>
+
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>Note:</strong> PDF security deposits have 0% interest by default. 
+            To calculate interest, upload Excel files with interest rate data.
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-light">
+                <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Interest Analysis Status</h5>
+            </div>
+            <div class="card-body text-center py-5">
+                <i class="fas fa-info-circle fa-3x text-info mb-3"></i>
+                <h4>Ready to Calculate</h4>
+                <p class="text-muted">Click the "Calculate Interest" button above to analyze deposits with interest rates.</p>
+                <p class="text-muted"><small>Security deposits from PDF statements typically have 0% interest rate.</small></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light border-top mt-5">
+        <div class="container-fluid py-3">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <small class="text-muted">
+                        © 2025 Securities Deposits Analysis AI Agent
+                    </small>
+                </div>
+                <div class="col-md-6 text-end">
+                    <small class="text-muted">
+                        Powered by AI-driven Financial Analysis
+                    </small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function calculateInterest() {
+            fetch('/api/calculate-interest', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success' && data.total_calculated > 0) {
+                    alert('✓ Interest calculated for ' + data.total_calculated + ' deposits!');
+                    location.reload();
+                } else {
+                    alert('No deposits with interest rates found.\n\nPDF security deposits have 0% interest.\nUpload Excel files with interest rate data to see calculations.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error calculating interest: ' + error);
+            });
+        }
+    </script>
+</body>
+</html>

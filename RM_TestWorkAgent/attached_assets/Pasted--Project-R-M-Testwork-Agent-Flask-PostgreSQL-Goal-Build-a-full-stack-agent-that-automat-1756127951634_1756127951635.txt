@@ -1,0 +1,135 @@
+# Project: R&M Testwork Agent (Flask + PostgreSQL)
+
+## Goal
+Build a full-stack agent that automates the **Repair & Maintenance** testwork per the provided flowchart and SOP: import GL, reconcile to TB, filter R&M, apply capitalization threshold & materiality, select samples, collect support docs, run 7 attribute checks, generate exceptions, and export final reports (Samples, Checklist, Exceptions, Audit Trail).
+
+## Tech & Structure
+- Python 3.11, Flask, SQLAlchemy, Alembic, Pandas, OpenPyXL
+- PostgreSQL (psycopg2)
+- HTML/CSS/JS (vanilla)
+- Reports with XlsxWriter + HTML→PDF
+
+### File tree
+/app
+/api
+init.py
+ingest.py # upload & parse Excel, reconcile with TB
+sampling.py # threshold + stratified sampling
+attributes.py # 7 checks endpoints
+reports.py # build XLSX/JSON/PDF outputs
+support.py # file uploads & hashing
+/models
+init.py
+base.py
+run.py gl.py rm.py sample.py attr.py support.py exception.py
+/services
+config.py # read .env or Config.xlsx
+reconcile.py # GL ↔ TB checks
+export.py # writers
+pdf.py
+/web
+templates/ # Jinja
+layout.html dashboard.html upload.html sampling.html attributes.html exceptions.html reports.html settings.html
+static/
+css/app.css
+js/app.js
+app.py
+/.env.example
+/alembic.ini
+/requirements.txt
+/README.md
+
+csharp
+Copy
+Edit
+
+## Requirements
+Create `requirements.txt` with:
+flask
+flask-cors
+sqlalchemy
+alembic
+psycopg2-binary
+pandas
+openpyxl
+numpy
+python-dotenv
+xlsxwriter
+weasyprint
+
+markdown
+Copy
+Edit
+
+## Environment
+Generate `.env.example`:
+FLASK_ENV=development
+SECRET_KEY=change-me
+DATABASE_URL=postgresql+psycopg2://postgres:postgres@localhost:5432/rm_agent
+FILE_STORAGE=./storage
+CAPITALIZATION_THRESHOLD=5000
+MATERIALITY=25000
+FY_START=2025-07-01
+FY_END=2026-06-30
+ALLOWED_ACCOUNTS=Repair & Maintenance;Repairs;Maintenance
+
+markdown
+Copy
+Edit
+
+## Database
+- Initialize SQLAlchemy models per the schema in this prompt.
+- Add Alembic migrations to create all tables on first run.
+
+## Backend Endpoints
+- `POST /api/upload` → accepts `GL_Population.xlsx`, `TB_Mapping.xlsx`, optional `Config.xlsx`; validates headers; stores raw; loads into `gl_population`; creates or updates a `runs` row with config.
+- `POST /api/run/start` → reconcile GL total with TB mapping; write to `runs.metrics`.
+- `POST /api/run/sampling` → filter R&M by `ALLOWED_ACCOUNTS`, drop items `< CAPITALIZATION_THRESHOLD`, auto-include items ≥ threshold, stratify remainder by amount, sample deterministically; persist to `samples`.
+- `GET /api/run/{run_id}/samples` → list samples with support status & attribute status counts.
+- `POST /api/samples/{id}/support` → upload files (invoice, PO, approval, payment); store with SHA256.
+- `POST /api/samples/{id}/attribute/{1..7}` → payload `{status, comment}`; persist to `attribute_checks`; if `fail`, create `exceptions`.
+- `GET /api/run/{run_id}/reports` → generate and return links for:
+  - `Samples_Selected.xlsx`
+  - `Attributes_Checklist.xlsx` (one row per sample × 7 attributes)
+  - `Exceptions_Log.xlsx`
+  - `Run_Summary.json`
+  - `Audit_Trail.pdf` (HTML→PDF with parameters, filters, hashes)
+- `POST /api/run/{run_id}/finalize` → freeze results, stamp runtime.
+
+## Frontend
+- `dashboard.html`: show cards (Population, R&M candidates, Samples, Exceptions); progress bar for each phase.
+- `upload.html`: 3 file inputs + validate; call `/api/upload`.
+- `sampling.html`: show threshold/materiality; preview candidate list; “Generate Sample” then “Lock Sample”.
+- `attributes.html`: per sample pane with 7 toggles (pass/fail/NA) and comment box; support upload drag-drop.
+- `exceptions.html`: grid with filters, severity, export buttons.
+- `reports.html`: links to download all outputs.
+- `settings.html`: edit run config (thresholds, FY, allowed accounts).
+- Use Fetch API; no framework required.
+
+## Business Rules (align to SOP)
+- Always include all items above the **capitalization threshold** in sample.
+- Apply 7 attribute checks per sample:
+  1) Amount is calculated correctly and agrees to support.
+  2) Proper initiation/authorization/recording/classification/presentation.
+  3) Docs canceled/marked paid to prevent duplicate payment.
+  4) Disbursement relates to current fiscal year.
+  5) PO approved **before** service/purchase.
+  6) Internal controls followed (segregation, approvals, documentation).
+  7) Expenditure correctly accounted for (expense vs capital).
+- Failed checks automatically create an **exception** with severity and recommended next step.
+
+## Excel I/O
+- Accept `.xlsx` only; use `openpyxl`.
+- Exports should have frozen headers, filters, and mild conditional formatting:
+  - red for `fail`, amber for `pending`, green for `pass`.
+
+## Audit Trail
+- Log every API action in `audit_log` table (user, action, ts, payload digest).
+- Store file SHA256; show hashes in `Audit_Trail.pdf`.
+
+## Seed & Demo
+- Add a `/scripts/demo_seed.py` to create a demo run using the provided sample Excel files.
+- Include a `README.md` with run instructions (dev server, DB migration, where to drop input files, and how to download outputs).
+
+## Done criteria
+- I can upload GL/TB, configure thresholds, generate samples, complete attribute checks with uploads, see exceptions, and download all 4 

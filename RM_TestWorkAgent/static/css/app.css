@@ -1,0 +1,587 @@
+/* ========================================
+   R&M TestWork Agent - Purple Monochromatic
+   Primary Brand: #413178
+======================================== */
+
+:root {
+    /* Core Colors */
+    --bg: #F7F7FB;
+    --surface: #FFFFFF;
+    --surface-tint-a: #F1EEFA;
+    --surface-tint-b: #ECE8FA;
+    --surface-tint-c: #E5DFF7;
+    --border: #E9E7F2;
+    --text: #413178;
+    --text-dark: #342961;
+    --muted: #67627F;
+    
+    /* Purple Scale */
+    --brand: #413178;
+    --brand-50: #F8F7FC;
+    --brand-100: #EEEAFB;
+    --brand-200: #D9D1F3;
+    --brand-300: #C5B8EB;
+    --brand-400: #8A7BC4;
+    --brand-500: #6C5BB5;
+    --brand-600: #5a4a9a;
+    --brand-700: #342961;
+    --brand-800: #2a2150;
+    --brand-900: #211940;
+    
+    /* Spacing */
+    --space-1: 8px;
+    --space-2: 12px;
+    --space-3: 16px;
+    --space-4: 24px;
+    --space-5: 32px;
+    
+    /* Border Radius */
+    --radius: 16px;
+    --radius-sm: 8px;
+    
+    /* Shadows */
+    --shadow: 0 10px 24px rgba(65, 49, 120, 0.08);
+    --shadow-hover: 0 12px 28px rgba(65, 49, 120, 0.12);
+    --shadow-sm: 0 2px 8px rgba(65, 49, 120, 0.06);
+    
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-weight: var(--font-weight-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   Header Ribbon - Increased Height
+======================================== */
+.header-ribbon {
+    background: var(--surface);
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 0;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+}
+
+.company-logo {
+    height: 50px;
+    width: auto;
+    max-width: 200px;
+}
+
+.project-logo {
+    height: 50px;
+    width: 220px;
+    max-width: 250px;
+}
+
+/* Mobile responsive for logos */
+@media (max-width: 767px) {
+    .header-ribbon {
+        padding: var(--space-2) 0;
+    }
+    
+    .logo-container {
+        flex-direction: column;
+        gap: var(--space-2);
+        text-align: center;
+        padding: 0 var(--space-2);
+    }
+    
+    .company-logo {
+        height: 38px;
+        max-width: 150px;
+    }
+    
+    .project-logo {
+        height: 70px;
+        max-width: 300px;
+    }
+}
+
+/* ========================================
+   Navigation Bar - Decreased Height
+======================================== */
+.navbar {
+    background: var(--brand) !important;
+    box-shadow: var(--shadow);
+    border-bottom: none;
+    padding: var(--space-1) 0;
+}
+
+.navbar-brand {
+    font-weight: var(--font-weight-semibold);
+    font-size: 1rem;
+    color: white !important;
+    transition: opacity 0.2s;
+}
+
+.navbar-brand:hover {
+    opacity: 0.9;
+    color: white !important;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-1) var(--space-2) !important;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+    font-size: 0.875rem;
+}
+
+.nav-link:hover {
+    color: white !important;
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+/* ========================================
+   Dashboard Cards - Professional Style
+======================================== */
+.dashboard-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    box-shadow: var(--shadow);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--brand);
+    transition: width 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.dashboard-card:hover::before {
+    width: 6px;
+}
+
+.card-content {
+    flex: 1;
+    padding-right: var(--space-3);
+}
+
+.card-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-1);
+    display: block;
+}
+
+.card-value {
+    font-size: 2rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: var(--space-1);
+}
+
+.card-description {
+    font-size: 0.875rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.card-description i {
+    margin-right: var(--space-1);
+    font-size: 0.75rem;
+}
+
+.card-icon-wrapper {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: var(--brand);
+    transition: transform 0.2s;
+}
+
+.dashboard-card:hover .card-icon-wrapper {
+    transform: scale(1.05);
+}
+
+.card-icon-wrapper i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* ========================================
+   Container & Layout
+======================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-4);
+}
+
+.container-fluid {
+    padding: var(--space-4);
+}
+
+/* ========================================
+   Cards
+======================================== */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin: var(--space-4) 0;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.card h2 {
+    color: var(--text);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-semibold);
+}
+
+.card h3 {
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-semibold);
+}
+
+/* ========================================
+   Forms
+======================================== */
+.form-group {
+    margin-bottom: var(--space-3);
+}
+
+label, .form-label {
+    display: block;
+    margin-bottom: var(--space-1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text);
+    font-size: 0.875rem;
+}
+
+select, input[type="file"], input[type="text"], input[type="number"], input[type="date"], textarea, .form-control {
+    width: 100%;
+    padding: var(--space-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    transition: border-color 0.2s;
+    font-family: var(--font-family);
+    color: var(--text);
+    background: var(--surface);
+    font-weight: var(--font-weight-normal);
+}
+
+select:focus, input:focus, textarea:focus, .form-control:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(65, 49, 120, 0.1);
+}
+
+/* ========================================
+   Buttons - Fixed Hover Colors
+======================================== */
+button, .btn {
+    background: var(--brand);
+    color: white;
+    border: none;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: var(--font-weight-semibold);
+    font-family: var(--font-family);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+button:hover, .btn:hover {
+    background: var(--brand-700);
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(65, 49, 120, 0.3);
+}
+
+button:active, .btn:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+button.secondary, .btn-secondary {
+    background: var(--brand-600);
+    color: white;
+}
+
+button.secondary:hover, .btn-secondary:hover {
+    background: var(--brand-700);
+    color: white !important;
+}
+
+button.success, .btn-success {
+    background: var(--brand-500);
+    color: white;
+}
+
+button.success:hover, .btn-success:hover {
+    background: var(--brand-600);
+    color: white !important;
+}
+
+button.danger, .btn-danger {
+    background: var(--brand-700);
+    color: white;
+}
+
+button.danger:hover, .btn-danger:hover {
+    background: var(--brand-800);
+    color: white !important;
+}
+
+.btn-sm {
+    padding: var(--space-1) var(--space-2);
+    font-size: 0.75rem;
+}
+
+/* ========================================
+   Tables
+======================================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background: var(--surface);
+}
+
+th, td {
+    padding: var(--space-2);
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.875rem;
+}
+
+th {
+    background: var(--surface-tint-a);
+    font-weight: var(--font-weight-bold);
+    color: var(--text);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+tr:hover {
+    background: var(--surface-tint-b);
+}
+
+/* ========================================
+   Status Badges
+======================================== */
+.badge {
+    display: inline-block;
+    padding: 4px var(--space-2);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    white-space: nowrap;
+}
+
+.badge-draft, .bg-secondary {
+    background: var(--brand-400) !important;
+    color: white;
+}
+
+.badge-active, .bg-primary {
+    background: var(--brand) !important;
+    color: white;
+}
+
+.badge-completed, .bg-success {
+    background: var(--brand-500) !important;
+    color: white;
+}
+
+.badge-pending, .bg-warning {
+    background: var(--brand-400) !important;
+    color: white;
+}
+
+.bg-info {
+    background: var(--brand-500) !important;
+    color: white;
+}
+
+.bg-danger {
+    background: var(--brand-700) !important;
+    color: white;
+}
+
+/* ========================================
+   Grid Layout
+======================================== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-3);
+    margin: var(--space-3) 0;
+}
+
+/* ========================================
+   Upload Area
+======================================== */
+.upload-area {
+    border: 3px dashed var(--border);
+    border-radius: var(--radius);
+    padding: var(--space-5);
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+    margin: 1rem 0;
+    background: var(--surface-tint-a);
+}
+
+.upload-area:hover {
+    border-color: var(--brand);
+    background: var(--surface-tint-b);
+}
+
+.upload-area.dragover {
+    border-color: var(--brand);
+    background: var(--surface-tint-c);
+}
+
+/* ========================================
+   Utility Classes
+======================================== */
+.text-center { text-align: center; }
+.text-muted { color: var(--muted) !important; }
+.mt-1 { margin-top: var(--space-1); }
+.mt-2 { margin-top: var(--space-2); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mb-1 { margin-bottom: var(--space-1); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+
+/* ========================================
+   Loading Spinner
+======================================== */
+.spinner {
+    border: 3px solid var(--border);
+    border-top: 3px solid var(--brand);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 2rem auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ========================================
+   Responsive Design
+======================================== */
+@media (max-width: 768px) {
+    .container, .container-fluid {
+        padding: var(--space-2);
+    }
+    
+    .card {
+        padding: var(--space-3);
+    }
+    
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-card {
+        min-height: auto;
+    }
+    
+    .card-value {
+        font-size: 1.5rem;
+    }
+    
+    .card-icon-wrapper {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .card-icon-wrapper i {
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container-fluid {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+}

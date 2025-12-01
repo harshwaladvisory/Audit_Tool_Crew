@@ -1,0 +1,11 @@
+Account,Description,Date,Amount,Document
+1500,Computer Equipment Purchase,2024-01-15,2500.00,INV-001
+1500,Server Installation,2024-01-20,15000.00,INV-002
+6200,Routine Maintenance,2024-01-25,350.00,INV-003
+1500,Office Furniture,2024-02-01,4500.00,INV-004
+6200,Equipment Repair,2024-02-05,275.00,INV-005
+1500,Building Improvement,2024-02-10,25000.00,INV-006
+1500,Vehicle Purchase,2024-02-15,35000.00,INV-007
+6200,Cleaning Service,2024-02-20,150.00,INV-008
+1500,Software License,2024-02-25,8000.00,INV-009
+1500,Machinery Upgrade,2024-03-01,18000.00,INV-010

@@ -1,0 +1,24 @@
+Days,Date,Transaction type,Num,Vendor display name,Location full name,Due date,Past due,Amount,Open balance
+91 or more days past due,01/01/2024,Bill,34048.11,Aztec Technology Corp.,,01/11/2024,629,250,500
+91 or more days past due,01/01/2024,Bill,1000739524,Stericycle/Shred-it,,01/11/2024,629,1883.16,1883.16
+91 or more days past due,01/31/2024,Bill,8006117749,Stericycle/Shred-it,,02/10/2024,599,375.42,375.42
+91 or more days past due,02/29/2024,Bill,8006429484,Stericycle/Shred-it,,03/10/2024,570,247.46,247.46
+91 or more days past due,03/31/2024,Bill,8006739786,Stericycle/Shred-it,,04/10/2024,539,249.34,249.34
+91 or more days past due,04/30/2024,Bill,8007045594,Stericycle/Shred-it,,05/10/2024,509,249.34,249.34
+91 or more days past due,05/31/2024,Bill,,Stericycle/Shred-it,,06/10/2024,478,250.28,250.28
+91 or more days past due,06/30/2024,Bill,8007675255,Stericycle/Shred-it,,07/10/2024,448,249.34,249.34
+91 or more days past due,07/31/2024,Bill,8007998141,Stericycle/Shred-it,,08/10/2024,417,357.63,357.63
+91 or more days past due,07/31/2024,Bill,8008300823,Stericycle/Shred-it,,08/10/2024,417,248.4,248.4
+91 or more days past due,08/31/2024,Bill,8008584893,Stericycle/Shred-it,,09/10/2024,386,247.46,247.46
+61 - 90 days past due,10/02/2024,Bill,10022024,"Arthur J. Gallagher Risk Mngt Services, LLC",,10/12/2024,354,56,56
+61 - 90 days past due,10/11/2024,Bill,AR1271684,Advanced Office,,10/21/2024,345,250,250
+61 - 90 days past due,10/15/2024,Bill,145944,Ransom Pump & Supply,,10/25/2024,341,150,150
+31 - 60 days past due,10/31/2024,Bill,80088906293,Stericycle/Shred-it,,11/10/2024,325,122.79,122.79
+31 - 60 days past due,11/01/2024,Bill,8050,Webb Pool & Spa,,11/11/2024,324,40.93,40.93
+31 - 60 days past due,11/30/2024,Bill,8009185124,Stericycle/Shred-it,,12/10/2024,295,262.76,262.76
+31 - 60 days past due,12/04/2024,Bill,25956,"Terraphase Engineering, Inc.",,12/14/2024,291,6500,6500
+CURRENT,12/31/2024,Bill,937-1,Marc Anderson,,01/10/2025,264,1184,1184
+CURRENT,12/31/2024,Bill,122624&AC00106,Cynthia LaChusa,,01/10/2025,264,570,570
+CURRENT,12/31/2024,Bill,744,Blue Arrow CPA's,,01/10/2025,264,5850,5850
+CURRENT,12/31/2024,Bill,8009485765,Stericycle/Shred-it,,01/10/2025,264,262.87,262.87
+CURRENT,12/31/2024,Bill,8009789609,Stericycle/Shred-it,,01/10/2025,264,263.98,263.98

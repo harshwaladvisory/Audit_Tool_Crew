@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOC-1 Audit Control Report Generator</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+    <div x-data="appData()" class="app-wrapper">
+        <!-- Top Header -->
+        <header class="app-header">
+            <!-- <div class="app-header__container">
+                <div class="app-header__brand">
+                    <img src="/static/harshwal.png" alt="Logo" class="app-header__logo">
+                    <div class="app-header__text">
+                        <img src="/static/tool.png" alt="Logo" class="app-header__logo" >
+                    </div>
+                </div>
+            </div> -->
+            <div class="app-header__container">
+                <div class="app-header__brand">
+                    <img src="/static/harshwal.png" alt="Company Logo" class="app-header__logo">
+                    <img src="/static/tool.png" alt="Tool Logo" class="app-header__logo app-header__logo--right">
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- KPI Grid -->
+            <section class="kpi-grid">
+                <div class="card card--kpi">
+                    <div class="kpi__icon kpi__icon--primary">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 12H15M9 16H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L18.7071 8.70711C18.8946 8.89464 19 9.149 19 9.41421V19C19 20.1046 18.1046 21 17 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="kpi__content">
+                        <p class="kpi__label">Documents Uploaded</p>
+                        <p class="kpi__value" x-text="uploadedFiles.length">0</p>
+                    </div>
+                </div>
+
+                <div class="card card--kpi">
+                    <div class="kpi__icon kpi__icon--success">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="kpi__content">
+                        <p class="kpi__label">Success Rate</p>
+                        <p class="kpi__value">98.5%</p>
+                    </div>
+                </div>
+
+                <div class="card card--kpi">
+                    <div class="kpi__icon kpi__icon--warning">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="kpi__content">
+                        <p class="kpi__label">Avg. Processing Time</p>
+                        <p class="kpi__value">2.4s</p>
+                    </div>
+                </div>
+
+                <div class="card card--kpi">
+                    <div class="kpi__icon kpi__icon--info">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 13L9 17L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="kpi__content">
+                        <p class="kpi__label">Excel Files Generated</p>
+                        <p class="kpi__value" x-text="excelAvailable ? '1' : '0'">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Content Grid -->
+            <div class="content-grid">
+                <!-- Upload Section -->
+                <section class="card card--upload">
+                    <div class="card__header">
+                        <h2 class="card__title">Upload Documents</h2>
+                        <button 
+                            x-show="uploadedFiles.length > 0"
+                            @click="clearAllFiles" 
+                            class="btn btn--danger btn--sm">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            Clear All
+                        </button>
+                    </div>
+                    
+                    <!-- Uploaded Files List -->
+                    <div x-show="uploadedFiles.length > 0" class="uploaded-files">
+                        <template x-for="(file, index) in uploadedFiles" :key="index">
+                            <div class="file-item">
+                                <div class="file-item__info">
+                                    <svg class="file-item__icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                        <rect width="32" height="32" rx="6" fill="#413178" opacity="0.1"/>
+                                        <path d="M12 16H20M12 19H20M22 24H10C8.89543 24 8 23.1046 8 22V10C8 8.89543 8.89543 8 10 8H16.1716C16.702 8 17.2107 8.21071 17.5858 8.58579L23.4142 14.4142C23.7893 14.7893 24 15.298 24 15.8284V22C24 23.1046 23.1046 24 22 24Z" stroke="#413178" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                    <div>
+                                        <p class="file-item__name" x-text="file.name"></p>
+                                        <p class="file-item__size" x-text="formatFileSize(file.size)"></p>
+                                        <span x-show="file.processed" class="file-item__badge">Processed</span>
+                                        <span x-show="file.processing" class="file-item__badge file-item__badge--processing">Processing...</span>
+                                    </div>
+                                </div>
+                                <button 
+                                    @click="removeFile(index)" 
+                                    class="btn btn--icon btn--sm"
+                                    title="Remove file">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Drop Area -->
+                    <div 
+                        x-show="!isProcessing" 
+                        @dragover.prevent="dragOver = true" 
+                        @dragleave.prevent="dragOver = false" 
+                        @drop.prevent="dropFile($event)"
+                        :class="{'drop-area--active': dragOver}"
+                        class="drop-area">
+                        
+                        <svg class="drop-area__icon" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="2" opacity="0.2"/>
+                            <path d="M24 32V16M24 16L18 22M24 16L30 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 32V34C14 36.2091 15.7909 38 18 38H30C32.2091 38 34 36.2091 34 34V32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        
+                        <h3 class="drop-area__title">Drag & Drop Your Files Here</h3>
+                        <p class="drop-area__text">or click to browse files</p>
+                        <p class="drop-area__hint">Supported: PDF, DOCX, Excel (16MB max per file)</p>
+                        
+                        <input 
+                            type="file" 
+                            @change="handleFileSelect" 
+                            accept=".pdf,.docx,.png,.jpg,.jpeg,.xlsx,.xls" 
+                            class="drop-area__input" 
+                            id="file-input"
+                            multiple>
+                        
+                        <button 
+                            @click="document.getElementById('file-input').click()" 
+                            class="btn btn--primary">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 10V2M8 2L5 5M8 2L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M2 10V12C2 13.1046 2.89543 14 4 14H12C13.1046 14 14 13.1046 14 12V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            Select Files
+                        </button>
+                    </div>
+                    
+                    <!-- Processing -->
+                    <div x-show="isProcessing" class="processing">
+                        <div class="spinner"></div>
+                        <p class="processing__text">Processing documents...</p>
+                        <p class="processing__hint">This may take a moment depending on file size</p>
+                    </div>
+
+                    <!-- Process Button -->
+                    <button 
+                        x-show="uploadedFiles.length > 0 && !isProcessing"
+                        @click="processAllFiles" 
+                        class="btn btn--primary btn--full btn--large">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 3V10M10 10L13 7M10 10L7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                        Process All Documents
+                    </button>
+                    
+                    <!-- Alerts -->
+                    <div x-show="errorMessage" class="alert alert--error">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M10 6V10M10 14H10.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <p x-text="errorMessage"></p>
+                        <button @click="errorMessage = ''" class="alert__close">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div x-show="successMessage" class="alert alert--success">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M7 10L9 12L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <p x-text="successMessage"></p>
+                        <button @click="successMessage = ''" class="alert__close">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Finalize Section -->
+                <section x-show="excelAvailable" class="card">
+                    <h2 class="card__title">Finalize with AI Agent</h2>
+                    <p class="card__description">Submit processed data for AI-powered control analysis</p>
+                    
+                    <div class="alert alert--info" style="background: var(--color-info-light); color: var(--color-info); border-left: 4px solid var(--color-info); margin-bottom: var(--space-3);">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M10 10V14M10 6H10.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <p>This will finalize all processed documents. Clear uploaded documents after downloading if starting fresh.</p>
+                    </div>
+                    
+                    <button 
+                        @click="finalizeExcel"
+                        :disabled="n8nProcessing"
+                        class="btn btn--primary btn--full">
+                        <span x-show="!n8nProcessing">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 2V8M8 8L11 5M8 8L5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            Finalize & Submit All
+                        </span>
+                        <span x-show="n8nProcessing" class="btn__loading">
+                            <svg class="spinner spinner--inline" width="20" height="20" viewBox="0 0 20 20">
+                                <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none" opacity="0.25"/>
+                                <path d="M10 2C10 2 10 2 10 2C14.4183 2 18 5.58172 18 10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            </svg>
+                            Processing...
+                        </span>
+                    </button>
+
+                    <div x-show="n8nResponse" class="response-preview">
+                        <h3 class="response-preview__title">Output Preview</h3>
+                        <pre class="response-preview__content" x-text="JSON.stringify(n8nResponse, null, 2)"></pre>
+                    </div>
+                </section>
+
+                <!-- Excel Download Section -->
+                <section x-show="excelAvailable" class="card">
+                    <h2 class="card__title">Excel Output</h2>
+                    <p class="card__description">Download processed data and optionally start fresh</p>
+                    
+                    <div class="action-group">
+                        <a href="/download_excel" class="btn btn--success btn--full">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M8 10V2M8 10L5 7M8 10L11 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M2 10V12C2 13.1046 2.89543 14 4 14H12C13.1046 14 14 13.1046 14 12V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            Download Excel
+                        </a>
+                        <button @click="clearExcel" class="btn btn--danger btn--icon" title="Clear Excel Output">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <button 
+                        x-show="uploadedFiles.length > 0"
+                        @click="clearAllFiles" 
+                        class="btn btn--secondary btn--full"
+                        style="margin-top: var(--space-2);">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 5H13M5 5V3C5 2.44772 5.44772 2 6 2H10C10.5523 2 11 2.44772 11 3V5M7 8V12M9 8V12M4 5L5 13C5 13.5523 5.44772 14 6 14H10C10.5523 14 11 13.5523 11 13L12 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        Clear Uploaded Documents
+                    </button>
+                </section>
+
+                <!-- Uploaded Documents Management -->
+                <section x-show="uploadedFiles.length > 0" class="card card--large">
+                    <div class="card__header">
+                        <h2 class="card__title">Uploaded Documents</h2>
+                        <div class="action-group">
+                            <button 
+                                @click="clearAllFiles" 
+                                class="btn btn--danger btn--sm">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                                Clear All Documents
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="uploaded-files-large">
+                        <template x-for="(file, index) in uploadedFiles" :key="index">
+                            <div class="file-card">
+                                <div class="file-card__header">
+                                    <svg class="file-card__icon" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                        <rect width="40" height="40" rx="8" fill="#413178" opacity="0.1"/>
+                                        <path d="M15 20H25M15 24H25M27 30H13C11.8954 30 11 29.1046 11 28V12C11 10.8954 11.8954 10 13 10H20.1716C20.702 10 21.2107 10.2107 21.5858 10.5858L28.4142 17.4142C28.7893 17.7893 29 18.298 29 18.8284V28C29 29.1046 28.1046 30 27 30Z" stroke="#413178" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                    <button 
+                                        @click="removeFile(index)" 
+                                        class="btn btn--icon btn--sm btn--danger"
+                                        title="Remove document">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="file-card__body">
+                                    <h3 class="file-card__name" x-text="file.name"></h3>
+                                    <p class="file-card__size" x-text="formatFileSize(file.size)"></p>
+                                    <div class="file-card__status">
+                                        <span x-show="!file.processed && !file.processing" class="status-badge status-badge--pending">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                                <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/>
+                                            </svg>
+                                            Ready to Process
+                                        </span>
+                                        <span x-show="file.processing" class="status-badge status-badge--processing">
+                                            <svg class="spinner-small" width="12" height="12" viewBox="0 0 12 12">
+                                                <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.25"/>
+                                                <path d="M6 1C6 1 6 1 6 1C8.76142 1 11 3.23858 11 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                                            </svg>
+                                            Processing...
+                                        </span>
+                                        <span x-show="file.processed" class="status-badge status-badge--success">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                                <path d="M3 6L5 8L9 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                            </svg>
+                                            Processed
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    
+                    <div class="card__footer">
+                        <p class="card__footer-text">
+                            <strong x-text="uploadedFiles.length"></strong> document(s) uploaded
+                            <span x-show="uploadedFiles.filter(f => f.processed).length > 0">
+                                • <strong x-text="uploadedFiles.filter(f => f.processed).length"></strong> processed
+                            </span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Excel Preview -->
+                <section x-show="excelPreviewData.length > 0" class="card card--large">
+                    <h2 class="card__title">Excel Data Preview</h2>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <template x-for="column in excelPreviewColumns" :key="column">
+                                        <th x-text="column"></th>
+                                    </template>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template x-for="(row, index) in excelPreviewData" :key="index">
+                                    <tr>
+                                        <template x-for="column in excelPreviewColumns" :key="column">
+                                            <td x-text="row[column] || ''"></td>
+                                        </template>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+        function appData() {
+            return {
+                uploadedFiles: [],
+                currentFile: null,
+                isProcessing: false,
+                dragOver: false,
+                errorMessage: '',
+                successMessage: '',
+                extractedText: '',
+                sessionId: '',
+                n8nProcessing: false,
+                n8nResponse: null,
+                excelAvailable: false,
+                excelPreviewData: [],
+                excelPreviewColumns: [],
+                repeatCount: 1,
+                
+                handleFileSelect(event) {
+                    const files = Array.from(event.target.files);
+                    this.addFiles(files);
+                },
+                
+                dropFile(event) {
+                    this.dragOver = false;
+                    const files = Array.from(event.dataTransfer.files);
+                    this.addFiles(files);
+                },
+                
+                addFiles(files) {
+                    const allowedTypes = ['.pdf', '.docx', '.png', '.jpg', '.jpeg', '.xlsx', '.xls'];
+                    
+                    files.forEach(file => {
+                        const fileExt = '.' + file.name.split('.').pop().toLowerCase();
+                        
+                        if (allowedTypes.includes(fileExt)) {
+                            this.uploadedFiles.push({
+                                file: file,
+                                name: file.name,
+                                size: file.size,
+                                processed: false,
+                                processing: false
+                            });
+                        } else {
+                            this.errorMessage = `Unsupported file type: ${file.name}`;
+                        }
+                    });
+                    
+                    // Clear file input
+                    document.getElementById('file-input').value = '';
+                },
+                
+                removeFile(index) {
+                    this.uploadedFiles.splice(index, 1);
+                },
+                
+                clearAllFiles() {
+                    if (confirm('Are you sure you want to clear all uploaded documents? This will remove all files from the list.')) {
+                        this.uploadedFiles = [];
+                        this.extractedText = '';
+                        this.sessionId = '';
+                        this.errorMessage = '';
+                        this.successMessage = 'All documents cleared';
+                        
+                        // Also clear the file input
+                        const fileInput = document.getElementById('file-input');
+                        if (fileInput) fileInput.value = '';
+                    }
+                },
+                
+                formatFileSize(bytes) {
+                    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                    if (bytes === 0) return '0 Byte';
+                    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+                    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+                },
+                
+                async processAllFiles() {
+                    if (this.uploadedFiles.length === 0) {
+                        this.errorMessage = 'Please add files first.';
+                        return;
+                    }
+
+                    this.isProcessing = true;
+                    this.errorMessage = '';
+                    this.successMessage = '';
+                    // Clear old extracted text to start fresh
+                    this.extractedText = '';
+                    this.sessionId = '';
+
+                    for (let fileObj of this.uploadedFiles) {
+                        if (fileObj.processed) continue;
+                        
+                        fileObj.processing = true;
+                        
+                        const formData = new FormData();
+                        formData.append('file', fileObj.file);
+
+                        try {
+                            const response = await fetch('/upload', {
+                                method: 'POST',
+                                body: formData
+                            });
+                            
+                            const data = await response.json();
+                            
+                            if (data.error) {
+                                this.errorMessage = data.error;
+                                fileObj.processing = false;
+                                continue;
+                            }
+
+                            // Accumulate text for current session only
+                            this.extractedText += data.raw_text + '\n\n---\n\n';
+                            this.sessionId = data.session_id;
+
+                            const n8nResponse = await fetch('/send_to_n8n', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    session_id: this.sessionId,
+                                    count: this.repeatCount || 1
+                                })
+                            });
+                            
+                            const n8nData = await n8nResponse.json();
+                            
+                            if (n8nData.error) {
+                                this.errorMessage = n8nData.error;
+                            } else {
+                                fileObj.processed = true;
+                                fileObj.processing = false;
+                                this.excelAvailable = true;
+                                this.loadExcelPreview();
+                            }
+                            
+                        } catch (error) {
+                            this.errorMessage = 'Error processing file: ' + error.message;
+                            fileObj.processing = false;
+                        }
+                    }
+                    
+                    this.isProcessing = false;
+                    
+                    const processedCount = this.uploadedFiles.filter(f => f.processed).length;
+                    if (processedCount === this.uploadedFiles.length) {
+                        this.successMessage = `All ${processedCount} document(s) processed successfully!`;
+                    } else {
+                        this.successMessage = `${processedCount} of ${this.uploadedFiles.length} document(s) processed.`;
+                    }
+                },
+                
+                finalizeExcel() {
+                    this.n8nProcessing = true;
+
+                    fetch('/finalize_excel', {
+                        method: 'POST'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        this.n8nProcessing = false;
+                        if (data.error) {
+                            this.errorMessage = data.error;
+                        } else {
+                            this.successMessage = data.message || 'Finalized successfully.';
+                            this.n8nResponse = data.control_data;
+                        }
+                    })
+                    .catch(error => {
+                        this.n8nProcessing = false;
+                        this.errorMessage = 'Error finalizing: ' + error.message;
+                    });
+                },
+
+                loadExcelPreview() {
+                    fetch('/preview_excel')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            this.excelAvailable = true;
+                            this.excelPreviewData = data.data;
+                            this.excelPreviewColumns = data.columns;
+                        }
+                    })
+                    .catch(error => console.log('Preview error:', error));
+                },
+                
+                clearExcel() {
+                    if (confirm('Clear Excel output? This will remove the generated Excel file.')) {
+                        fetch('/clear_excel', {
+                            method: 'POST'
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                this.successMessage = 'Excel file cleared successfully.';
+                                this.excelAvailable = false;
+                                this.excelPreviewData = [];
+                                this.excelPreviewColumns = [];
+                                this.n8nResponse = null;
+                            }
+                        })
+                        .catch(error => {
+                            this.errorMessage = 'Error clearing Excel: ' + error.message;
+                        });
+                    }
+                }
+            };
+        }
+    </script>
+</body>
+</html>

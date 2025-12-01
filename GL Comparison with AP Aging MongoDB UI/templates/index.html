@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Aging vs GL Comparison</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <div class="header-logo">
+                    <img src="{{ url_for('static', filename='harshwal.png') }}" alt="Harshwal Logo">
+                </div>
+                
+                <div class="header-logo header-logo--right">
+                    <img src="{{ url_for('static', filename='tool.png') }}" alt="Tool Logo">
+                </div>
+            </div>
+        </header>
+
+        <div class="page-container">
+
+            <!-- Upload Card -->
+            <div class="analytics-card upload-card">
+                <div class="card-header">
+                    <div class="card-header-left">
+                        <h2 class="card-title">Upload Files</h2>
+                        <!-- <span class="card-badge">Step 1</span> -->
+                    </div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                </div>
+
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="file-upload-grid">
+                        <div class="file-upload-box">
+                            <label class="file-label">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                </svg>
+                                AP Aging File
+                            </label>
+                            <div class="file-drop-zone">
+                                <input type="file" id="ap_file" name="ap_file" accept=".csv,.xlsx" required>
+                                <div class="file-drop-content">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                                    </svg>
+                                    <p class="drop-text">Drop file here or <span class="drop-link">browse</span></p>
+                                    <span class="file-name" id="ap_file_name">CSV or Excel file</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="file-upload-box">
+                            <label class="file-label">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                </svg>
+                                General Ledger File
+                            </label>
+                            <div class="file-drop-zone">
+                                <input type="file" id="gl_file" name="gl_file" accept=".csv,.xlsx" required>
+                                <div class="file-drop-content">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                                    </svg>
+                                    <p class="drop-text">Drop file here or <span class="drop-link">browse</span></p>
+                                    <span class="file-name" id="gl_file_name">CSV or Excel file</span>
+                                </div>
+                            </div>
+                            <small class="file-note">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="8" x2="12" y2="12"/>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                                </svg>
+                                Upload only Accounts Payable transactions
+                            </small>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="ai_provider" value="none">
+                    
+                    <button type="submit" class="btn-primary">
+                        <span>Compare Data</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </button>
+                </form>
+
+                <div id="loading" class="loading-state" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Processing your files...</p>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results-container" style="display: none;">
+                <!-- Primary KPI Cards -->
+                <div class="section-header">
+                    <h2 class="section-title">Overview</h2>
+                    <span class="section-badge">Live Data</span>
+                </div>
+                
+                <div class="kpi-grid">
+                    <div class="kpi-card kpi-card--purple">
+                        <div class="kpi-top">
+                            <div class="kpi-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <div class="kpi-trend kpi-trend--up">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="kpi-content">
+                            <p class="kpi-label">Vendors in Both</p>
+                            <h3 class="kpi-value" id="both-count" data-target="0">0</h3>
+                            <p class="kpi-change" id="both-difference">Diff: $0.00</p>
+                        </div>
+                        <div class="kpi-progress">
+                            <div class="progress-bar" id="both-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card kpi-card--blue">
+                        <div class="kpi-top">
+                            <div class="kpi-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="3" y1="9" x2="21" y2="9"/>
+                                </svg>
+                            </div>
+                            <div class="kpi-trend kpi-trend--down">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="kpi-content">
+                            <p class="kpi-label">GL Only</p>
+                            <h3 class="kpi-value" id="gl-only-count" data-target="0">0</h3>
+                            <p class="kpi-change" id="gl-only-total">Diff: $0.00</p>
+                        </div>
+                        <div class="kpi-progress">
+                            <div class="progress-bar" id="gl-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card kpi-card--green">
+                        <div class="kpi-top">
+                            <div class="kpi-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                    <line x1="12" y1="22.08" x2="12" y2="12"/>
+                                </svg>
+                            </div>
+                            <div class="kpi-trend kpi-trend--neutral">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="kpi-content">
+                            <p class="kpi-label">AP Only</p>
+                            <h3 class="kpi-value" id="ap-only-count" data-target="0">0</h3>
+                            <p class="kpi-change" id="ap-only-total">Diff: $0.00</p>
+                        </div>
+                        <div class="kpi-progress">
+                            <div class="progress-bar" id="ap-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card kpi-card--orange">
+                        <div class="kpi-top">
+                            <div class="kpi-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="1" x2="12" y2="23"/>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                </svg>
+                            </div>
+                            <div class="kpi-badge">TOTAL</div>
+                        </div>
+                        <div class="kpi-content">
+                            <p class="kpi-label">Total Difference</p>
+                            <h3 class="kpi-value" id="total-diff">$0.00</h3>
+                        </div>
+                        <div class="kpi-progress">
+                            <div class="progress-bar" id="total-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--success">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-label">Reconciliation Rate</p>
+                            <h4 class="stat-value" id="recon-rate">0%</h4>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--warning">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-label">Discrepancies Found</p>
+                            <h4 class="stat-value" id="discrepancy-count">0</h4>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--info">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-label">Total Vendors</p>
+                            <h4 class="stat-value" id="total-vendors">0</h4>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--primary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="2" x2="12" y2="6"/>
+                                <line x1="12" y1="18" x2="12" y2="22"/>
+                                <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/>
+                                <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+                                <line x1="2" y1="12" x2="6" y2="12"/>
+                                <line x1="18" y1="12" x2="22" y2="12"/>
+                                <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/>
+                                <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-label">Processing Time</p>
+                            <h4 class="stat-value" id="process-time">0.0s</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Visualization -->
+                <div class="analytics-card chart-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Comparison Overview</h2>
+                        <div class="chart-legend">
+                            <span class="legend-item">
+                                <span class="legend-dot legend-dot--purple"></span> Both
+                            </span>
+                            <span class="legend-item">
+                                <span class="legend-dot legend-dot--blue"></span> GL Only
+                            </span>
+                            <span class="legend-item">
+                                <span class="legend-dot legend-dot--green"></span> AP Only
+                            </span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- AI Analysis Card -->
+                <div id="ai-analysis-section" class="analytics-card" style="display: none;">
+                    <div class="card-header">
+                        <h2 class="card-title">AI Analysis</h2>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v6m0 6v6"/>
+                        </svg>
+                    </div>
+                    <div class="ai-analysis-content" id="ai-analysis-content"></div>
+                </div>
+
+                <!-- Data Tables -->
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Vendors Found in Both Datasets</h2>
+                        <span class="table-badge" id="both-table-count">0 records</span>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Vendor</th>
+                                    <th>AP Amount</th>
+                                    <th>GL Amount</th>
+                                    <th>Difference</th>
+                                </tr>
+                            </thead>
+                            <tbody id="both-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Vendors Only in GL</h2>
+                        <span class="table-badge" id="gl-table-count">0 records</span>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Vendor</th>
+                                    <th>GL Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="gl-only-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="analytics-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Vendors Only in AP Aging</h2>
+                        <span class="table-badge" id="ap-table-count">0 records</span>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Vendor</th>
+                                    <th>AP Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ap-only-tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Download Button -->
+                <div class="download-section">
+                    <a id="download-link" href="#" class="btn-secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        <span>Download Excel Report</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let chartInstance = null;
+        let startTime = null;
+
+        // File input handling
+        document.getElementById('ap_file').addEventListener('change', function() {
+            const fileName = this.files[0]?.name || 'CSV or Excel file';
+            document.getElementById('ap_file_name').textContent = fileName;
+        });
+
+        document.getElementById('gl_file').addEventListener('change', function() {
+            const fileName = this.files[0]?.name || 'CSV or Excel file';
+            document.getElementById('gl_file_name').textContent = fileName;
+        });
+
+        // Form submission
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            startTime = Date.now();
+            const formData = new FormData(this);
+            
+            document.getElementById('loading').style.display = 'flex';
+            document.getElementById('results').style.display = 'none';
+            
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const processingTime = ((Date.now() - startTime) / 1000).toFixed(1);
+                    displayResults(data, processingTime);
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        });
+
+        // Count-up animation
+        function animateCount(element, target) {
+            const duration = 1000;
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = Math.round(target);
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.round(current);
+                }
+            }, 16);
+        }
+
+        // Create simple bar chart
+        function createChart(bothCount, glCount, apCount) {
+            const canvas = document.getElementById('comparisonChart');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = canvas.offsetWidth * 2;
+            canvas.height = 300 * 2;
+            ctx.scale(2, 2);
+            
+            const maxValue = Math.max(bothCount, glCount, apCount);
+            const chartHeight = 200;
+            const barWidth = 80;
+            const spacing = 100;
+            const startX = 100;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw bars
+            const bars = [
+                { x: startX, value: bothCount, color: '#9b6cfc', label: 'Both' },
+                { x: startX + spacing, value: glCount, color: '#4e9cf7', label: 'GL Only' },
+                { x: startX + spacing * 2, value: apCount, color: '#36d5a3', label: 'AP Only' }
+            ];
+            
+            bars.forEach(bar => {
+                const barHeight = maxValue > 0 ? (bar.value / maxValue) * chartHeight : 0;
+                const y = chartHeight - barHeight + 50;
+                
+                // Draw bar with gradient
+                const gradient = ctx.createLinearGradient(bar.x, y, bar.x, chartHeight + 50);
+                gradient.addColorStop(0, bar.color);
+                gradient.addColorStop(1, bar.color + '80');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(bar.x, y, barWidth, barHeight);
+                
+                // Draw value on top
+                ctx.fillStyle = '#374151';
+                ctx.font = 'bold 16px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto';
+                ctx.textAlign = 'center';
+                ctx.fillText(bar.value, bar.x + barWidth / 2, y - 10);
+                
+                // Draw label
+                ctx.fillStyle = '#6b7280';
+                ctx.font = '14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto';
+                ctx.fillText(bar.label, bar.x + barWidth / 2, chartHeight + 80);
+            });
+        }
+
+        function displayResults(data, processingTime) {
+            // Animate KPI counts
+            const bothCountEl = document.getElementById('both-count');
+            const glOnlyCountEl = document.getElementById('gl-only-count');
+            const apOnlyCountEl = document.getElementById('ap-only-count');
+            
+            animateCount(bothCountEl, data.summary.both_count);
+            animateCount(glOnlyCountEl, data.summary.gl_only_count);
+            animateCount(apOnlyCountEl, data.summary.ap_only_count);
+            
+            // Update values
+            document.getElementById('total-diff').textContent = '$' + data.summary.total_difference.toFixed(2);
+            document.getElementById('both-difference').textContent = 'Diff: $' + data.summary.both_difference.toFixed(2);
+            document.getElementById('gl-only-total').textContent = 'Diff: $' + data.summary.gl_only_total.toFixed(2);
+            document.getElementById('ap-only-total').textContent = 'Diff: $' + (-data.summary.ap_only_total).toFixed(2);
+            
+            // Update stats cards
+            const totalVendors = data.summary.both_count + data.summary.gl_only_count + data.summary.ap_only_count;
+            const reconRate = totalVendors > 0 ? ((data.summary.both_count / totalVendors) * 100).toFixed(1) : 0;
+            const discrepancies = data.found_in_both.filter(v => Math.abs(v.Difference) > 0.01).length;
+            
+            document.getElementById('recon-rate').textContent = reconRate + '%';
+            document.getElementById('discrepancy-count').textContent = discrepancies;
+            document.getElementById('total-vendors').textContent = totalVendors;
+            document.getElementById('process-time').textContent = processingTime + 's';
+            
+            // Update progress bars
+            const maxCount = Math.max(data.summary.both_count, data.summary.gl_only_count, data.summary.ap_only_count);
+            document.getElementById('both-progress').style.width = maxCount > 0 ? ((data.summary.both_count / maxCount) * 100) + '%' : '0%';
+            document.getElementById('gl-progress').style.width = maxCount > 0 ? ((data.summary.gl_only_count / maxCount) * 100) + '%' : '0%';
+            document.getElementById('ap-progress').style.width = maxCount > 0 ? ((data.summary.ap_only_count / maxCount) * 100) + '%' : '0%';
+            
+            // Create chart
+            setTimeout(() => {
+                createChart(data.summary.both_count, data.summary.gl_only_count, data.summary.ap_only_count);
+            }, 300);
+            
+            // Update table badges
+            document.getElementById('both-table-count').textContent = data.found_in_both.length + ' records';
+            document.getElementById('gl-table-count').textContent = data.gl_not_in_ap.length + ' records';
+            document.getElementById('ap-table-count').textContent = data.ap_not_in_gl.length + ' records';
+            
+            if (data.ai_analysis) {
+                document.getElementById('ai-analysis-section').style.display = 'block';
+                document.getElementById('ai-analysis-content').textContent = data.ai_analysis;
+            } else {
+                document.getElementById('ai-analysis-section').style.display = 'none';
+            }
+            
+            populateTable('both-tbody', data.found_in_both, ['Vendor', 'Amount_AP', 'Amount_GL', 'Difference']);
+            populateTable('gl-only-tbody', data.gl_not_in_ap, ['Vendor', 'Amount_GL']);
+            populateTable('ap-only-tbody', data.ap_not_in_gl, ['Vendor', 'Amount_AP']);
+            
+            document.getElementById('download-link').href = data.download_link;
+            document.getElementById('results').style.display = 'block';
+        }
+
+        function populateTable(tbodyId, data, columns) {
+            const tbody = document.getElementById(tbodyId);
+            tbody.innerHTML = '';
+            
+            if (data.length === 0) {
+                const row = tbody.insertRow();
+                const cell = row.insertCell();
+                cell.colSpan = columns.length;
+                cell.textContent = 'No data';
+                cell.style.textAlign = 'center';
+                return;
+            }
+            
+            data.forEach(item => {
+                const row = tbody.insertRow();
+                columns.forEach(col => {
+                    const cell = row.insertCell();
+                    const value = item[col];
+                    if (typeof value === 'number') {
+                        cell.textContent = '$' + value.toFixed(2);
+                        if (col === 'Difference' && value !== 0) {
+                            cell.className = value > 0 ? 'positive' : 'negative';
+                        }
+                    } else {
+                        cell.textContent = value || 'N/A';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

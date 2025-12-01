@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&M TestWork Agent - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="/static/css/app.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Ribbon -->
+    <div class="header-ribbon">
+        <div class="logo-container">
+            <img src="/static/images/Logo_.png" alt="Company Logo" class="company-logo">
+            <img src="/static/images/Coverlogo.png" alt="R&M TestWork Agent" class="project-logo">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid" style="padding: 0 2rem;">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-clipboard-data"></i> Dashboard
+            </a>
+            <div>
+                <a href="/upload" class="btn btn-sm" style="background: rgba(255,255,255,0.2); border: none; color: white;">
+                    <i class="bi bi-cloud-upload"></i> Upload Files
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        {% if error_message %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="background: #F1EEFA; color: #342961; border-left: 4px solid #342961; border-radius: 8px;">
+            <strong><i class="bi bi-exclamation-triangle"></i> Error!</strong> {{ error_message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endif %}
+
+        {% if run_data %}
+        <!-- Current Run Summary Cards -->
+        <div class="row mb-4">
+            <div class="col-12 mb-3">
+                <h2 style="color: #413178; font-weight: 600; font-size: 1.5rem;">
+                    <i class="bi bi-folder-open"></i> {{ run_data.run.name }}
+                </h2>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <!-- GL Records Card -->
+            <div class="col-xl-3 col-lg-6 col-md-6">
+                <div class="dashboard-card">
+                    <div class="card-content">
+                        <span class="card-label">GL RECORDS</span>
+                        <div class="card-value">{{ run_data.gl_count }}</div>
+                        <p class="card-description">
+                            <i class="bi bi-check-circle"></i> Total records loaded
+                        </p>
+                    </div>
+                    <div class="card-icon-wrapper">
+                        <i class="bi bi-file-earmark-text"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Samples Card -->
+            <div class="col-xl-3 col-lg-6 col-md-6">
+                <div class="dashboard-card">
+                    <div class="card-content">
+                        <span class="card-label">SAMPLES</span>
+                        <div class="card-value">{{ run_data.sample_count }}</div>
+                        <p class="card-description">
+                            <i class="bi bi-check-circle"></i> Samples generated
+                        </p>
+                    </div>
+                    <div class="card-icon-wrapper">
+                        <i class="bi bi-collection"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exceptions Card -->
+            <div class="col-xl-3 col-lg-6 col-md-6">
+                <div class="dashboard-card">
+                    <div class="card-content">
+                        <span class="card-label">EXCEPTIONS</span>
+                        <div class="card-value">{{ run_data.exception_count }}</div>
+                        <p class="card-description">
+                            <i class="bi bi-exclamation-triangle"></i> Issues identified
+                        </p>
+                    </div>
+                    <div class="card-icon-wrapper">
+                        <i class="bi bi-exclamation-circle"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Card -->
+            <div class="col-xl-3 col-lg-6 col-md-6">
+                <div class="dashboard-card">
+                    <div class="card-content">
+                        <span class="card-label">STATUS</span>
+                        <div class="card-value">
+                            <span class="badge" style="background: #413178; font-size: 0.875rem;">
+                                {{ run_data.run.status|upper }}
+                            </span>
+                        </div>
+                        <p class="card-description">
+                            <i class="bi bi-info-circle"></i> Current state
+                        </p>
+                    </div>
+                    <div class="card-icon-wrapper">
+                        <i class="bi bi-gear"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons - Fixed Hover -->
+        <div class="card">
+            <div class="card-body">
+                <h5 style="color: #413178; font-weight: 600; margin-bottom: 1rem;">Quick Actions</h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="/runs/{{ run_data.run.id }}/sampling" class="btn" style="background: #413178; color: white; border: none; text-decoration: none;">
+                        <i class="bi bi-collection"></i> Sampling
+                    </a>
+                    <a href="/runs/{{ run_data.run.id }}/attributes" class="btn" style="background: #413178; color: white; border: none; text-decoration: none;">
+                        <i class="bi bi-check-square"></i> Attributes
+                    </a>
+                    <a href="/runs/{{ run_data.run.id }}/exceptions" class="btn" style="background: #413178; color: white; border: none; text-decoration: none;">
+                        <i class="bi bi-exclamation-triangle"></i> Exceptions
+                    </a>
+                    <a href="/runs/{{ run_data.run.id }}/reports" class="btn" style="background: #413178; color: white; border: none; text-decoration: none;">
+                        <i class="bi bi-file-earmark-text"></i> Reports
+                    </a>
+                    <a href="/runs/{{ run_data.run.id }}/settings" class="btn btn-secondary" style="color: white; border: none; text-decoration: none;">
+                        <i class="bi bi-gear"></i> Settings
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- All Runs Section - Fixed Hover -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card" style="padding: 0;">
+                    <div class="card-body" style="background: #413178; color: white; border-radius: 16px 16px 0 0; padding: 1rem 1.5rem;">
+                        <h5 class="mb-0" style="font-weight: 600;"><i class="bi bi-list-ul"></i> All Runs</h5>
+                    </div>
+                    <div style="padding: 0;">
+                        {% if runs %}
+                            {% for item in runs %}
+                            <div style="padding: 1rem 1.5rem; border-bottom: 1px solid #E9E7F2; transition: background 0.2s;" onmouseover="this.style.background='#F1EEFA'" onmouseout="this.style.background='white'">
+                                <div class="row align-items-center">
+                                    <div class="col-md-1 text-center">
+                                        <button class="btn btn-sm" style="width: 32px; height: 32px; padding: 0; background: #342961; border: none; color: white;" 
+                                                onclick="deleteRun('{{ item.run.id }}', '{{ item.run.name }}')" 
+                                                title="Delete Run">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="mb-1" style="color: #413178; font-weight: 600;">{{ item.run.name }}</h6>
+                                        <small class="text-muted">
+                                            <i class="bi bi-calendar"></i> Created: {{ item.run.created_at.strftime('%Y-%m-%d %H:%M') }}
+                                        </small>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span class="badge bg-{{ 'secondary' if item.run.status == 'draft' else 'primary' if item.run.status == 'active' else 'success' if item.run.status == 'finalized' else 'warning' }}">
+                                            {{ item.run.status|upper }}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <small style="color: #413178;">
+                                            <i class="bi bi-file-earmark-text"></i> GL: <strong>{{ item.gl_count }}</strong> | 
+                                            <i class="bi bi-clipboard-check"></i> Samples: <strong>{{ item.sample_count }}</strong> | 
+                                            <i class="bi bi-exclamation-circle"></i> Exceptions: <strong>{{ item.exception_count }}</strong>
+                                        </small>
+                                    </div>
+                                    <div class="col-md-2 text-end">
+                                        <a href="/runs/{{ item.run.id }}" class="btn btn-sm" style="background: #413178; color: white; border: none; text-decoration: none;">
+                                            <i class="bi bi-eye"></i> View Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                        <div class="p-5 text-center text-muted">
+                            <i class="bi bi-inbox" style="font-size: 3rem; color: #413178; opacity: 0.3;"></i>
+                            <p class="mt-3">No runs found. <a href="/upload" style="color: #413178; font-weight: 600; text-decoration: none;">Upload files</a> to create your first run.</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function deleteRun(runId, runName) {
+            if (!confirm('Are you sure you want to delete run "' + runName + '"?\n\nThis will delete all associated data including:\n- GL Records\n- Samples\n- Exceptions\n- Reports\n\nThis action cannot be undone.')) {
+                return;
+            }
+            
+            fetch('/api/runs/' + runId, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Run deleted successfully');
+                    window.location.reload();
+                } else {
+                    alert('Error deleting run: ' + data.error);
+                }
+            })
+            .catch(error => {
+                alert('Error deleting run: ' + error.message);
+            });
+        }
+    </script>
+</body>
+</html>

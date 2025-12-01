@@ -1,0 +1,26 @@
+# Core dependencies
+flask>=3.1.2
+mongoengine>=0.28.2
+pandas>=2.3.2
+openpyxl>=3.1.5
+python-dotenv>=1.1.1
+werkzeug>=3.1.3
+xlrd>=2.0.2
+
+# PDF Processing (REQUIRED)
+pdfplumber>=0.11.0
+
+# OCR dependencies for scanned PDFs (OPTIONAL but recommended)
+pytesseract
+pdf2image
+Pillow
+
+# Date handling
+python-dateutil>=2.9.0
+
+# Note: For OCR support, you also need to install Tesseract OCR engine separately:
+# Windows: Download from https://github.com/UB-Mannheim/tesseract/wiki
+# Linux: sudo apt-get install tesseract-ocr
+# Mac: brew install tesseract
+# After installation, add to PATH or set in code:
+# pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'

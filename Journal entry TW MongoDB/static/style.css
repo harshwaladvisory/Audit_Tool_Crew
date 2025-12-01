@@ -1,0 +1,369 @@
+/* Custom styles for JE Sampling Agent - Light Theme */
+
+/* Hero section styling */
+.hero-image img {
+    max-height: 300px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Process steps in sidebar */
+.process-step {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.process-step:last-child {
+    border-bottom: none;
+}
+
+.process-step i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+}
+
+.process-step p {
+    margin-bottom: 0;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* File items in sidebar */
+.file-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.file-item:last-child {
+    border-bottom: none;
+}
+
+.file-info {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.file-info i {
+    margin-top: 0.25rem;
+    color: #0d6efd;
+    flex-shrink: 0;
+}
+
+/* Results page styling */
+.results-header-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 0.375rem;
+    flex-shrink: 0;
+}
+
+.file-description {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.file-description:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.file-description h6 {
+    margin-bottom: 0.5rem;
+}
+
+.file-description p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.process-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 0.375rem;
+    flex-shrink: 0;
+}
+
+/* Table styling */
+.table th {
+    border-top: none;
+    font-weight: 600;
+    color: #212529;
+    background-color: #f8f9fa;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* Badge styling */
+.badge {
+    font-size: 0.75rem;
+}
+
+/* Card enhancements */
+.card {
+    border: 1px solid #dee2e6;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.card-title {
+    color: #212529;
+    font-weight: 600;
+}
+
+/* Button enhancements */
+.btn {
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* Form styling */
+.form-label {
+    font-weight: 600;
+    color: #212529;
+}
+
+.form-text {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.form-control:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Alert styling */
+.alert {
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.alert-success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+/* Progress bar */
+.progress {
+    height: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    background-color: #0d6efd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-image img {
+        max-height: 200px;
+    }
+    
+    .results-header-img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .process-img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .display-5 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animation for loading states */
+.progress-bar-animated {
+    animation: progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes progress-bar-stripes {
+    0% {
+        background-position-x: 1rem;
+    }
+}
+
+/* Hover effects */
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.list-group-item-action:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+/* File type icons */
+.fa-file-excel {
+    color: #198754;
+}
+
+.fa-file-alt {
+    color: #6c757d;
+}
+
+.fa-file {
+    color: #0d6efd;
+}
+
+/* Status indicators */
+.text-success {
+    color: #198754 !important;
+}
+
+.text-primary {
+    color: #0d6efd !important;
+}
+
+.text-warning {
+    color: #ffc107 !important;
+}
+
+.text-info {
+    color: #0dcaf0 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.text-dark {
+    color: #212529 !important;
+}
+
+/* Background for highlighted sections in light theme */
+.bg-light {
+    background-color: #f8f9fa !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+/* List group styling */
+.list-group-item {
+    border: 1px solid #dee2e6;
+}
+
+.list-group-flush .list-group-item {
+    border-left: 0;
+    border-right: 0;
+}
+
+.list-group-flush .list-group-item:first-child {
+    border-top: 0;
+}
+
+.list-group-flush .list-group-item:last-child {
+    border-bottom: 0;
+}
+
+/* Navbar styling */
+.navbar-brand {
+    font-weight: 600;
+}
+
+/* Table hover effects */
+.table-hover tbody tr:hover td {
+    background-color: #f5f5f5;
+}
+
+/* Small text styling */
+small {
+    font-size: 0.875em;
+}
+
+/* Lead text styling */
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+/* Custom button outline styling */
+.btn-outline-primary {
+    color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+/* Enhanced shadow for cards */
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+/* Table responsive wrapper styling */
+.table-responsive {
+    border-radius: 0.375rem;
+}
+
+/* Badge color variations */
+.bg-success {
+    background-color: #198754 !important;
+}
+
+.bg-primary {
+    background-color: #0d6efd !important;
+}
+
+.bg-warning {
+    background-color: #ffc107 !important;
+    color: #000 !important;
+}
+
+.bg-info {
+    background-color: #0dcaf0 !important;
+    color: #000 !important;
+}
+
+.bg-danger {
+    background-color: #dc3545 !important;
+}
+
+.bg-secondary {
+    background-color: #6c757d !important;
+}

@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block title %}Audit Program - Securities Deposits Analysis{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">
+                <i class="fas fa-clipboard-list me-2 text-primary"></i>
+                Audit Program Generator
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-cog me-2"></i>
+                    Generate Audit Program
+                </h5>
+                <small class="text-muted">Select organization type and program template to generate a comprehensive audit program</small>
+            </div>
+            <div class="card-body">
+                <form id="auditProgramForm">
+                    <div class="mb-4">
+                        <label for="orgType" class="form-label">Organization Type</label>
+                        <select class="form-select" id="orgType" name="org_type" required data-testid="select-org-type">
+                            <option value="">Select Organization Type</option>
+                            <option value="NPO">Non-Profit Organization (NPO)</option>
+                            <option value="Government">Government Entity</option>
+                            <option value="Commercial">Commercial Entity</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="programType" class="form-label">Program Template</label>
+                        <select class="form-select" id="programType" name="program_type" required data-testid="select-program-type">
+                            <option value="">Select Program Template</option>
+                            <option value="ALG/NPO-AP-90">ALG/NPO-AP-90 - Non-Profit Audit Program</option>
+                            <option value="ALG/GOV-AP-90">ALG/GOV-AP-90 - Government Audit Program</option>
+                            <option value="ALG/COM-AP-90">ALG/COM-AP-90 - Commercial Audit Program</option>
+                        </select>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg" data-testid="button-generate-program">
+                            <i class="fas fa-cogs me-2"></i> Generate Audit Program
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Program Description Cards -->
+        <div class="row mt-4">
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-hand-holding-heart text-primary me-2"></i>
+                            NPO Program
+                        </h6>
+                        <p class="card-text small">
+                            Comprehensive audit program for non-profit organizations, focusing on donor restrictions and compliance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-landmark text-success me-2"></i>
+                            Government Program
+                        </h6>
+                        <p class="card-text small">
+                            Audit program for government entities with focus on GASB compliance and public fund management.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-building text-info me-2"></i>
+                            Commercial Program
+                        </h6>
+                        <p class="card-text small">
+                            Audit program for commercial entities focusing on GAAP compliance and SEC requirements.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Generated Program Display -->
+<div id="generatedProgram" style="display: none;" data-testid="container-generated-program">
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-file-alt me-2"></i>
+                        Generated Audit Program
+                    </h5>
+                    <div>
+                        <button class="btn btn-outline-primary btn-sm" onclick="downloadProgram()" data-testid="button-download-program">
+                            <i class="fas fa-download me-1"></i> Download
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="printProgram()" data-testid="button-print-program">
+                            <i class="fas fa-print me-1"></i> Print
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="programContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('auditProgramForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = {
+        org_type: document.getElementById('orgType').value,
+        program_type: document.getElementById('programType').value
+    };
+    
+    const button = document.querySelector('[data-testid="button-generate-program"]');
+    button.disabled = true;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Generating...';
+    
+    fetch('/api/generate-audit-program', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.program) {
+            displayProgram(data.program);
+            document.getElementById('generatedProgram').style.display = 'block';
+            document.getElementById('generatedProgram').scrollIntoView({ behavior: 'smooth' });
+        }
+        button.disabled = false;
+        button.innerHTML = '<i class="fas fa-cogs me-2"></i> Generate Audit Program';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error generating audit program. Please try again.');
+        button.disabled = false;
+        button.innerHTML = '<i class="fas fa-cogs me-2"></i> Generate Audit Program';
+    });
+});
+
+function displayProgram(program) {
+    const contentDiv = document.getElementById('programContent');
+    
+    let html = `
+        <div class="program-header mb-4">
+            <h3>${program.name}</h3>
+            <p class="text-muted">${program.description}</p>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <strong>Program Code:</strong> ${program.program_code}
+                </div>
+                <div class="col-md-4">
+                    <strong>Version:</strong> ${program.version}
+                </div>
+                <div class="col-md-4">
+                    <strong>Effective Date:</strong> ${program.effective_date}
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <h5><i class="fas fa-bullseye me-2"></i>Objectives</h5>
+            <ul>
+                ${program.objectives.map(obj => `<li>${obj}</li>`).join('')}
+            </ul>
+        </div>
+
+        <div class="mb-4">
+            <h5><i class="fas fa-tasks me-2"></i>Audit Procedures</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Step</th>
+                            <th>Category</th>
+                            <th>Procedure</th>
+                            <th>Objectives</th>
+                            <th>WP Ref</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${program.audit_procedures.map(proc => `
+                            <tr>
+                                <td><strong>${proc.step}</strong></td>
+                                <td>${proc.category}</td>
+                                <td>${proc.procedure}</td>
+                                <td>${proc.objectives.join(', ')}</td>
+                                <td>${proc.working_paper_ref}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+    
+    contentDiv.innerHTML = html;
+}
+
+function downloadProgram() {
+    alert('Download functionality will export the program as PDF or Word document');
+}
+
+function printProgram() {
+    window.print();
+}
+</script>
+{% endblock %}

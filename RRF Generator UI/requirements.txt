@@ -1,0 +1,7 @@
+Flask
+requests
+python-docx
+pymongo
+Werkzeug
+pypdf
+pymongo

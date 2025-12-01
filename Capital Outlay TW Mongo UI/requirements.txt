@@ -1,0 +1,8 @@
+Flask
+Werkzeug
+flask-pymongo
+pandas
+numpy
+openpyxl
+pdfplumber
+pymongo

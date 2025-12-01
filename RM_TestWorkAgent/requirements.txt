@@ -1,0 +1,9 @@
+Flask
+flask-mongoengine
+mongoengine
+pymongo
+python-dotenv
+Werkzeug
+pandas
+openpyxl
+xlsxwriter

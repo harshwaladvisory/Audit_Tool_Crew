@@ -1,0 +1,31 @@
+SOC_1 PROCESS CONTROL/
+├── static/                        # Static files (CSS, JS, images, etc.)
+│
+├── templates/                     # HTML templates
+│   └── index.html
+│
+├── ac.py                          # Running file
+├── app.py                         
+├── copy_New_test.py               
+├── document_processor.py          # Core logic for handling document parsing and flow
+│
+├── output.xlsx                    # Generated Excel output file
+│
+├── Process_Control_PDF_flow.json  # JSON defining process flow for PDFs
+├── Process_control_Word_flow.json # JSON defining process flow for Word documents
+│
+├── Process_Control.code-workspace # VS Code workspace configuration
+│
+├── requirements.txt               # Python dependencies
+│
+└── Structure.txt                  # Project or data structure definition file
+│
+└── database.py  
+│
+└── config.py  
+│
+└── models.py
+│
+└── db_operations.py 
+│
+└── .env  

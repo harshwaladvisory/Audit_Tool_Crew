@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&M Test Work Agent</title>
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+    <!-- Header Ribbon with Both Logos -->
+    <div class="header-ribbon">
+        <div class="logo-container">
+            <img src="/static/images/Logo_.png" alt="Company Logo" class="company-logo">
+            <img src="/static/images/Coverlogo.png" alt="R&M TestWork Agent" class="project-logo">
+        </div>
+    </div>
+
+    <header style="background: #413178; padding: 1rem 0;">
+        <div class="container">
+            <h1 style="font-size: 1.5rem; font-weight: 600; color: white;">🔍 R&M Test Work Agent</h1>
+            <nav>
+                <a href="/" style="color: white;">Home</a>
+                <a href="/runs" style="color: white;">Runs</a>
+                <a href="/upload" style="color: white;">Upload</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card text-center" style="background: #FFFFFF; border: 1px solid #E9E7F2; border-radius: 16px; box-shadow: 0 2px 8px rgba(65, 49, 120, 0.08);">
+            <h2 style="color: #413178;">Welcome to R&M Test Work Agent</h2>
+            <p style="font-size: 1.1rem; color: #67627F; margin: 1.5rem 0;">
+                Automated audit sampling and substantive testing for Repair & Maintenance expenses
+            </p>
+            
+            <div class="grid" style="margin-top: 3rem;">
+                <div class="card" style="text-align: left; border-left: 4px solid #413178;">
+                    <h3 style="color: #413178;">📤 1. Upload</h3>
+                    <p style="color: #67627F;">Upload your GL population and Trial Balance files</p>
+                    <a href="/upload" class="btn" style="display: inline-block; text-decoration: none; margin-top: 1rem; background: #413178; color: white;">Go to Upload</a>
+                </div>
+                
+                <div class="card" style="text-align: left; border-left: 4px solid #413178;">
+                    <h3 style="color: #413178;">🎯 2. Sample</h3>
+                    <p style="color: #67627F;">Generate stratified samples based on materiality</p>
+                    <button class="btn" disabled style="margin-top: 1rem; background: #8A7BC4; color: white;">Upload files first</button>
+                </div>
+                
+                <div class="card" style="text-align: left; border-left: 4px solid #413178;">
+                    <h3 style="color: #413178;">✅ 3. Test</h3>
+                    <p style="color: #67627F;">Perform attribute testing and document findings</p>
+                    <button class="btn" disabled style="margin-top: 1rem; background: #8A7BC4; color: white;">Complete sampling first</button>
+                </div>
+                
+                <div class="card" style="text-align: left; border-left: 4px solid #413178;">
+                    <h3 style="color: #413178;">📊 4. Report</h3>
+                    <p style="color: #67627F;">Generate comprehensive audit reports</p>
+                    <button class="btn" disabled style="margin-top: 1rem; background: #8A7BC4; color: white;">Complete testing first</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="background: #F1EEFA; border-left: 4px solid #413178;">
+            <h3 style="color: #413178;">✨ Features</h3>
+            <ul style="margin-left: 1.5rem; line-height: 2; color: #413178;">
+                <li><strong>Automated Sampling:</strong> Stratified sampling based on amount bands</li>
+                <li><strong>TB Reconciliation:</strong> Automatic reconciliation with Trial Balance</li>
+                <li><strong>7 Attribute Tests:</strong> Comprehensive control testing framework</li>
+                <li><strong>Exception Tracking:</strong> Document and manage audit findings</li>
+                <li><strong>Audit Trail:</strong> Complete log of all actions and changes</li>
+                <li><strong>Export Reports:</strong> Generate Excel reports for workpapers</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

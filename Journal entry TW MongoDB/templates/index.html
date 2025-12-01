@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal Entry Sampling & Testwork Agent</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-calculator me-2"></i>
+                JE Sampling & Testwork Agent
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="{{ url_for('results') }}">
+                    <i class="fas fa-file-alt me-1"></i>
+                    Results
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="row mb-5">
+            <div class="col-md-8 mx-auto text-center">
+                <div class="hero-image mb-4">
+                    <img src="https://pixabay.com/get/g0b0fc3c2da42b66b5bcbffa2496a57878f1072e2ecf029a6b24ddc2eb679263ccdfbc1451fc1defd1f6f3d0fcf5f02a93e930c425b35c400d5a3d0b15c335bbb_1280.jpg" 
+                         alt="Professional Audit Office" class="img-fluid rounded shadow-lg">
+                </div>
+                <h1 class="display-4 fw-bold mb-3">Automated Journal Entry Analysis</h1>
+                <p class="lead">
+                    Professional audit tool for journal entry population building, risk-based sampling, 
+                    and comprehensive testwork with automated artifact generation.
+                </p>
+            </div>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="row">
+            <!-- Upload Section -->
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-upload me-2"></i>
+                            Upload General Ledger Files
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="uploadForm" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="files" class="form-label">Select GL Files (CSV, Excel, PDF, TXT)</label>
+                                <input type="file" class="form-control" id="files" name="files" multiple 
+                                       accept=".csv,.xlsx,.xls,.pdf,.txt">
+                                <div class="form-text">
+                                    Upload general ledger files containing journal entries. Supported formats: CSV, XLSX, XLS, PDF, TXT
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-cloud-upload-alt me-2"></i>
+                                Upload Files
+                            </button>
+                        </form>
+
+                        <!-- Upload Progress -->
+                        <div id="uploadProgress" class="mt-3" style="display: none;">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                     role="progressbar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis Parameters -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-cogs me-2"></i>
+                            Analysis Parameters
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="analysisForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="investigate_if" class="form-label">Investigation Threshold ($)</label>
+                                        <input type="number" class="form-control" id="investigate_if" name="investigate_if" 
+                                               value="1000" step="100">
+                                        <div class="form-text">Entries above this amount require investigation</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="materiality" class="form-label">Materiality Threshold ($)</label>
+                                        <input type="number" class="form-control" id="materiality" name="materiality" 
+                                               value="10000" step="1000">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="coverage_target" class="form-label">Coverage Target (%)</label>
+                                        <input type="number" class="form-control" id="coverage_target" name="coverage_target" 
+                                               value="80" min="10" max="100">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="high_risk_rules" class="form-label">High Risk Keywords</label>
+                                        <input type="text" class="form-control" id="high_risk_rules" name="high_risk_rules" 
+                                               value="adjusting,reversal,year-end,correction,JE,manual">
+                                        <div class="form-text">Comma-separated list of risk keywords</div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="period_end_window" class="form-label">Period-End Window (days)</label>
+                                        <input type="number" class="form-control" id="period_end_window" name="period_end_window" 
+                                               value="7" min="1" max="30">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="framework" class="form-label">Accounting Framework</label>
+                                        <select class="form-select" id="framework" name="framework">
+                                            <option value="GAAP">US GAAP</option>
+                                            <option value="IFRS">IFRS</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="period_start" class="form-label">Period Start Date</label>
+                                        <input type="date" class="form-control" id="period_start" name="period_start">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="period_end" class="form-label">Period End Date</label>
+                                        <input type="date" class="form-control" id="period_end" name="period_end">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-success btn-lg" id="analyzeBtn">
+                                <i class="fas fa-play me-2"></i>
+                                Start Analysis
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Process Overview -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-list-ol me-2"></i>
+                            Analysis Process
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="process-step">
+                            <i class="fas fa-upload text-primary"></i>
+                            <div>
+                                <strong>1. Data Ingestion</strong>
+                                <p>Upload and validate GL files</p>
+                            </div>
+                        </div>
+                        
+                        <div class="process-step">
+                            <i class="fas fa-search text-info"></i>
+                            <div>
+                                <strong>2. Risk Assessment</strong>
+                                <p>Apply risk heuristics and flags</p>
+                            </div>
+                        </div>
+                        
+                        <div class="process-step">
+                            <i class="fas fa-random text-warning"></i>
+                            <div>
+                                <strong>3. Sample Selection</strong>
+                                <p>Risk-based + random sampling</p>
+                            </div>
+                        </div>
+                        
+                        <div class="process-step">
+                            <i class="fas fa-file-excel text-success"></i>
+                            <div>
+                                <strong>4. Artifact Generation</strong>
+                                <p>Create workpapers and templates</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Uploaded Files -->
+                {% if uploaded_files %}
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-folder-open me-2"></i>
+                            Uploaded Files
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        {% for file in uploaded_files %}
+                        <div class="file-item">
+                            <div class="file-info">
+                                <i class="fas fa-file me-2"></i>
+                                <div>
+                                    <strong>{{ file.name }}</strong>
+                                    <small class="text-muted d-block">
+                                        {{ "%.1f"|format(file.size/1024) }} KB • {{ file.modified }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Analysis Results -->
+        <div id="analysisResults" style="display: none;">
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-chart-bar me-2"></i>
+                        Analysis Results
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div id="resultsContent">
+                        <!-- Results will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // File Upload Handler
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            const files = document.getElementById('files').files;
+            
+            if (files.length === 0) {
+                alert('Please select at least one file to upload.');
+                return;
+            }
+            
+            for (let file of files) {
+                formData.append('files', file);
+            }
+            
+            // Show progress
+            document.getElementById('uploadProgress').style.display = 'block';
+            
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('uploadProgress').style.display = 'none';
+                
+                if (data.error) {
+                    alert('Upload Error: ' + data.error);
+                } else {
+                    alert('Successfully uploaded: ' + data.files.join(', '));
+                    location.reload(); // Refresh to show new files
+                }
+            })
+            .catch(error => {
+                document.getElementById('uploadProgress').style.display = 'none';
+                console.error('Upload error:', error);
+                alert('Upload failed. Please try again.');
+            });
+        });
+        
+        // Analysis Handler
+        document.getElementById('analysisForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const originalText = analyzeBtn.innerHTML;
+            
+            // Show loading state
+            analyzeBtn.disabled = true;
+            analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Running Analysis...';
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            fetch('/analyze', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                analyzeBtn.disabled = false;
+                analyzeBtn.innerHTML = originalText;
+                
+                if (result.error) {
+                    alert('Analysis Error: ' + result.error);
+                } else {
+                    displayResults(result);
+                    document.getElementById('analysisResults').style.display = 'block';
+                    document.getElementById('analysisResults').scrollIntoView({behavior: 'smooth'});
+                }
+            })
+            .catch(error => {
+                analyzeBtn.disabled = false;
+                analyzeBtn.innerHTML = originalText;
+                console.error('Analysis error:', error);
+                alert('Analysis failed. Please try again.');
+            });
+        });
+        
+        function displayResults(result) {
+            const metrics = result.metrics;
+            const files = result.files_created;
+            
+            const resultsHtml = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Analysis Summary</h6>
+                        <p>${result.summary}</p>
+                        
+                        <h6>Key Metrics</h6>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Population Count:</span>
+                                <strong>${metrics.population_count.toLocaleString()}</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Sample Count:</span>
+                                <strong>${metrics.sample_count.toLocaleString()}</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>High Risk Selected:</span>
+                                <strong>${metrics.high_risk_selected.toLocaleString()}</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Tests Passed:</span>
+                                <strong>${metrics.tests_passed.toLocaleString()}</strong>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Exceptions:</span>
+                                <strong>${metrics.exceptions.toLocaleString()}</strong>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <h6>Generated Files</h6>
+                        <div class="list-group">
+                            ${files.map(file => `
+                                <a href="/files/${file}" class="list-group-item list-group-item-action" target="_blank">
+                                    <i class="fas fa-download me-2"></i>
+                                    ${file}
+                                </a>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="mt-3">
+                            <a href="/results" class="btn btn-outline-primary">
+                                <i class="fas fa-eye me-2"></i>
+                                View All Results
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('resultsContent').innerHTML = resultsHtml;
+        }
+    </script>
+</body>
+</html>

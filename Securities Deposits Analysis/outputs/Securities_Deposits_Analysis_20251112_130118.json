@@ -1,0 +1,207 @@
+{
+  "session_id": "20251112_130118",
+  "timestamp": "2025-11-12T13:01:22.817270",
+  "file_info": {
+    "filename": "20251112_130047_Performedd_file_Output_Security_Deposit_Analysis.xlsx",
+    "records_processed": 18
+  },
+  "analysis_results": {
+    "aging": {
+      "status": "success",
+      "total_analyzed": 18,
+      "results": [
+        {
+          "account_number": "0",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "1",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "2",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "3",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "4",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "5",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "6",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "7",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "8",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "9",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "10",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "11",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "12",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "13",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "14",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "15",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "16",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        },
+        {
+          "account_number": "17",
+          "customer_name": "Unknown",
+          "amount": 0.0,
+          "deposit_date": "2025-11-12",
+          "maturity_date": "2026-11-12",
+          "days_to_maturity": 364,
+          "aging_bucket": "Current",
+          "risk_level": "low"
+        }
+      ]
+    },
+    "interest": {
+      "status": "success",
+      "total_calculated": 0,
+      "results": []
+    }
+  },
+  "summary": {
+    "records_processed": 18,
+    "analyses_completed": 2,
+    "analysis_mode": "standalone_no_mongodb",
+    "file_type": ".xlsx"
+  }
+}

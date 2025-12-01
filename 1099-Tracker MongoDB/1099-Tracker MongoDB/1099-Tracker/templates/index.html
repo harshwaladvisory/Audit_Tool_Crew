@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Vendor Data | Vendor Classification{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<!-- <div class="hero-section">
+    <div class="hero-content">
+        <h1>
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Vendor Classification System</span>
+        </h1>
+        <p class="hero-description">
+            Upload your vendor data and let AI automatically classify vendors for IRS 1099 reporting.
+            Intelligent detection, accurate categorization, and instant export capabilities.
+        </p>
+    </div>
+</div> -->
+
+<div class="container">
+    <!-- Upload Section -->
+    <section class="upload-section">
+        <div class="upload-card">
+            <div class="upload-header">
+                <h2>
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>Upload Vendor Data</span>
+                </h2>
+                <p>Drag & drop your CSV or Excel file, or click to browse</p>
+            </div>
+
+            <form method="POST" action="{{ url_for('upload_file') }}" enctype="multipart/form-data" class="upload-form">
+                <!-- File Input -->
+                <div class="file-input-container">
+                    <input type="file" id="file" name="file" accept=".csv,.xlsx,.xls" required class="file-input">
+                    <label for="file" class="file-label">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span class="file-text">Choose File or Drag Here</span>
+                        <span class="file-name">No file selected</span>
+                    </label>
+                </div>
+
+                <!-- File Format Info - Side by Side Layout -->
+                <div class="info-boxes-row">
+                    <div class="upload-info">
+                        <h3>
+                            <i class="fas fa-file-alt"></i>
+                            Supported File Formats
+                        </h3>
+                        <ul class="format-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>CSV files (.csv) - Comma-separated values</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Excel files (.xlsx, .xls) - Microsoft Excel format</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Maximum file size: 16MB</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Supports large datasets with chunked processing</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="expected-columns">
+                        <h3>
+                            <i class="fas fa-columns"></i>
+                            Expected Data Columns
+                        </h3>
+                        <p>Your file should contain vendor information. The system will automatically detect column
+                            names:</p>
+                        <ul class="column-list">
+                            <li>
+                                <strong>Vendor Name</strong> - Required (business or individual name)
+                            </li>
+                            <li>
+                                <strong>Vendor ID/Tax ID</strong> - Optional (SSN/EIN for classification)
+                            </li>
+                            <li>
+                                <strong>Total Paid Amount</strong> - Required (for $600 threshold analysis)
+                            </li>
+                            <li>
+                                <strong>Account/Category</strong> - Optional (helps identify service types)
+                            </li>
+                            <li>
+                                <strong>Memo/Description</strong> - Optional (additional context)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Upload Button -->
+                <button type="submit" class="upload-btn">
+                    <i class="fas fa-upload"></i>
+                    <span>Upload and Process</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <!-- <section class="features-section">
+        <h2>
+            <i class="fas fa-sparkles"></i>
+            <span>Key Features</span>
+        </h2>
+        <div class="features-grid"> -->
+            <!-- Feature 1 -->
+            <!-- <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>AI-Powered Classification</h3>
+                <p>
+                    Advanced AI analyzes each vendor using 2024 IRS guidelines to determine 1099 eligibility
+                    with accurate form recommendations (NEC, MISC, or W-9).
+                </p>
+            </div> -->
+
+            <!-- Feature 2 -->
+            <!-- <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <h3>Smart Deduplication</h3>
+                <p>
+                    Automatically combines duplicate vendor entries, aggregates transaction amounts,
+                    and maintains complete payment history for accurate reporting.
+                </p>
+            </div> -->
+
+            <!-- Feature 3 -->
+            <!-- <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-export"></i>
+                </div>
+                <h3>Multiple Export Formats</h3>
+                <p>
+                    Export your classified data to CSV or Excel with categorized sheets,
+                    summary statistics, and ready-to-use 1099 filing information.
+                </p>
+            </div> -->
+
+            <!-- Feature 4 -->
+            <!-- <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <h3>Manual Override & Notes</h3>
+                <p>
+                    Review AI classifications, transfer vendors between categories,
+                    add custom notes, and fine-tune results before final export.
+                </p>
+            </div> -->
+
+            <!-- Feature 5 -->
+            <!-- <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h3>Interactive Dashboard</h3>
+                <p>
+                    Visualize vendor distributions, track 1099-eligible amounts,
+                    monitor W-9 requirements, and analyze payment patterns instantly.
+                </p>
+            </div> -->
+
+            <!-- Feature 6 -->
+            <!-- <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-check"></i>
+                </div>
+                <h3>2024 IRS Compliant</h3>
+                <p>
+                    Built with current IRS 1099 reporting rules including $600 thresholds,
+                    attorney exceptions, and proper entity classification guidelines.
+                </p>
+            </div>
+        </div>
+    </section>
+</div> -->
+{% endblock %}

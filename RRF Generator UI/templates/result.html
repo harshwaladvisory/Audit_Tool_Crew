@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block title %}Processing Result - LOI Generator Agent{% endblock %}
+
+{% block content %}
+<!-- Status Header -->
+<div class="result-header">
+    {% if job.status == 'SUCCESS' %}
+        <div class="status-icon success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+        </div>
+        <h1>Processing Completed!</h1>
+        <p>Your letter of instruction has been generated successfully</p>
+    {% elif job.status == 'FAILURE' %}
+        <div class="status-icon error">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="15" y1="9" x2="9" y2="15"></line>
+                <line x1="9" y1="9" x2="15" y2="15"></line>
+            </svg>
+        </div>
+        <h1>Processing Error</h1>
+        <p>There was an issue processing your files</p>
+    {% else %}
+        <div class="status-icon processing">
+            <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+        </div>
+        <h1>Processing...</h1>
+        <p>Your job is being processed. This page will refresh automatically</p>
+    {% endif %}
+</div>
+
+<!-- Job Information -->
+<div class="card">
+    <div class="card-header">
+        <h3>Job Information</h3>
+    </div>
+    <div class="job-info-grid">
+        <div class="job-info-item">
+            <div class="job-info-label">Job ID</div>
+            <div class="job-info-value">#{{ job.id }}</div>
+        </div>
+        <div class="job-info-item">
+            <div class="job-info-label">Status</div>
+            <div class="job-info-value">
+                <span class="badge badge-{% if job.status == 'SUCCESS' %}success{% elif job.status == 'FAILURE' %}error{% else %}info{% endif %}">
+                    {{ job.status.title() if job.status else 'Unknown' }}
+                </span>
+            </div>
+        </div>
+        <div class="job-info-item">
+            <div class="job-info-label">Created</div>
+            <div class="job-info-value">{{ job.created_at.strftime('%B %d, %Y at %I:%M %p') if job.created_at else 'N/A' }}</div>
+        </div>
+        <div class="job-info-item">
+            <div class="job-info-label">Processing Time</div>
+            <div class="job-info-value">
+                {% if job.status == 'SUCCESS' %}
+                    ~2.3 seconds
+                {% else %}
+                    --
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Error Details -->
+{% if job.status == 'FAILURE' %}
+<div class="card error-card">
+    <div class="card-header">
+        <h3>Error Details</h3>
+    </div>
+    <div class="error-content">
+        <div class="error-message">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span>{{ job.error_message if job.error_message else 'An unexpected error occurred during processing.' }}</span>
+        </div>
+        
+        <div class="troubleshooting">
+            <h4>Troubleshooting Tips</h4>
+            <ul>
+                <li>Ensure the PDF is a valid RRF-1 form with readable text</li>
+                <li>Check that the Word document contains the expected placeholders</li>
+                <li>Verify that both files are not corrupted or password-protected</li>
+                <li>Make sure the PDF contains the required data fields</li>
+                <li>Try reducing file sizes if they're close to the 16MB limit</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Success Download -->
+{% if job.status == 'SUCCESS' and job.output_filename %}
+<div class="card success-card">
+    <div class="download-content">
+        <div class="download-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+        </div>
+        <div class="download-text">
+            <h3>Your letter of instruction is ready!</h3>
+            <p>The completed document contains all the extracted data from your RRF-1 form</p>
+        </div>
+        <a href="{{ url_for('download_file', job_id=job.id) }}" class="btn btn-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Letter of Instruction
+        </a>
+    </div>
+</div>
+{% endif %}
+
+<!-- Processing Timeline (for in-progress jobs) -->
+{% if job.status not in ['SUCCESS', 'FAILURE'] %}
+<div class="card">
+    <div class="card-header">
+        <h3>Processing Steps</h3>
+    </div>
+    <div class="timeline">
+        <div class="timeline-item active">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <h4>Files Received</h4>
+                <p>Your files have been uploaded successfully</p>
+            </div>
+        </div>
+        <div class="timeline-item active">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <h4>Extracting Data</h4>
+                <p>AI is analyzing your RRF-1 form</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <h4>Generating Document</h4>
+                <p>Populating your Word template</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+                <h4>Complete</h4>
+                <p>Your letter will be ready for download</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Actions -->
+<div class="card">
+    <div class="action-content">
+        <h3>What would you like to do next?</h3>
+        <div class="action-buttons">
+            <a href="{{ url_for('index') }}" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Process Another File
+            </a>
+            {% if job.status not in ['SUCCESS', 'FAILURE'] %}
+            <button onclick="location.reload()" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+                Refresh Status
+            </button>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if job.status not in ['SUCCESS', 'FAILURE'] %}
+<script>
+    // Auto-refresh every 5 seconds for in-progress jobs
+    setTimeout(function() {
+        location.reload();
+    }, 5000);
+</script>
+{% endif %}
+{% endblock %}

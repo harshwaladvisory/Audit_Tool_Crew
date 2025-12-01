@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Deposits Analysis - Securities Deposits Analysis{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">
+                <i class="fas fa-table me-2 text-primary"></i>
+                Deposits Analysis
+            </h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <a href="{{ url_for('file_upload_page') }}" class="btn btn-outline-primary me-2" data-testid="button-upload-new">
+                    <i class="fas fa-upload me-1"></i> Upload New File
+                </a>
+                <button class="btn btn-success" onclick="exportDeposits()" data-testid="button-export">
+                    <i class="fas fa-download me-1"></i> Export
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Deposits Table -->
+<div class="row">
+    <div class="col-12">
+        <div class="data-table-container">
+            <div class="data-table-header">
+                <h5 class="mb-0">All Deposits</h5>
+                <div class="data-table-controls">
+                    <input type="text" class="form-control search-input" placeholder="Search deposits..." data-testid="input-search">
+                    <select class="form-select" data-testid="select-filter-type">
+                        <option value="">All Types</option>
+                        <option value="certificate">Certificate</option>
+                        <option value="time_deposit">Time Deposit</option>
+                        <option value="savings">Savings</option>
+                        <option value="checking">Checking</option>
+                    </select>
+                    <select class="form-select" data-testid="select-filter-status">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="matured">Matured</option>
+                        <option value="closed">Closed</option>
+                        <option value="unclaimed">Unclaimed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped" data-testid="table-deposits">
+                    <thead>
+                        <tr>
+                            <th>Account Number</th>
+                            <th>Customer Name</th>
+                            <th>Deposit Type</th>
+                            <th>Amount</th>
+                            <th>Interest Rate</th>
+                            <th>Deposit Date</th>
+                            <th>Maturity Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if deposits %}
+                            {% for deposit in deposits %}
+                                <tr data-testid="row-deposit-{{ loop.index }}">
+                                    <td>{{ deposit.account_number }}</td>
+                                    <td>{{ deposit.customer_name }}</td>
+                                    <td>
+                                        <span class="badge bg-secondary">{{ deposit.deposit_type.replace('_', ' ').title() }}</span>
+                                    </td>
+                                    <td class="text-end">${{ "%.2f"|format(deposit.amount) }}</td>
+                                    <td class="text-end">{{ "%.4f"|format(deposit.interest_rate * 100) }}%</td>
+                                    <td>{{ deposit.deposit_date.strftime('%Y-%m-%d') if deposit.deposit_date else 'N/A' }}</td>
+                                    <td>{{ deposit.maturity_date.strftime('%Y-%m-%d') if deposit.maturity_date else 'N/A' }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ 'success' if deposit.status == 'active' else 'warning' if deposit.status == 'matured' else 'danger' if deposit.status == 'unclaimed' else 'secondary' }}">
+                                            {{ deposit.status.title() }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <button class="btn btn-outline-primary btn-sm" onclick="viewDeposit({{ deposit.id }})" data-testid="button-view-{{ deposit.id }}">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-outline-secondary btn-sm" onclick="editDeposit({{ deposit.id }})" data-testid="button-edit-{{ deposit.id }}">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="9" class="text-center text-muted py-4" data-testid="text-no-deposits">
+                                    <i class="fas fa-inbox fa-3x mb-3 d-block"></i>
+                                    <p>No deposits found. <a href="{{ url_for('file_upload_page') }}" class="text-decoration-none">Upload a file</a> to get started.</p>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pagination would go here in a full implementation -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+function exportDeposits() {
+    // In a full implementation, this would trigger a CSV/Excel export
+    alert('Export functionality would be implemented here');
+}
+
+function viewDeposit(id) {
+    // In a full implementation, this would open a modal or navigate to detail page
+    alert('View deposit details for ID: ' + id);
+}
+
+function editDeposit(id) {
+    // In a full implementation, this would open an edit modal
+    alert('Edit deposit functionality for ID: ' + id);
+}
+</script>
+{% endblock %}

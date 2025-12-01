@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - {{ run.name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="/static/css/app.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Ribbon with Both Logos -->
+    <div class="header-ribbon">
+        <div class="logo-container">
+            <img src="/static/images/Logo_.png" alt="Company Logo" class="company-logo">
+            <img src="/static/images/Coverlogo.png" alt="R&M TestWork Agent" class="project-logo">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid" style="padding: 0 2rem;">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-clipboard-data"></i> Reports
+            </a>
+            <div>
+                <a href="/runs/{{ run.id }}" class="btn btn-sm" style="background: rgba(255,255,255,0.2); border: none;">
+                    <i class="bi bi-arrow-left"></i> Back to Run
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid" style="padding: 2rem;">
+        <!-- Page Title -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 style="color: #413178; font-weight: 600; font-size: 1.5rem;">
+                    <i class="bi bi-file-earmark-text"></i> Reports - {{ run.name }}
+                </h2>
+                <p style="color: #67627F; margin-top: 0.5rem;">Generate and export various reports for your audit testwork.</p>
+            </div>
+        </div>
+
+        <!-- Report Options Cards -->
+        <div class="row g-4 mb-4">
+            <!-- Samples Report Card -->
+            <div class="col-md-6 col-lg-4">
+                <div class="dashboard-card" style="cursor: pointer; flex-direction: column; text-align: center; justify-content: center; min-height: 220px;" onclick="exportReport('samples')">
+                    <div class="card-icon-wrapper" style="margin: 0 auto 1rem;">
+                        <i class="bi bi-collection"></i>
+                    </div>
+                    <div style="width: 100%;">
+                        <h5 style="color: #413178; font-weight: 600; margin-bottom: 0.5rem;">Samples Report</h5>
+                        <p class="text-muted" style="font-size: 0.875rem; margin-bottom: 1rem;">Export all selected samples with GL details</p>
+                        <button class="btn" style="background: #413178; color: white; border: none; font-weight: 600;" onclick="exportReport('samples'); event.stopPropagation();">
+                            <i class="bi bi-download"></i> Export Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Run Summary Card -->
+            <div class="col-md-6 col-lg-4">
+                <div class="dashboard-card" style="cursor: pointer; flex-direction: column; text-align: center; justify-content: center; min-height: 220px;" onclick="viewSummary()">
+                    <div class="card-icon-wrapper" style="margin: 0 auto 1rem;">
+                        <i class="bi bi-clipboard-data"></i>
+                    </div>
+                    <div style="width: 100%;">
+                        <h5 style="color: #413178; font-weight: 600; margin-bottom: 0.5rem;">Run Summary</h5>
+                        <p class="text-muted" style="font-size: 0.875rem; margin-bottom: 1rem;">View comprehensive run statistics and metrics</p>
+                        <button class="btn" style="background: #6C5BB5; color: white; border: none; font-weight: 600;" onclick="viewSummary(); event.stopPropagation();">
+                            <i class="bi bi-eye"></i> View Summary
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comprehensive Report Card -->
+            <div class="col-md-6 col-lg-4">
+                <div class="dashboard-card" style="cursor: pointer; flex-direction: column; text-align: center; justify-content: center; min-height: 220px;" onclick="viewFullReport()">
+                    <div class="card-icon-wrapper" style="margin: 0 auto 1rem;">
+                        <i class="bi bi-file-earmark-bar-graph"></i>
+                    </div>
+                    <div style="width: 100%;">
+                        <h5 style="color: #413178; font-weight: 600; margin-bottom: 0.5rem;">Comprehensive Report</h5>
+                        <p class="text-muted" style="font-size: 0.875rem; margin-bottom: 1rem;">Full audit report with all details</p>
+                        <button class="btn" style="background: #8A7BC4; color: white; border: none; font-weight: 600;" onclick="viewFullReport(); event.stopPropagation();">
+                            <i class="bi bi-file-text"></i> Generate Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Data -->
+        <div class="row" id="summarySection" style="display: none;">
+            <div class="col-12">
+                <div class="card" style="background: #FFFFFF; border: 1px solid #E9E7F2; border-radius: 16px; box-shadow: 0 2px 8px rgba(65, 49, 120, 0.08); overflow: hidden; padding: 0;">
+                    <div style="background: #413178; color: white; padding: 1rem 1.5rem;">
+                        <h5 class="mb-0" style="font-weight: 600;"><i class="bi bi-graph-up"></i> Run Summary</h5>
+                    </div>
+                    <div style="padding: 1.5rem;" id="summaryContent">
+                        <div class="text-center">
+                            <div class="spinner-border" style="color: #413178;" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full Report -->
+        <div class="row" id="reportSection" style="display: none;">
+            <div class="col-12">
+                <div class="card" style="background: #FFFFFF; border: 1px solid #E9E7F2; border-radius: 16px; box-shadow: 0 2px 8px rgba(65, 49, 120, 0.08); overflow: hidden; padding: 0;">
+                    <div style="background: #413178; color: white; padding: 1rem 1.5rem;">
+                        <h5 class="mb-0" style="font-weight: 600;"><i class="bi bi-file-earmark-text"></i> Comprehensive Report</h5>
+                    </div>
+                    <div style="padding: 1.5rem;" id="reportContent">
+                        <div class="text-center">
+                            <div class="spinner-border" style="color: #413178;" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const runId = '{{ run.id }}';
+
+        function exportReport(type) {
+            if (type === 'samples') {
+                window.location.href = `/api/runs/${runId}/export/samples`;
+            }
+        }
+
+        function viewSummary() {
+            document.getElementById('reportSection').style.display = 'none';
+            document.getElementById('summarySection').style.display = 'block';
+            window.scrollTo(0, document.getElementById('summarySection').offsetTop - 100);
+            
+            fetch(`/api/runs/${runId}/summary`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const summary = data.summary;
+                        document.getElementById('summaryContent').innerHTML = `
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-3">
+                                    <div class="dashboard-card">
+                                        <div class="card-content">
+                                            <span class="card-label">GL POPULATION</span>
+                                            <div class="card-value">${summary.gl_population}</div>
+                                            <p class="card-description">
+                                                <i class="bi bi-file-earmark-text"></i> Records
+                                            </p>
+                                        </div>
+                                        <div class="card-icon-wrapper">
+                                            <i class="bi bi-file-earmark-text"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="dashboard-card">
+                                        <div class="card-content">
+                                            <span class="card-label">TOTAL SAMPLES</span>
+                                            <div class="card-value">${summary.total_samples}</div>
+                                            <p class="card-description">
+                                                <i class="bi bi-collection"></i> Samples
+                                            </p>
+                                        </div>
+                                        <div class="card-icon-wrapper">
+                                            <i class="bi bi-collection"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="dashboard-card">
+                                        <div class="card-content">
+                                            <span class="card-label">COMPLETED</span>
+                                            <div class="card-value">${summary.completed_samples}</div>
+                                            <p class="card-description">
+                                                <i class="bi bi-check-circle"></i> Done
+                                            </p>
+                                        </div>
+                                        <div class="card-icon-wrapper">
+                                            <i class="bi bi-check-circle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="dashboard-card">
+                                        <div class="card-content">
+                                            <span class="card-label">EXCEPTIONS</span>
+                                            <div class="card-value">${summary.exceptions}</div>
+                                            <p class="card-description">
+                                                <i class="bi bi-exclamation-triangle"></i> Issues
+                                            </p>
+                                        </div>
+                                        <div class="card-icon-wrapper">
+                                            <i class="bi bi-exclamation-triangle"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 style="color: #413178; font-weight: 600; margin-bottom: 1rem;">Progress</h5>
+                                    <div class="progress" style="height: 30px;">
+                                        <div class="progress-bar" role="progressbar" 
+                                             style="width: ${summary.completion_percentage}%; background: #413178; font-weight: 600;"
+                                             aria-valuenow="${summary.completion_percentage}" 
+                                             aria-valuemin="0" aria-valuemax="100">
+                                            ${summary.completion_percentage}% Complete
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        document.getElementById('summaryContent').innerHTML = 
+                            '<div class="alert" style="background: #F1EEFA; color: #342961; border-left: 4px solid #342961; border-radius: 8px;">Error loading summary: ' + data.error + '</div>';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('summaryContent').innerHTML = 
+                        '<div class="alert" style="background: #F1EEFA; color: #342961; border-left: 4px solid #342961; border-radius: 8px;">Error loading summary: ' + error.message + '</div>';
+                });
+        }
+
+        function viewFullReport() {
+            document.getElementById('summarySection').style.display = 'none';
+            document.getElementById('reportSection').style.display = 'block';
+            window.scrollTo(0, document.getElementById('reportSection').offsetTop - 100);
+            
+            fetch(`/api/runs/${runId}/report`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const report = data.report;
+                        document.getElementById('reportContent').innerHTML = `
+                            <h5 style="color: #413178; font-weight: 600; margin-bottom: 1rem;">Run Information</h5>
+                            <table class="table table-bordered">
+                                <tr><td style="font-weight: 600; color: #413178;">Run Name</td><td>${report.run.name}</td></tr>
+                                <tr><td style="font-weight: 600; color: #413178;">Status</td><td><span class="badge" style="background: #413178;">${report.run.status.toUpperCase()}</span></td></tr>
+                                <tr><td style="font-weight: 600; color: #413178;">Created</td><td>${new Date(report.run.created_at).toLocaleString()}</td></tr>
+                                <tr><td style="font-weight: 600; color: #413178;">Materiality</td><td>$${report.run.materiality.toLocaleString()}</td></tr>
+                                <tr><td style="font-weight: 600; color: #413178;">Cap Threshold</td><td>$${report.run.capitalization_threshold.toLocaleString()}</td></tr>
+                            </table>
+                            
+                            <h5 class="mt-4" style="color: #413178; font-weight: 600; margin-bottom: 1rem;">GL Population</h5>
+                            <table class="table table-bordered">
+                                <tr><td style="font-weight: 600; color: #413178;">Total Records</td><td>${report.gl_population.count}</td></tr>
+                                <tr><td style="font-weight: 600; color: #413178;">Total Amount</td><td>$${report.gl_population.total_amount.toLocaleString()}</td></tr>
+                            </table>
+                            
+                            <h5 class="mt-4" style="color: #413178; font-weight: 600; margin-bottom: 1rem;">Sampling</h5>
+                            <table class="table table-bordered">
+                                <tr><td style="font-weight: 600; color: #413178;">Total Samples</td><td>${report.sampling.total_samples}</td></tr>
+                                <tr><td style="font-weight: 600; color: #413178;">Support Complete</td><td>${report.sampling.support_complete}</td></tr>
+                                <tr><td style="font-weight: 600; color: #413178;">Attributes Complete</td><td>${report.sampling.attributes_complete}</td></tr>
+                                <tr><td style="font-weight: 600; color: #413178;">Completion Rate</td><td>${report.sampling.completion_rate}%</td></tr>
+                            </table>
+                            
+                            <h5 class="mt-4" style="color: #413178; font-weight: 600; margin-bottom: 1rem;">Exceptions</h5>
+                            <table class="table table-bordered">
+                                <tr><td style="font-weight: 600; color: #413178;">Total Exceptions</td><td>${report.exceptions.total}</td></tr>
+                                <tr><td style="font-weight: 600; color: #413178;">High Severity</td><td>${report.exceptions.by_severity.high || 0}</td></tr>
+                                <tr><td style="font-weight: 600; color: #413178;">Medium Severity</td><td>${report.exceptions.by_severity.medium || 0}</td></tr>
+                                <tr><td style="font-weight: 600; color: #413178;">Low Severity</td><td>${report.exceptions.by_severity.low || 0}</td></tr>
+                            </table>
+                        `;
+                    } else {
+                        document.getElementById('reportContent').innerHTML = 
+                            '<div class="alert" style="background: #F1EEFA; color: #342961; border-left: 4px solid #342961; border-radius: 8px;">Error loading report: ' + data.error + '</div>';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('reportContent').innerHTML = 
+                        '<div class="alert" style="background: #F1EEFA; color: #342961; border-left: 4px solid #342961; border-radius: 8px;">Error loading report: ' + error.message + '</div>';
+                });
+        }
+    </script>
+</body>
+</html>

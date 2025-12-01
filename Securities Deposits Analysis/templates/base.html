@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Securities Deposits Analysis{% endblock %}</title>
+    <meta name="description" content="{% block description %}Comprehensive AI-powered securities deposits analysis and audit management platform for financial institutions.{% endblock %}">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Top Logo Ribbon -->
+    <div class="top-logo-ribbon">
+        <div class="container-fluid">
+            <div class="ribbon-content">
+                <!-- Company Logo - Left Side -->
+                <div class="company-logo">
+                    <img src="{{ url_for('static', filename='images/Logo_.png') }}" alt="Company Logo" class="logo-img">
+                </div>
+                
+                <!-- Project Logo - Right Side -->
+                <div class="project-logo">
+                    <img src="{{ url_for('static', filename='images/Coverlogo.png') }}" alt="Project Logo" class="project-logo-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('dashboard') }}">
+                <i class="fas fa-chart-line me-2"></i>
+                Securities Deposits Analysis
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}" 
+                           href="{{ url_for('dashboard') }}">
+                            <i class="fas fa-tachometer-alt me-1"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'file_upload_page' %}active{% endif %}" 
+                           href="{{ url_for('file_upload_page') }}">
+                            <i class="fas fa-upload me-1"></i> File Upload
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'deposits_analysis' %}active{% endif %}" 
+                           href="{{ url_for('deposits_analysis') }}">
+                            <i class="fas fa-table me-1"></i> Deposits
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-chart-bar me-1"></i> Analysis
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ url_for('aging_analysis_page') }}">
+                                <i class="fas fa-clock me-1"></i> Aging Analysis
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('interest_accrual_page') }}">
+                                <i class="fas fa-percentage me-1"></i> Interest Accrual
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('unclaimed_deposits_page') }}">
+                                <i class="fas fa-exclamation-triangle me-1"></i> Unclaimed Deposits
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'audit_program_page' %}active{% endif %}" 
+                           href="{{ url_for('audit_program_page') }}">
+                            <i class="fas fa-clipboard-list me-1"></i> Audit Program
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'reports_page' %}active{% endif %}" 
+                           href="{{ url_for('reports_page') }}">
+                            <i class="fas fa-file-alt me-1"></i> Reports
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container-fluid py-4">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light border-top mt-5">
+        <div class="container-fluid py-3">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <small class="text-muted">
+                        © 2025 Securities Deposits Analysis AI Agent
+                    </small>
+                </div>
+                <div class="col-md-6 text-end">
+                    <small class="text-muted">
+                        Powered by AI-driven Financial Analysis
+                    </small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,18 @@
+project_root/
+│
+├── static/
+│   └──  images go here
+│
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   └── result.html
+│
+├── Uploads/
+│   └── (uploaded files will be stored here)
+│
+├── RRFGenerator.py
+│
+├── structure.txt
+│
+└── new.pdf.txt

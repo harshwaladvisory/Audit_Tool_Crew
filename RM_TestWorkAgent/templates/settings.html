@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - {{ run.name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="/static/css/app.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Ribbon with Both Logos -->
+    <div class="header-ribbon">
+        <div class="logo-container">
+            <img src="/static/images/Logo_.png" alt="Company Logo" class="company-logo">
+            <img src="/static/images/Coverlogo.png" alt="R&M TestWork Agent" class="project-logo">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid" style="padding: 0 2rem;">
+            <a class="navbar-brand" href="/" style="color: white;">
+                <i class="bi bi-clipboard-data"></i> Settings
+            </a>
+            <a href="/runs/{{ run.id }}" class="btn btn-sm" style="background: rgba(255,255,255,0.2); border: none; color: white; text-decoration: none;">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+        </div>
+    </nav>
+
+    <div class="container" style="padding: 2rem; max-width: 800px;">
+        <!-- Page Title -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 style="color: #413178; font-weight: 600; font-size: 1.5rem;">
+                    <i class="bi bi-gear"></i> Run Settings - {{ run.name }}
+                </h2>
+            </div>
+        </div>
+
+        <!-- Settings Form Card -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="background: #FFFFFF; border: 1px solid #E9E7F2; border-radius: 16px; box-shadow: 0 2px 8px rgba(65, 49, 120, 0.08); overflow: hidden; padding: 0;">
+                    <div style="background: #413178; color: white; padding: 1rem 1.5rem;">
+                        <h5 class="mb-0" style="font-weight: 600;"><i class="bi bi-sliders"></i> Configuration</h5>
+                    </div>
+                    <div style="padding: 2rem;">
+                        <form action="/runs/{{ run.id }}/settings" method="POST">
+                            <div class="mb-4">
+                                <label class="form-label" style="color: #413178; font-weight: 600;">Capitalization Threshold</label>
+                                <input type="number" class="form-control" name="capitalization_threshold" 
+                                       value="{{ run.capitalization_threshold }}" step="0.01">
+                                <small class="text-muted">Amount above which items are capitalized</small>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label" style="color: #413178; font-weight: 600;">Materiality</label>
+                                <input type="number" class="form-control" name="materiality" 
+                                       value="{{ run.materiality }}" step="0.01">
+                                <small class="text-muted">Materiality threshold for audit testing</small>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label" style="color: #413178; font-weight: 600;">FY Start</label>
+                                <input type="date" class="form-control" name="fy_start" value="{{ run.fy_start }}">
+                                <small class="text-muted">Fiscal year start date</small>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label" style="color: #413178; font-weight: 600;">FY End</label>
+                                <input type="date" class="form-control" name="fy_end" value="{{ run.fy_end }}">
+                                <small class="text-muted">Fiscal year end date</small>
+                            </div>
+                            
+                            <button type="submit" class="btn" style="background: #413178; color: white; border: none; font-weight: 600; padding: 12px 24px;">
+                                <i class="bi bi-save"></i> Save Settings
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card" style="background: #F1EEFA; border: 1px solid #E9E7F2; border-radius: 16px; border-left: 4px solid #413178; padding: 1.5rem;">
+                    <h6 style="color: #413178; font-weight: 600; margin-bottom: 1rem;"><i class="bi bi-info-circle"></i> Settings Information</h6>
+                    <ul style="color: #413178; margin-bottom: 0; line-height: 1.8;">
+                        <li><strong>Capitalization Threshold:</strong> Expenses above this amount are flagged for review</li>
+                        <li><strong>Materiality:</strong> Used for sampling and significance testing</li>
+                        <li><strong>Fiscal Year:</strong> Defines the period for transaction analysis</li>
+                        <li><strong>Changes Apply:</strong> Settings changes affect future sampling runs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

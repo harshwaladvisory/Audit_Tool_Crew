@@ -1,0 +1,830 @@
+Account,Date,Transaction Type,Num,Name,Memo/Description,Split,Vendor,Class,Amount
+2000 Accounts Payable,01/01/2024,Bill,112,Onpoint Construction Company,,6000 Capital Expenditures,Onpoint Construction Company,,6656
+2000 Accounts Payable,01/01/2024,Bill,1000739524,Stericycle/Shred-it,Shredding 2023,-Split-,Stericycle/Shred-it,,1883.16
+2000 Accounts Payable,01/01/2024,Bill Payment (Check),11339,Aztec Technology Corp.,,-Split-,Aztec Technology Corp.,,0
+2000 Accounts Payable,01/01/2024,Bill,34048.11,Aztec Technology Corp.,,5400 Office Supplies/Office Expenses,Aztec Technology Corp.,,250
+2000 Accounts Payable,01/02/2024,Bill,K76334,Ransom Brothers Lumber Supply,,5502 Repairs & Maintenance:R&M Buildings & Improvements,Ransom Brothers Lumber Supply,,54.92
+2000 Accounts Payable,01/03/2024,Bill,1032024,Anthony Trujillo,Language Classes,"5650 Education, Training & Seminars",Anthony Trujillo,,1846.14
+2000 Accounts Payable,01/03/2024,Bill Payment (Check),4681,Ransom Brothers Lumber Supply,,1048 Cash:Cash- EPA,Ransom Brothers Lumber Supply,,-119.41
+2000 Accounts Payable,01/03/2024,Bill Payment (Check),1196,Anthony Trujillo,,1049 Cash:Cash-Tribal- Youth Acct,Anthony Trujillo,,-1846.14
+2000 Accounts Payable,01/03/2024,Bill,1032024,Tasheena Kitchen,Beading Class,"5650 Education, Training & Seminars",Tasheena Kitchen,,1750
+2000 Accounts Payable,01/03/2024,Bill Payment (Check),4275,Ransom Brothers Lumber Supply,,1030 Cash:Cash- Tribal- Operations,Ransom Brothers Lumber Supply,,-297.24
+2000 Accounts Payable,01/03/2024,Bill,3413,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,111.19
+2000 Accounts Payable,01/03/2024,Bill Payment (Check),1196,Tasheena Kitchen,,1049 Cash:Cash-Tribal- Youth Acct,Tasheena Kitchen,,-1750
+2000 Accounts Payable,01/04/2024,Bill,1042024,"Gabriel Kitchen, Jr.",Monitoring,5975 Tribal Cultural Monitoring,"Gabriel Kitchen, Jr.",,720
+2000 Accounts Payable,01/04/2024,Bill Payment (Check),4278,Bonham Brothers & Stewart Mortuary,,1030 Cash:Cash- Tribal- Operations,Bonham Brothers & Stewart Mortuary,,-2000
+2000 Accounts Payable,01/04/2024,Bill Payment (Check),4276,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,0
+2000 Accounts Payable,01/04/2024,Bill,1042024,Bonham Brothers & Stewart Mortuary,David Duro Funeral Expenses,5981 Member Funeral Expense,Bonham Brothers & Stewart Mortuary,,2000
+2000 Accounts Payable,01/04/2024,Bill,3414,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,70.01
+2000 Accounts Payable,01/08/2024,Bill,1082034,All American Drilling and Pump Service,BOR  Well #3,6000 Capital Expenditures,All American Drilling and Pump Service,,46000
+2000 Accounts Payable,01/08/2024,Bill,1748,"Stanley Backhoe, Inc.",,5500 Repairs & Maintenance,"Stanley Backhoe, Inc.",,1200
+2000 Accounts Payable,01/08/2024,Bill Payment (Check),4280,"Stanley Backhoe, Inc.",,1030 Cash:Cash- Tribal- Operations,"Stanley Backhoe, Inc.",,-2500
+2000 Accounts Payable,01/08/2024,Bill Payment (Check),11330,All American Drilling and Pump Service,,1032 Cash:Cash- Grants Account,All American Drilling and Pump Service,,-46000
+2000 Accounts Payable,01/08/2024,Bill Payment (Check),4277,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-720
+2000 Accounts Payable,01/08/2024,Bill Payment (Check),ACH,ATT,,1032 Cash:Cash- Grants Account,ATT,,-308.38
+2000 Accounts Payable,01/08/2024,Bill,3415,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,121.33
+2000 Accounts Payable,01/09/2024,Bill Payment (Check),4314,Edwardo Barron,,1030 Cash:Cash- Tribal- Operations,Edwardo Barron,,-400
+2000 Accounts Payable,01/09/2024,Bill,1092024,Edwardo Barron,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Edwardo Barron,,400
+2000 Accounts Payable,01/09/2024,Bill,4030,Ramco Petroleum #1,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #1,,104.48
+2000 Accounts Payable,01/10/2024,Bill,62381,"Joe's Paving Co., Inc.",,5500 Repairs & Maintenance,"Joe's Paving Co., Inc.",,1850
+2000 Accounts Payable,01/10/2024,Bill Payment (Check),4284,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-275
+2000 Accounts Payable,01/10/2024,Bill Payment (Check),4281,"Joe's Paving Co., Inc.",,1030 Cash:Cash- Tribal- Operations,"Joe's Paving Co., Inc.",,-1850
+2000 Accounts Payable,01/10/2024,Bill,1102024,Samuel Luna,,-Split-,Samuel Luna,,275
+2000 Accounts Payable,01/11/2024,Bill Payment (Check),4309,Ramco Petroleum #1,,1030 Cash:Cash- Tribal- Operations,Ramco Petroleum #1,,-201.47
+2000 Accounts Payable,01/11/2024,Bill,554733,All State Propane,,5701 Utilities:Electricity & Propane,All State Propane,,449.77
+2000 Accounts Payable,01/11/2024,Bill Payment (Check),11337,All State Propane,,1032 Cash:Cash- Grants Account,All State Propane,,-449.77
+2000 Accounts Payable,01/11/2024,Bill,4034,Ramco Petroleum #1,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #1,,96.99
+2000 Accounts Payable,01/12/2024,Bill,11224,Carlos Martinez.,,5752 Drinking Water,Carlos Martinez.,,172.38
+2000 Accounts Payable,01/12/2024,Bill Payment (Check),11334,Ramona Chamber of Commerce,,1032 Cash:Cash- Grants Account,Ramona Chamber of Commerce,,-125
+2000 Accounts Payable,01/12/2024,Bill,AR1215907,Advanced Office,,5402 Copier Rental/Lease,Advanced Office,,250
+2000 Accounts Payable,01/12/2024,Bill,1618,Ramona Chamber of Commerce,,"5350 Dues, Confer Reg, Subscriptions",Ramona Chamber of Commerce,,125
+2000 Accounts Payable,01/12/2024,Bill Payment (Check),4279,Carlos Martinez.,,1030 Cash:Cash- Tribal- Operations,Carlos Martinez.,,-172.38
+2000 Accounts Payable,01/12/2024,Bill Payment (Check),11338,Advanced Office,,1032 Cash:Cash- Grants Account,Advanced Office,,-250
+2000 Accounts Payable,01/16/2024,Bill Payment (Check),11345,"Corporate Solutions USA, Inc.",,-Split-,"Corporate Solutions USA, Inc.",,0
+2000 Accounts Payable,01/16/2024,Bill,3417,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,110
+2000 Accounts Payable,01/16/2024,Bill,3416,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,59.75
+2000 Accounts Payable,01/17/2024,Bill Payment (Check),11335,Geoconsultants Inc.,,1032 Cash:Cash- Grants Account,Geoconsultants Inc.,,0
+2000 Accounts Payable,01/17/2024,Bill Payment (Check),1198,Cynthia LaChusa,,1038 Cash:Cash-Youth Donations ONLY,Cynthia LaChusa,,0
+2000 Accounts Payable,01/17/2024,Bill,11724,"Gabriel Kitchen, Jr.",Roads,-Split-,"Gabriel Kitchen, Jr.",,500
+2000 Accounts Payable,01/17/2024,Bill Payment (Check),4271,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-500
+2000 Accounts Payable,01/17/2024,Bill Payment (Check),4283,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-480
+2000 Accounts Payable,01/17/2024,Bill Payment (Check),11336,Geoconsultants Inc.,,1032 Cash:Cash- Grants Account,Geoconsultants Inc.,,-49600
+2000 Accounts Payable,01/17/2024,Bill,2370101,Tribal Print Source,,5370 Miscellaneous Expense,Tribal Print Source,,400.08
+2000 Accounts Payable,01/17/2024,Bill Payment (Check),11340,Tribal Print Source,,1032 Cash:Cash- Grants Account,Tribal Print Source,,-400.08
+2000 Accounts Payable,01/17/2024,Bill,877205,Ransom Brothers Lumber Supply,,5502 Repairs & Maintenance:R&M Buildings & Improvements,Ransom Brothers Lumber Supply,,49.54
+2000 Accounts Payable,01/17/2024,Bill,19552,Geoconsultants Inc.,IHS Project CA22-J28,6000 Capital Expenditures,Geoconsultants Inc.,,49600
+2000 Accounts Payable,01/17/2024,Bill,11172024,"Gabriel Kitchen, Jr.",,-Split-,"Gabriel Kitchen, Jr.",,480
+2000 Accounts Payable,01/19/2024,Bill Payment (Check),30615,Indian Land Capital Company,,1033 Cash:Cash- Tribal- Revenue Share,Indian Land Capital Company,,-11048.01
+2000 Accounts Payable,01/19/2024,Bill,122694,Indian Land Capital Company,25690 Black Canyon Rd,-Split-,Indian Land Capital Company,,11048.01
+2000 Accounts Payable,01/22/2024,Bill,3418,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,120.01
+2000 Accounts Payable,01/23/2024,Bill,3419,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,153.18
+2000 Accounts Payable,01/23/2024,Bill,877597,Ransom Brothers Lumber Supply,,5502 Repairs & Maintenance:R&M Buildings & Improvements,Ransom Brothers Lumber Supply,,6.01
+2000 Accounts Payable,01/23/2024,Bill,3420,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,50.05
+2000 Accounts Payable,01/25/2024,Bill,1252024,"Gabriel Kitchen, Jr.",,5975 Tribal Cultural Monitoring,"Gabriel Kitchen, Jr.",,480
+2000 Accounts Payable,01/25/2024,Bill Payment (Check),4287,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-480
+2000 Accounts Payable,01/25/2024,Bill,1252024,All American Drilling and Pump Service,,6000 Capital Expenditures,All American Drilling and Pump Service,,34600
+2000 Accounts Payable,01/25/2024,Bill,6852,Webb Pool & Spa,Chlorine,5751 Water Supplies/Testing,Webb Pool & Spa,,37.7
+2000 Accounts Payable,01/25/2024,Bill Payment (Check),11346,All American Drilling and Pump Service,,1032 Cash:Cash- Grants Account,All American Drilling and Pump Service,,-34600
+2000 Accounts Payable,01/26/2024,Bill,877820,Ransom Brothers Lumber Supply,,5502 Repairs & Maintenance:R&M Buildings & Improvements,Ransom Brothers Lumber Supply,,33.19
+2000 Accounts Payable,01/26/2024,Bill,3421,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,57.06
+2000 Accounts Payable,01/26/2024,Bill,1262024,"Gabriel Kitchen, Jr.",,5975 Tribal Cultural Monitoring,"Gabriel Kitchen, Jr.",,480
+2000 Accounts Payable,01/26/2024,Bill,ALCDES001,American Career College,Tuition - Deseree Alcaraz,"5650 Education, Training & Seminars",American Career College,,5000
+2000 Accounts Payable,01/26/2024,Bill Payment (Check),1855,American Career College,,1047 Cash:Cash- Tribal- Education,American Career College,,-5000
+2000 Accounts Payable,01/28/2024,Bill Payment (Check),4692,Ramco Petroleum #2,,1048 Cash:Cash- EPA,Ramco Petroleum #2,,-702.33
+2000 Accounts Payable,01/28/2024,Bill Payment (Check),4308,Ramco Petroleum #2,,1030 Cash:Cash- Tribal- Operations,Ramco Petroleum #2,,-210.24
+2000 Accounts Payable,01/28/2024,Bill,3422,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,130
+2000 Accounts Payable,01/28/2024,Bill Payment (Check),11350,Ramco Petroleum #2,,1032 Cash:Cash- Grants Account,Ramco Petroleum #2,,-70.01
+2000 Accounts Payable,01/29/2024,Bill,877905,Ransom Brothers Lumber Supply,,5502 Repairs & Maintenance:R&M Buildings & Improvements,Ransom Brothers Lumber Supply,,161.52
+2000 Accounts Payable,01/30/2024,Bill,1302024,Turning Pointe School of Dance,,"5650 Education, Training & Seminars",Turning Pointe School of Dance,,560
+2000 Accounts Payable,01/30/2024,Bill,1302024,"Gabriel Kitchen, Jr.",,5975 Tribal Cultural Monitoring,"Gabriel Kitchen, Jr.",,240
+2000 Accounts Payable,01/31/2024,Bill,2012024,Darren Majado,,5125 Professional Services,Darren Majado,,350
+2000 Accounts Payable,01/31/2024,Bill,878079,Ransom Brothers Lumber Supply,,5502 Repairs & Maintenance:R&M Buildings & Improvements,Ransom Brothers Lumber Supply,,48.46
+2000 Accounts Payable,01/31/2024,Bill,914-2,Marc Anderson,,5125 Professional Services,Marc Anderson,,75
+2000 Accounts Payable,01/31/2024,Bill,912-2,Marc Anderson,,5125 Professional Services,Marc Anderson,,370
+2000 Accounts Payable,01/31/2024,Bill Payment (Check),4289,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-250
+2000 Accounts Payable,01/31/2024,Bill,K78043,Ransom Brothers Lumber Supply,,5502 Repairs & Maintenance:R&M Buildings & Improvements,Ransom Brothers Lumber Supply,,36.61
+2000 Accounts Payable,01/31/2024,Bill Payment (Check),4290,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-525
+2000 Accounts Payable,01/31/2024,Bill Payment (Check),4291,Darren Majado,,1030 Cash:Cash- Tribal- Operations,Darren Majado,,-350
+2000 Accounts Payable,01/31/2024,Bill Payment (Check),4686,Marc Anderson,,1048 Cash:Cash- EPA,Marc Anderson,,-1850
+2000 Accounts Payable,01/31/2024,Bill,2012024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,250
+2000 Accounts Payable,01/31/2024,Bill Payment (Check),11347,Marc Anderson,,1032 Cash:Cash- Grants Account,Marc Anderson,,-75
+2000 Accounts Payable,01/31/2024,Bill,913-2,Marc Anderson,,5125 Professional Services,Marc Anderson,,1480
+2000 Accounts Payable,01/31/2024,Bill,8006117749,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,375.42
+2000 Accounts Payable,01/31/2024,Bill,1312024,CILS,Legal Fees,5101 Legal Fees,CILS,,340
+2000 Accounts Payable,01/31/2024,Bill,2012024,Samuel Luna,,-Split-,Samuel Luna,,525
+2000 Accounts Payable,02/01/2024,Bill Payment (Check),1200,Turning Pointe School of Dance,,1049 Cash:Cash-Tribal- Youth Acct,Turning Pointe School of Dance,,-560
+2000 Accounts Payable,02/01/2024,Bill,3423,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,105
+2000 Accounts Payable,02/01/2024,Bill,136612,Ransom Brothers Ace,,5399 Supplies/Materials,Ransom Brothers Ace,,63.55
+2000 Accounts Payable,02/01/2024,Bill Payment (Check),4288,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-720
+2000 Accounts Payable,02/02/2024,Bill Payment (Check),11341,Robert N McBane,,1032 Cash:Cash- Grants Account,Robert N McBane,,-62.23
+2000 Accounts Payable,02/02/2024,Bill Payment (Check),4699,Webb Pool & Spa,,1048 Cash:Cash- EPA,Webb Pool & Spa,,-38.78
+2000 Accounts Payable,02/02/2024,Bill,4160,Ramco Petroleum #1,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #1,,113.41
+2000 Accounts Payable,02/02/2024,Bill,1312024,Robert N McBane,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Robert N McBane,,62.23
+2000 Accounts Payable,02/02/2024,Bill,8VIT589,DMV,DMV Renewal,5200 Automobile Expenses,DMV,,308
+2000 Accounts Payable,02/02/2024,Bill Payment (Check),1203,DMV,,-Split-,DMV,,0
+2000 Accounts Payable,02/02/2024,Bill,6870,Webb Pool & Spa,,5751 Water Supplies/Testing,Webb Pool & Spa,,38.78
+2000 Accounts Payable,02/03/2024,Bill,878242,Ransom Brothers Lumber Supply,,5500 Repairs & Maintenance,Ransom Brothers Lumber Supply,,19.34
+2000 Accounts Payable,02/06/2024,Bill,3424,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,98.97
+2000 Accounts Payable,02/06/2024,Bill,3425,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,65
+2000 Accounts Payable,02/06/2024,Bill Payment (Check),4293,Darren Majado,,1030 Cash:Cash- Tribal- Operations,Darren Majado,,-150
+2000 Accounts Payable,02/06/2024,Bill Payment (Check),4292,GreyEagle A Sanchez,,1030 Cash:Cash- Tribal- Operations,GreyEagle A Sanchez,,-50
+2000 Accounts Payable,02/06/2024,Bill,2062024,Darren Majado,,5125 Professional Services,Darren Majado,,150
+2000 Accounts Payable,02/06/2024,Bill Payment (Check),1856,California State University San Marcos,,1047 Cash:Cash- Tribal- Education,California State University San Marcos,,-1200
+2000 Accounts Payable,02/06/2024,Bill,2062024,GreyEagle A Sanchez,,5125 Professional Services,GreyEagle A Sanchez,,50
+2000 Accounts Payable,02/06/2024,Bill,2062024,California State University San Marcos,,"5650 Education, Training & Seminars",California State University San Marcos,,1200
+2000 Accounts Payable,02/07/2024,Bill Payment (Check),4687,Ransom Brothers Lumber Supply,,1048 Cash:Cash- EPA,Ransom Brothers Lumber Supply,,-195.54
+2000 Accounts Payable,02/07/2024,Bill Payment (Check),4294,Ransom Brothers Lumber Supply,,1030 Cash:Cash- Tribal- Operations,Ransom Brothers Lumber Supply,,-194.71
+2000 Accounts Payable,02/08/2024,Bill Payment (Check),4688,Melody Sees,,1048 Cash:Cash- EPA,Melody Sees,,-166.76
+2000 Accounts Payable,02/08/2024,Bill Payment (Check),4295,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-400
+2000 Accounts Payable,02/08/2024,Bill,2082024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,400
+2000 Accounts Payable,02/08/2024,Bill,2082024,Melody Sees,,"5650 Education, Training & Seminars",Melody Sees,,166.76
+2000 Accounts Payable,02/08/2024,Bill,4168,Ramco Petroleum #1,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #1,,53.55
+2000 Accounts Payable,02/08/2024,Bill,2082024,Carlos Martinez.,,5752 Drinking Water,Carlos Martinez.,,27.8
+2000 Accounts Payable,02/09/2024,Bill,2092024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,240
+2000 Accounts Payable,02/09/2024,Bill Payment (Check),4297,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-240
+2000 Accounts Payable,02/09/2024,Bill Payment (Check),4296,Carlos Martinez.,,1030 Cash:Cash- Tribal- Operations,Carlos Martinez.,,-27.8
+2000 Accounts Payable,02/09/2024,Bill,2092024,Sophia Romero551,,5125 Professional Services,Sophia Romero551,,68
+2000 Accounts Payable,02/10/2024,Bill,7622,Julian Materials & Trucking,,5500 Repairs & Maintenance,Julian Materials & Trucking,,1038.75
+2000 Accounts Payable,02/10/2024,Bill Payment (Check),4300,Julian Materials & Trucking,,1030 Cash:Cash- Tribal- Operations,Julian Materials & Trucking,,-1038.75
+2000 Accounts Payable,02/10/2024,Bill,3426,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,111.68
+2000 Accounts Payable,02/12/2024,Bill,878623,Ransom Brothers Lumber Supply,,5500 Repairs & Maintenance,Ransom Brothers Lumber Supply,,34.46
+2000 Accounts Payable,02/12/2024,Bill,878568,Ransom Brothers Lumber Supply,,5500 Repairs & Maintenance,Ransom Brothers Lumber Supply,,17.23
+2000 Accounts Payable,02/12/2024,Bill,3427,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,125.38
+2000 Accounts Payable,02/12/2024,Bill,AR1222139,Advanced Office,,5402 Copier Rental/Lease,Advanced Office,,250
+2000 Accounts Payable,02/12/2024,Bill,2122024,Carlos Martinez.,,5752 Drinking Water,Carlos Martinez.,,247.45
+2000 Accounts Payable,02/12/2024,Bill Payment (Check),11352,Advanced Office,,1032 Cash:Cash- Grants Account,Advanced Office,,-250
+2000 Accounts Payable,02/12/2024,Bill Payment (Check),4299,Carlos Martinez.,,1030 Cash:Cash- Tribal- Operations,Carlos Martinez.,,-247.45
+2000 Accounts Payable,02/12/2024,Bill,4172,Ramco Petroleum #1,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #1,,133.27
+2000 Accounts Payable,02/12/2024,Bill,878622,Ransom Brothers Lumber Supply,,5500 Repairs & Maintenance,Ransom Brothers Lumber Supply,,161.52
+2000 Accounts Payable,02/13/2024,Bill,647,Hurricane Brazilian Jiu-Jitsu,,5372 Tribal Youth:Coaching/Tutoring Fees,Hurricane Brazilian Jiu-Jitsu,,420
+2000 Accounts Payable,02/13/2024,Bill Payment (Check),1277,Hurricane Brazilian Jiu-Jitsu,,1049 Cash:Cash-Tribal- Youth Acct,Hurricane Brazilian Jiu-Jitsu,,-420
+2000 Accounts Payable,02/15/2024,Bill,2152024,GreyEagle A Sanchez,,5125 Professional Services,GreyEagle A Sanchez,,275
+2000 Accounts Payable,02/15/2024,Bill,2152024,Carlos Martinez.,,"5650 Education, Training & Seminars",Carlos Martinez.,,224
+2000 Accounts Payable,02/15/2024,Bill Payment (Check),4691,Carlos Martinez.,,1048 Cash:Cash- EPA,Carlos Martinez.,,-224
+2000 Accounts Payable,02/15/2024,Bill Payment (Check),4306,GreyEagle A Sanchez,,1030 Cash:Cash- Tribal- Operations,GreyEagle A Sanchez,,-275
+2000 Accounts Payable,02/15/2024,Bill Payment (Check),4689,Sophia Romero551,,1048 Cash:Cash- EPA,Sophia Romero551,,-68
+2000 Accounts Payable,02/16/2024,Bill,122694,Indian Land Capital Company,25690 Black Canyon Rd,-Split-,Indian Land Capital Company,,11048.01
+2000 Accounts Payable,02/16/2024,Bill Payment (Check),11343,Onpoint Construction Company,,1032 Cash:Cash- Grants Account,Onpoint Construction Company,,-6656
+2000 Accounts Payable,02/16/2024,Bill Payment (Check),4690,Samuel Luna,,1048 Cash:Cash- EPA,Samuel Luna,,-853.17
+2000 Accounts Payable,02/16/2024,Bill,878887,Ransom Brothers Lumber Supply,,5500 Repairs & Maintenance,Ransom Brothers Lumber Supply,,14.2
+2000 Accounts Payable,02/16/2024,Bill,3428,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,68
+2000 Accounts Payable,02/16/2024,Bill,2162024,Samuel Luna,,5000 Payroll - Salary & Wages,Samuel Luna,,853.17
+2000 Accounts Payable,02/17/2024,Bill,2172024,Michael Dominguez,,5125 Professional Services,Michael Dominguez,,150
+2000 Accounts Payable,02/17/2024,Bill Payment (Check),4305,Michael Dominguez,,1030 Cash:Cash- Tribal- Operations,Michael Dominguez,,-150
+2000 Accounts Payable,02/18/2024,Bill,3429,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,142.55
+2000 Accounts Payable,02/19/2024,Bill Payment (Check),11349,NFPA,,1032 Cash:Cash- Grants Account,NFPA,,-175
+2000 Accounts Payable,02/19/2024,Bill Payment (Check),4307,Carlos Chavez,,1030 Cash:Cash- Tribal- Operations,Carlos Chavez,,-175
+2000 Accounts Payable,02/19/2024,Bill,2192024,Andrew Luna,,5125 Professional Services,Andrew Luna,,200
+2000 Accounts Payable,02/19/2024,Bill Payment (Check),4312,Andrew Luna,,1030 Cash:Cash- Tribal- Operations,Andrew Luna,,-200
+2000 Accounts Payable,02/19/2024,Bill,1192024,NFPA,,"5350 Dues, Confer Reg, Subscriptions",NFPA,,175
+2000 Accounts Payable,02/19/2024,Bill,2192024,Carlos Chavez,,5125 Professional Services,Carlos Chavez,,175
+2000 Accounts Payable,02/20/2024,Bill Payment (Check),4303,Carlos Martinez.,,1030 Cash:Cash- Tribal- Operations,Carlos Martinez.,,-206.64
+2000 Accounts Payable,02/20/2024,Bill Payment (Check),4304,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-375
+2000 Accounts Payable,02/20/2024,Bill Payment (Check),4303,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-1075
+2000 Accounts Payable,02/20/2024,Bill,2202024,Carlos Martinez.,,5752 Drinking Water,Carlos Martinez.,,206.64
+2000 Accounts Payable,02/20/2024,Bill,2202024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,1075
+2000 Accounts Payable,02/20/2024,Bill Payment (Check),30616,"Big Fire Law & Policy Group, LLP",,1033 Cash:Cash- Tribal- Revenue Share,"Big Fire Law & Policy Group, LLP",,-3822
+2000 Accounts Payable,02/20/2024,Bill,2192024,Samuel Luna,,5125 Professional Services,Samuel Luna,,375
+2000 Accounts Payable,02/21/2024,Bill Payment (Check),1202,Breakers Lab Austin,,1049 Cash:Cash-Tribal- Youth Acct,Breakers Lab Austin,,-775
+2000 Accounts Payable,02/21/2024,Bill,2212024,Breakers Lab Austin,,5600 Travel,Breakers Lab Austin,,775
+2000 Accounts Payable,02/21/2024,Bill Payment (Check),30617,Indian Land Capital Company,,1033 Cash:Cash- Tribal- Revenue Share,Indian Land Capital Company,,-11048.01
+2000 Accounts Payable,02/22/2024,Bill,2222024,All American Drilling and Pump Service,"Additional Drilling, work and clean up",6000 Capital Expenditures,All American Drilling and Pump Service,,40040
+2000 Accounts Payable,02/22/2024,Bill,2222024,Julian Union School District,,5371 Tribal Youth,Julian Union School District,,114
+2000 Accounts Payable,02/22/2024,Bill Payment (Check),1201,Julian Union School District,,1049 Cash:Cash-Tribal- Youth Acct,Julian Union School District,,-114
+2000 Accounts Payable,02/22/2024,Bill,94099,All State Propane,,5701 Utilities:Electricity & Propane,All State Propane,,682.12
+2000 Accounts Payable,02/22/2024,Bill Payment (Check),11351,All State Propane,,1032 Cash:Cash- Grants Account,All State Propane,,-682.12
+2000 Accounts Payable,02/22/2024,Bill,3430,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,114.7
+2000 Accounts Payable,02/22/2024,Bill Payment (Check),4310,"United Rentals (North America), Inc.",,-Split-,"United Rentals (North America), Inc.",,0
+2000 Accounts Payable,02/23/2024,Bill,2232024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,240
+2000 Accounts Payable,02/26/2024,Bill Payment (Check),4311,CILS,,-Split-,CILS,,0
+2000 Accounts Payable,02/27/2024,Bill,3431,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,85.24
+2000 Accounts Payable,02/27/2024,Bill,2272024,Edwardo Barron,2016 Dodge Ram Repairs,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Edwardo Barron,,407.16
+2000 Accounts Payable,02/27/2024,Bill Payment (Check),4693,Edwardo Barron,,1048 Cash:Cash- EPA,Edwardo Barron,,-407.16
+2000 Accounts Payable,02/28/2024,Bill,137258,Ransom Brothers Ace,,5399 Supplies/Materials,Ransom Brothers Ace,,55.99
+2000 Accounts Payable,02/28/2024,Bill,879496,Ransom Brothers Lumber Supply,,5500 Repairs & Maintenance,Ransom Brothers Lumber Supply,,32.29
+2000 Accounts Payable,02/28/2024,Bill Payment (Check),4698,Ransom Brothers Lumber Supply,,1048 Cash:Cash- EPA,Ransom Brothers Lumber Supply,,-14.2
+2000 Accounts Payable,02/28/2024,Bill Payment (Check),4313,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-240
+2000 Accounts Payable,02/28/2024,Bill Payment (Check),11353,All American Drilling and Pump Service,,1032 Cash:Cash- Grants Account,All American Drilling and Pump Service,,-40040
+2000 Accounts Payable,02/28/2024,Bill Payment (Check),4328,Ransom Brothers Lumber Supply,,1030 Cash:Cash- Tribal- Operations,Ransom Brothers Lumber Supply,,-264.84
+2000 Accounts Payable,02/29/2024,Bill Payment (Check),4329,Ransom Brothers Ace,,1030 Cash:Cash- Tribal- Operations,Ransom Brothers Ace,,-147.51
+2000 Accounts Payable,02/29/2024,Bill,8006429484,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,247.46
+2000 Accounts Payable,02/29/2024,Bill Payment (Check),11364,Onpoint Construction Company,,1032 Cash:Cash- Grants Account,Onpoint Construction Company,,-5455
+2000 Accounts Payable,02/29/2024,Bill,20403 23,CILS,,5101 Legal Fees,CILS,,120
+2000 Accounts Payable,02/29/2024,Bill Payment (Check),4336,Ramco Petroleum #1,,1030 Cash:Cash- Tribal- Operations,Ramco Petroleum #1,,-294.67
+2000 Accounts Payable,02/29/2024,Bill,3432,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,54.2
+2000 Accounts Payable,02/29/2024,Bill,137293,Ransom Brothers Ace,,5399 Supplies/Materials,Ransom Brothers Ace,,27.97
+2000 Accounts Payable,02/29/2024,Bill,4196,Ramco Petroleum #1,,-Split-,Ramco Petroleum #1,,47.99
+2000 Accounts Payable,02/29/2024,Bill,113,Onpoint Construction Company,,6000 Capital Expenditures,Onpoint Construction Company,,5455
+2000 Accounts Payable,03/01/2024,Bill,3404812,Aztec Technology Corp.,,5400 Office Supplies/Office Expenses,Aztec Technology Corp.,,250
+2000 Accounts Payable,03/01/2024,Bill,2292024,Curtis V. LaChusa,,5302 Communications:Cell Phones,Curtis V. LaChusa,,97.9
+2000 Accounts Payable,03/01/2024,Bill Payment (Check),11359,Blue Arrow CPA's,,1032 Cash:Cash- Grants Account,Blue Arrow CPA's,,-10672.5
+2000 Accounts Payable,03/01/2024,Bill Payment (Check),11354,Curtis V. LaChusa,,1032 Cash:Cash- Grants Account,Curtis V. LaChusa,,-97.9
+2000 Accounts Payable,03/03/2024,Bill,3032024,Mesa Grande Band -  Housing Authority,EPA Neighbor Clean-up 03/03/24,5399 Supplies/Materials,Mesa Grande Band -  Housing Authority,,569.38
+2000 Accounts Payable,03/03/2024,Bill Payment (Check),4737,Mesa Grande Band -  Housing Authority,,1048 Cash:Cash- EPA,Mesa Grande Band -  Housing Authority,,-569.38
+2000 Accounts Payable,03/03/2024,Bill,3433,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,70
+2000 Accounts Payable,03/04/2024,Bill,917-3,Marc Anderson,,5125 Professional Services,Marc Anderson,,148
+2000 Accounts Payable,03/04/2024,Bill,3042024,Robert N McBane,Mileage Reimbursement,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Robert N McBane,,103.1
+2000 Accounts Payable,03/04/2024,Bill,3434,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,98.01
+2000 Accounts Payable,03/04/2024,Bill,916-3,Marc Anderson,,5125 Professional Services,Marc Anderson,,1406
+2000 Accounts Payable,03/04/2024,Bill Payment (Check),11355,Robert N McBane,,-Split-,Robert N McBane,,0
+2000 Accounts Payable,03/05/2024,Bill,137424,Ransom Brothers Ace,,5399 Supplies/Materials,Ransom Brothers Ace,,40.92
+2000 Accounts Payable,03/05/2024,Bill Payment (Check),4704,Ransom Brothers Ace,,1048 Cash:Cash- EPA,Ransom Brothers Ace,,-65.69
+2000 Accounts Payable,03/05/2024,Bill,137423,Ransom Brothers Ace,,5399 Supplies/Materials,Ransom Brothers Ace,,24.77
+2000 Accounts Payable,03/05/2024,Bill Payment (Check),4343,Ransom Brothers Ace,,-Split-,Ransom Brothers Ace,,0
+2000 Accounts Payable,03/05/2024,Bill Payment (Check),4315,"United Rentals (North America), Inc.",,1030 Cash:Cash- Tribal- Operations,"United Rentals (North America), Inc.",,-439.3
+2000 Accounts Payable,03/05/2024,Bill,2292024,"United Rentals (North America), Inc.",Equipment Rental,-Split-,"United Rentals (North America), Inc.",,439.3
+2000 Accounts Payable,03/05/2024,Bill Payment (Check),11356,Robert N McBane,,1032 Cash:Cash- Grants Account,Robert N McBane,,-103.1
+2000 Accounts Payable,03/05/2024,Bill Payment (Check),4694,Marc Anderson,,1048 Cash:Cash- EPA,Marc Anderson,,-1554
+2000 Accounts Payable,03/06/2024,Bill,3052024,Cynthia LaChusa,Reimbursement - Postage,5450 Postage/Fed/UPS,Cynthia LaChusa,,71.12
+2000 Accounts Payable,03/06/2024,Bill Payment (Check),4316,Cynthia LaChusa,,1030 Cash:Cash- Tribal- Operations,Cynthia LaChusa,,-71.12
+2000 Accounts Payable,03/06/2024,Bill Payment (Check),11358,Blue Arrow CPA's,,1032 Cash:Cash- Grants Account,Blue Arrow CPA's,,-11647.5
+2000 Accounts Payable,03/06/2024,Bill Payment (Check),11357,Home & Business Electrical Service LLC,,1032 Cash:Cash- Grants Account,Home & Business Electrical Service LLC,,-1124
+2000 Accounts Payable,03/06/2024,Bill,3062024,Cynthia LaChusa,Reimbursement - Postage Enrollment,5450 Postage/Fed/UPS,Cynthia LaChusa,,76.2
+2000 Accounts Payable,03/06/2024,Bill Payment (Check),4317,Cynthia LaChusa,,1030 Cash:Cash- Tribal- Operations,Cynthia LaChusa,,-76.2
+2000 Accounts Payable,03/06/2024,Bill,1359,Home & Business Electrical Service LLC,,6000 Capital Expenditures,Home & Business Electrical Service LLC,,1124
+2000 Accounts Payable,03/06/2024,Bill,302,Blue Arrow CPA's,Bill 302 12/01/2022,5100 Prof Serv -  Audit; Acct,Blue Arrow CPA's,,11647.5
+2000 Accounts Payable,03/07/2024,Bill,3072024,Anthony Trujillo,,5125 Professional Services,Anthony Trujillo,,1846.14
+2000 Accounts Payable,03/07/2024,Bill,2002,"Accurate Equipment Service, Inc.",John Deere 5220,5503 Repairs & Maintenance:R&M Equipment,"Accurate Equipment Service, Inc.",,756.16
+2000 Accounts Payable,03/07/2024,Bill Payment (Check),1204,Anthony Trujillo,,1049 Cash:Cash-Tribal- Youth Acct,Anthony Trujillo,,-1846.14
+2000 Accounts Payable,03/07/2024,Bill Payment (Check),4318,"Accurate Equipment Service, Inc.",,1030 Cash:Cash- Tribal- Operations,"Accurate Equipment Service, Inc.",,-756.16
+2000 Accounts Payable,03/08/2024,Bill Payment (Check),4356,Tribal Print Source,,1030 Cash:Cash- Tribal- Operations,Tribal Print Source,,-122.85
+2000 Accounts Payable,03/08/2024,Bill,3436,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,70.01
+2000 Accounts Payable,03/08/2024,Bill,3435,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,97.81
+2000 Accounts Payable,03/08/2024,Bill Payment (Check),4345,Ransom Brothers Lumber Supply,,1030 Cash:Cash- Tribal- Operations,Ransom Brothers Lumber Supply,,-196.08
+2000 Accounts Payable,03/08/2024,Bill,30802,California Labor Solutions LLC,,5125 Professional Services,California Labor Solutions LLC,,765
+2000 Accounts Payable,03/08/2024,Bill Payment (Check),11361,California Labor Solutions LLC,,1032 Cash:Cash- Grants Account,California Labor Solutions LLC,,-765
+2000 Accounts Payable,03/08/2024,Bill,2470547,Tribal Print Source,,5980 Cultural Events,Tribal Print Source,,122.85
+2000 Accounts Payable,03/08/2024,Bill,K79967,Ransom Brothers Lumber Supply,,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,196.08
+2000 Accounts Payable,03/08/2024,Bill Payment (Check),4319,Cynthia LaChusa,,1030 Cash:Cash- Tribal- Operations,Cynthia LaChusa,,-96.52
+2000 Accounts Payable,03/08/2024,Bill,3072024,Cynthia LaChusa,,5450 Postage/Fed/UPS,Cynthia LaChusa,,96.52
+2000 Accounts Payable,03/10/2024,Bill,3102024,Tasheena Kitchen,,5125 Professional Services,Tasheena Kitchen,,2622
+2000 Accounts Payable,03/11/2024,Bill,31124,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,03/12/2024,Bill,137634,Ransom Brothers Ace,,5399 Supplies/Materials,Ransom Brothers Ace,,32.29
+2000 Accounts Payable,03/12/2024,Bill Payment (Check),11365,Advanced Office,,1032 Cash:Cash- Grants Account,Advanced Office,,-511.25
+2000 Accounts Payable,03/12/2024,Bill,AR1228215,Advanced Office,,5402 Copier Rental/Lease,Advanced Office,,511.25
+2000 Accounts Payable,03/12/2024,Bill Payment (Check),11360,Cynthia LaChusa,,1032 Cash:Cash- Grants Account,Cynthia LaChusa,,-100
+2000 Accounts Payable,03/12/2024,Bill Payment (Check),1206,DMV,,1049 Cash:Cash-Tribal- Youth Acct,DMV,,-308
+2000 Accounts Payable,03/12/2024,Bill Payment (Check),4344,Ransom Brothers Ace,,1030 Cash:Cash- Tribal- Operations,Ransom Brothers Ace,,-32.29
+2000 Accounts Payable,03/13/2024,Bill,3132024,Samuel Luna,,5125 Professional Services,Samuel Luna,,125
+2000 Accounts Payable,03/13/2024,Bill Payment (Check),1207,Tasheena Kitchen,,1049 Cash:Cash-Tribal- Youth Acct,Tasheena Kitchen,,-2622
+2000 Accounts Payable,03/13/2024,Bill,3132024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,240
+2000 Accounts Payable,03/13/2024,Bill Payment (Check),11362,Aztec Technology Corp.,,1032 Cash:Cash- Grants Account,Aztec Technology Corp.,,-250
+2000 Accounts Payable,03/13/2024,Bill Payment (Check),4321,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-125
+2000 Accounts Payable,03/13/2024,Bill Payment (Check),4320,CILS,,1030 Cash:Cash- Tribal- Operations,CILS,,-340
+2000 Accounts Payable,03/13/2024,Bill Payment (Check),4322,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-240
+2000 Accounts Payable,03/14/2024,Bill,1262,Budget Grading,,5500 Repairs & Maintenance,Budget Grading,,3435
+2000 Accounts Payable,03/14/2024,Bill Payment (Check),11363,"United Rentals (North America), Inc.",,1032 Cash:Cash- Grants Account,"United Rentals (North America), Inc.",,-55391.52
+2000 Accounts Payable,03/14/2024,Bill,1824,"D.A.D. Asphalt, Inc",,5500 Repairs & Maintenance,"D.A.D. Asphalt, Inc",,2800
+2000 Accounts Payable,03/14/2024,Bill,31424,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,03/14/2024,Bill,3437,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,115.04
+2000 Accounts Payable,03/14/2024,Bill,231276455-001,"United Rentals (North America), Inc.",,6000 Capital Expenditures,"United Rentals (North America), Inc.",,55391.52
+2000 Accounts Payable,03/15/2024,Bill Payment (Check),4367,Ramco Petroleum #1,,1030 Cash:Cash- Tribal- Operations,Ramco Petroleum #1,,-26.95
+2000 Accounts Payable,03/15/2024,Bill,3438,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,78.01
+2000 Accounts Payable,03/15/2024,Bill Payment (Check),4323,Warner High Class of 2024,,-Split-,Warner High Class of 2024,,0
+2000 Accounts Payable,03/15/2024,Bill Payment (Check),30618,Indian Land Capital Company,,1033 Cash:Cash- Tribal- Revenue Share,Indian Land Capital Company,,-11048.01
+2000 Accounts Payable,03/15/2024,Bill,2139,"Accurate Equipment Service, Inc.",,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,"Accurate Equipment Service, Inc.",,1144.25
+2000 Accounts Payable,03/15/2024,Bill,122694,Indian Land Capital Company,,-Split-,Indian Land Capital Company,,11048.01
+2000 Accounts Payable,03/15/2024,Bill,3112024,Edwardo Barron,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Edwardo Barron,,305.01
+2000 Accounts Payable,03/15/2024,Bill,4413,Ramco Petroleum #1,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #1,,26.95
+2000 Accounts Payable,03/15/2024,Bill Payment (Check),4324,"Accurate Equipment Service, Inc.",,1030 Cash:Cash- Tribal- Operations,"Accurate Equipment Service, Inc.",,-1144.25
+2000 Accounts Payable,03/15/2024,Bill Payment (Check),4695,Edwardo Barron,,1048 Cash:Cash- EPA,Edwardo Barron,,-305.01
+2000 Accounts Payable,03/18/2024,Bill Payment (Check),4368,Ramco Petroleum #2,,1030 Cash:Cash- Tribal- Operations,Ramco Petroleum #2,,-184.11
+2000 Accounts Payable,03/18/2024,Bill Payment (Check),4325,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-150
+2000 Accounts Payable,03/18/2024,Bill,3182024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,150
+2000 Accounts Payable,03/18/2024,Bill,31824,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,50
+2000 Accounts Payable,03/18/2024,Bill,118957,Ransom Brothers Lumber Supply,,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,406.72
+2000 Accounts Payable,03/18/2024,Bill,3439,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,184.11
+2000 Accounts Payable,03/19/2024,Bill,31924,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,03/19/2024,Bill Payment (Check),4697,Budget Grading,,1048 Cash:Cash- EPA,Budget Grading,,-3435
+2000 Accounts Payable,03/19/2024,Bill Payment (Check),11367,Curtis V. LaChusa,,1032 Cash:Cash- Grants Account,Curtis V. LaChusa,,-46.66
+2000 Accounts Payable,03/19/2024,Bill,3192024,Curtis V. LaChusa,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Curtis V. LaChusa,,46.66
+2000 Accounts Payable,03/19/2024,Bill Payment (Check),4696,"D.A.D. Asphalt, Inc",,1048 Cash:Cash- EPA,"D.A.D. Asphalt, Inc",,-2800
+2000 Accounts Payable,03/19/2024,Bill Payment (Check),4326,CILS,,1030 Cash:Cash- Tribal- Operations,CILS,,-120
+2000 Accounts Payable,03/19/2024,Bill Payment (Check),11366,Cynthia LaChusa,,1032 Cash:Cash- Grants Account,Cynthia LaChusa,,-250
+2000 Accounts Payable,03/20/2024,Bill Payment (Check),4327,Cynthia LaChusa,,1030 Cash:Cash- Tribal- Operations,Cynthia LaChusa,,-111.76
+2000 Accounts Payable,03/20/2024,Bill,3202024,Cynthia LaChusa,,5450 Postage/Fed/UPS,Cynthia LaChusa,,111.76
+2000 Accounts Payable,03/20/2024,Bill,3440,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,103.13
+2000 Accounts Payable,03/21/2024,Bill,3212024,Cynthia LaChusa,,5450 Postage/Fed/UPS,Cynthia LaChusa,,106.92
+2000 Accounts Payable,03/21/2024,Bill,3442,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,108.72
+2000 Accounts Payable,03/21/2024,Bill Payment (Check),4330,Cynthia LaChusa,,-Split-,Cynthia LaChusa,,0
+2000 Accounts Payable,03/21/2024,Bill,3441,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,86
+2000 Accounts Payable,03/22/2024,Bill Payment (Check),4333,Cynthia LaChusa,,1030 Cash:Cash- Tribal- Operations,Cynthia LaChusa,,-106.92
+2000 Accounts Payable,03/22/2024,Bill,32124,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,03/22/2024,Bill Payment (Check),4332,Cynthia LaChusa,,1030 Cash:Cash- Tribal- Operations,Cynthia LaChusa,,-87.08
+2000 Accounts Payable,03/22/2024,Bill,3222024,Curtis V. LaChusa,,5603 Travel:Meals,Curtis V. LaChusa,,205.55
+2000 Accounts Payable,03/22/2024,Bill Payment (Check),11368,Cynthia LaChusa,,1032 Cash:Cash- Grants Account,Cynthia LaChusa,,-100
+2000 Accounts Payable,03/22/2024,Bill,3222024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,480
+2000 Accounts Payable,03/22/2024,Bill Payment (Check),4331,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-480
+2000 Accounts Payable,03/22/2024,Bill Payment (Check),11369,Curtis V. LaChusa,,1032 Cash:Cash- Grants Account,Curtis V. LaChusa,,-205.55
+2000 Accounts Payable,03/22/2024,Bill,3222024,Cynthia LaChusa,,5450 Postage/Fed/UPS,Cynthia LaChusa,,87.08
+2000 Accounts Payable,03/25/2024,Bill,3252024,Curtis V. LaChusa,,5302 Communications:Cell Phones,Curtis V. LaChusa,,102.47
+2000 Accounts Payable,03/25/2024,Bill Payment (Check),11370,Curtis V. LaChusa,,1032 Cash:Cash- Grants Account,Curtis V. LaChusa,,-102.47
+2000 Accounts Payable,03/26/2024,Bill,32624,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,03/26/2024,Bill,3262024,Samuel Luna,,5125 Professional Services,Samuel Luna,,325
+2000 Accounts Payable,03/26/2024,Bill Payment (Check),4334,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-250
+2000 Accounts Payable,03/26/2024,Bill,3262024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,250
+2000 Accounts Payable,03/26/2024,Bill Payment (Check),4335,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-325
+2000 Accounts Payable,03/26/2024,Bill Payment (Check),11371,Cynthia LaChusa,,1032 Cash:Cash- Grants Account,Cynthia LaChusa,,-100
+2000 Accounts Payable,03/27/2024,Bill,3282024,GreyEagle A Sanchez,,5125 Professional Services,GreyEagle A Sanchez,,100
+2000 Accounts Payable,03/27/2024,Bill,3272024,Carlos Chavez,,5125 Professional Services,Carlos Chavez,,125
+2000 Accounts Payable,03/28/2024,Bill,3282024,Samuel Luna,,5125 Professional Services,Samuel Luna,,700
+2000 Accounts Payable,03/28/2024,Bill,3282024,GreyEagle A Sanchez,,5125 Professional Services,GreyEagle A Sanchez,,175
+2000 Accounts Payable,03/29/2024,Bill,881289,Ransom Brothers Lumber Supply,,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,14.4
+2000 Accounts Payable,03/29/2024,Bill Payment (Check),11372,Ramco Petroleum #2,,1032 Cash:Cash- Grants Account,Ramco Petroleum #2,,-68
+2000 Accounts Payable,03/29/2024,Bill,3292024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,50
+2000 Accounts Payable,03/29/2024,Bill Payment (Check),4701,Ramco Petroleum #1,,1048 Cash:Cash- EPA,Ramco Petroleum #1,,-53.55
+2000 Accounts Payable,03/29/2024,Bill Payment (Check),4700,Samuel Luna,,1048 Cash:Cash- EPA,Samuel Luna,,-1205.32
+2000 Accounts Payable,03/29/2024,Bill Payment (Check),4340,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-700
+2000 Accounts Payable,03/29/2024,Bill Payment (Check),4341,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-500
+2000 Accounts Payable,03/29/2024,Bill Payment (Check),4339,GreyEagle A Sanchez,,1030 Cash:Cash- Tribal- Operations,GreyEagle A Sanchez,,-275
+2000 Accounts Payable,03/29/2024,Bill Payment (Check),4337,Ramco Petroleum #2,,1030 Cash:Cash- Tribal- Operations,Ramco Petroleum #2,,-254.23
+2000 Accounts Payable,03/29/2024,Bill,3292024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,450
+2000 Accounts Payable,03/29/2024,Bill,3292024,Samuel Luna,,5000 Payroll - Salary & Wages,Samuel Luna,,1205.32
+2000 Accounts Payable,03/29/2024,Bill Payment (Check),4338,Carlos Chavez,,1030 Cash:Cash- Tribal- Operations,Carlos Chavez,,-125
+2000 Accounts Payable,03/29/2024,Bill,562451,All State Propane,,5701 Utilities:Electricity & Propane,All State Propane,,537.15
+2000 Accounts Payable,03/29/2024,Bill Payment (Check),4702,Ramco Petroleum #2,,1048 Cash:Cash- EPA,Ramco Petroleum #2,,-648.49
+2000 Accounts Payable,03/31/2024,Bill,8006739786,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,249.34
+2000 Accounts Payable,03/31/2024,Bill,570,Blue Arrow CPA's,,5100 Prof Serv -  Audit; Acct,Blue Arrow CPA's,,6135
+2000 Accounts Payable,03/31/2024,Bill,114,Onpoint Construction Company,,6000 Capital Expenditures,Onpoint Construction Company,,7528
+2000 Accounts Payable,04/01/2024,Bill,4012024,Samuel Luna,,5125 Professional Services,Samuel Luna,,212.5
+2000 Accounts Payable,04/01/2024,Bill,3443,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,215.74
+2000 Accounts Payable,04/01/2024,Bill Payment (Check),4342,Mesa Grande Business Development Corporation,,1030 Cash:Cash- Tribal- Operations,Mesa Grande Business Development Corporation,,-7039.72
+2000 Accounts Payable,04/01/2024,Bill,3955,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,101.83
+2000 Accounts Payable,04/01/2024,Bill,34048.13,Aztec Technology Corp.,,5400 Office Supplies/Office Expenses,Aztec Technology Corp.,,250
+2000 Accounts Payable,04/01/2024,Bill,881458,Ransom Brothers Lumber Supply,,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,62.47
+2000 Accounts Payable,04/01/2024,Bill,4012024,Cynthia LaChusa,Cleaning & Sanitizing,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,04/01/2024,Bill,3012024,Mesa Grande Business Development Corporation,,5250 Bank Charges & Interest,Mesa Grande Business Development Corporation,,7039.72
+2000 Accounts Payable,04/02/2024,Bill,3444,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,106
+2000 Accounts Payable,04/02/2024,Bill Payment (Check),4705,Ransom Brothers Lumber Supply,,1048 Cash:Cash- EPA,Ransom Brothers Lumber Supply,,-421.12
+2000 Accounts Payable,04/02/2024,Bill,881459,Ransom Brothers Lumber Supply,,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,23.69
+2000 Accounts Payable,04/02/2024,Bill Payment (Check),11373,All State Propane,,1032 Cash:Cash- Grants Account,All State Propane,,-537.15
+2000 Accounts Payable,04/02/2024,Bill,4022025,Darren Majado,,-Split-,Darren Majado,,250
+2000 Accounts Payable,04/02/2024,Bill,4022024,Cynthia LaChusa,,5450 Postage/Fed/UPS,Cynthia LaChusa,,224.48
+2000 Accounts Payable,04/02/2024,Bill Payment (Check),4346,Cynthia LaChusa,,1030 Cash:Cash- Tribal- Operations,Cynthia LaChusa,,-224.48
+2000 Accounts Payable,04/02/2024,Bill,3445,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,32.45
+2000 Accounts Payable,04/03/2024,Bill,4032024,Robert N McBane,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Robert N McBane,,87.12
+2000 Accounts Payable,04/03/2024,Bill,20759,Cruise Party Rentals,,5980 Cultural Events,Cruise Party Rentals,,2400
+2000 Accounts Payable,04/03/2024,Bill Payment (Check),4347,Cruise Party Rentals,,1030 Cash:Cash- Tribal- Operations,Cruise Party Rentals,,-2400
+2000 Accounts Payable,04/03/2024,Bill Payment (Check),11375,Cynthia LaChusa,,1032 Cash:Cash- Grants Account,Cynthia LaChusa,,-100
+2000 Accounts Payable,04/03/2024,Bill,3446,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,75
+2000 Accounts Payable,04/03/2024,Bill Payment (Check),4352,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-337.5
+2000 Accounts Payable,04/03/2024,Bill Payment (Check),11374,Robert N McBane,,1032 Cash:Cash- Grants Account,Robert N McBane,,-87.12
+2000 Accounts Payable,04/03/2024,Bill Payment (Check),4348,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-840
+2000 Accounts Payable,04/03/2024,Bill,4032024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,840
+2000 Accounts Payable,04/03/2024,Bill,4032024,GreyEagle A Sanchez,,5125 Professional Services,GreyEagle A Sanchez,,50
+2000 Accounts Payable,04/03/2024,Bill Payment (Check),4354,GreyEagle A Sanchez,,1030 Cash:Cash- Tribal- Operations,GreyEagle A Sanchez,,-50
+2000 Accounts Payable,04/03/2024,Bill,4032024,Samuel Luna,,5125 Professional Services,Samuel Luna,,125
+2000 Accounts Payable,04/04/2024,Bill,3447,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,229.54
+2000 Accounts Payable,04/04/2024,Bill Payment (Check),4350,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-240
+2000 Accounts Payable,04/04/2024,Bill,4042024,Samuel Luna,,5125 Professional Services,Samuel Luna,,240
+2000 Accounts Payable,04/04/2024,Bill Payment (Check),4706,Marc Anderson,,1048 Cash:Cash- EPA,Marc Anderson,,-2590
+2000 Accounts Payable,04/04/2024,Bill,919-4,Marc Anderson,,5125 Professional Services,Marc Anderson,,2590
+2000 Accounts Payable,04/05/2024,Bill Payment (Check),4351,Darren Majado,,1030 Cash:Cash- Tribal- Operations,Darren Majado,,-300
+2000 Accounts Payable,04/05/2024,Bill,4052024,Darren Majado,,5125 Professional Services,Darren Majado,,300
+2000 Accounts Payable,04/05/2024,Bill,4052024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,240
+2000 Accounts Payable,04/05/2024,Bill Payment (Check),4353,Darren Majado,,1030 Cash:Cash- Tribal- Operations,Darren Majado,,-250
+2000 Accounts Payable,04/05/2024,Bill Payment (Check),4349,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-240
+2000 Accounts Payable,04/05/2024,Bill Payment (Check),4355,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-50
+2000 Accounts Payable,04/05/2024,Bill,4052024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,50
+2000 Accounts Payable,04/05/2024,Bill,881719,Ransom Brothers Lumber Supply,,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,60.89
+2000 Accounts Payable,04/08/2024,Bill,3448,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,113.91
+2000 Accounts Payable,04/08/2024,Bill Payment (Check),11376,Onpoint Construction Company,,1032 Cash:Cash- Grants Account,Onpoint Construction Company,,-7528
+2000 Accounts Payable,04/09/2024,Bill,4092024,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,04/09/2024,Bill,40924,Cynthia LaChusa,,5399 Supplies/Materials,Cynthia LaChusa,,11.83
+2000 Accounts Payable,04/09/2024,Bill Payment (Check),4358,Cynthia LaChusa,,1030 Cash:Cash- Tribal- Operations,Cynthia LaChusa,,-88
+2000 Accounts Payable,04/09/2024,Bill Payment (Check),11378,Cynthia LaChusa,,1032 Cash:Cash- Grants Account,Cynthia LaChusa,,-111.83
+2000 Accounts Payable,04/09/2024,Bill Payment (Check),11377,Blue Arrow CPA's,,1032 Cash:Cash- Grants Account,Blue Arrow CPA's,,-6135
+2000 Accounts Payable,04/09/2024,Bill,836770,Merit Oil Company,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Merit Oil Company,,4857.92
+2000 Accounts Payable,04/09/2024,Bill,4092024,Cynthia LaChusa,,5450 Postage/Fed/UPS,Cynthia LaChusa,,88
+2000 Accounts Payable,04/10/2024,Bill,34048.14,Aztec Technology Corp.,,5400 Office Supplies/Office Expenses,Aztec Technology Corp.,,250
+2000 Accounts Payable,04/10/2024,Bill Payment (Check),11379,Aztec Technology Corp.,,1032 Cash:Cash- Grants Account,Aztec Technology Corp.,,-250
+2000 Accounts Payable,04/10/2024,Bill,881962,Ransom Brothers Lumber Supply,,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,9.69
+2000 Accounts Payable,04/10/2024,Bill Payment (Check),11383,California Labor Solutions LLC,,1032 Cash:Cash- Grants Account,California Labor Solutions LLC,,-8415
+2000 Accounts Payable,04/10/2024,Bill,41003,California Labor Solutions LLC,,5125 Professional Services,California Labor Solutions LLC,,8415
+2000 Accounts Payable,04/11/2024,Bill,4112024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,1440
+2000 Accounts Payable,04/11/2024,Bill Payment (Check),11380,"Gabriel Kitchen, Jr.",,1032 Cash:Cash- Grants Account,"Gabriel Kitchen, Jr.",,-142.79
+2000 Accounts Payable,04/11/2024,Bill,882007,Ransom Brothers Lumber Supply,,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,17.86
+2000 Accounts Payable,04/11/2024,Bill,4112024,GreyEagle A Sanchez,,5125 Professional Services,GreyEagle A Sanchez,,600
+2000 Accounts Payable,04/11/2024,Bill,4112024,Carlos Chavez,,5399 Supplies/Materials,Carlos Chavez,,46.91
+2000 Accounts Payable,04/11/2024,Bill,4112024,"Gabriel Kitchen, Jr.",,5600 Travel,"Gabriel Kitchen, Jr.",,142.79
+2000 Accounts Payable,04/11/2024,Bill,4112024,Darren Majado,,5125 Professional Services,Darren Majado,,200
+2000 Accounts Payable,04/11/2024,Bill Payment (Check),4361,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-600
+2000 Accounts Payable,04/11/2024,Bill Payment (Check),4362,Darren Majado,,1030 Cash:Cash- Tribal- Operations,Darren Majado,,-200
+2000 Accounts Payable,04/11/2024,Bill Payment (Check),4360,GreyEagle A Sanchez,,1030 Cash:Cash- Tribal- Operations,GreyEagle A Sanchez,,-600
+2000 Accounts Payable,04/11/2024,Bill Payment (Check),4359,Carlos Chavez,,1030 Cash:Cash- Tribal- Operations,Carlos Chavez,,-46.91
+2000 Accounts Payable,04/11/2024,Bill Payment (Check),4357,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-1440
+2000 Accounts Payable,04/11/2024,Bill,4112024,Samuel Luna,,5125 Professional Services,Samuel Luna,,600
+2000 Accounts Payable,04/12/2024,Bill,AR1235161,Advanced Office,,5402 Copier Rental/Lease,Advanced Office,,250
+2000 Accounts Payable,04/12/2024,Bill,4122024,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,04/15/2024,Bill Payment (Check),11382,Aztec Technology Corp.,,1032 Cash:Cash- Grants Account,Aztec Technology Corp.,,-250
+2000 Accounts Payable,04/15/2024,Bill Payment (Check),11386,Southwest Trailer Sales,,1032 Cash:Cash- Grants Account,Southwest Trailer Sales,,-13900.8
+2000 Accounts Payable,04/15/2024,Bill,4172024,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,04/15/2024,Bill Payment (Check),30619,Indian Land Capital Company,,1033 Cash:Cash- Tribal- Revenue Share,Indian Land Capital Company,,-11048.01
+2000 Accounts Payable,04/15/2024,Bill,4152024,Indian Land Capital Company,,-Split-,Indian Land Capital Company,,11048.01
+2000 Accounts Payable,04/15/2024,Bill Payment (Check),11381,Advanced Office,,1032 Cash:Cash- Grants Account,Advanced Office,,-250
+2000 Accounts Payable,04/15/2024,Bill,4152024,Southwest Trailer Sales,PJ DL122 Dump Trailer,6000 Capital Expenditures,Southwest Trailer Sales,,13900.8
+2000 Accounts Payable,04/15/2024,Bill,138531,Ransom Brothers Ace,,5399 Supplies/Materials,Ransom Brothers Ace,,44.78
+2000 Accounts Payable,04/16/2024,Bill Payment (Check),4364,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-525
+2000 Accounts Payable,04/16/2024,Bill Payment (Check),4365,Merit Oil Company,,1030 Cash:Cash- Tribal- Operations,Merit Oil Company,,-4857.92
+2000 Accounts Payable,04/16/2024,Bill,3449,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,95.75
+2000 Accounts Payable,04/16/2024,Bill,4162024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,525
+2000 Accounts Payable,04/16/2024,Bill Payment (Check),4363,Francisco Nakai Lopez,,1030 Cash:Cash- Tribal- Operations,Francisco Nakai Lopez,,-450
+2000 Accounts Payable,04/16/2024,Bill,4162024,Francisco Nakai Lopez,,5125 Professional Services,Francisco Nakai Lopez,,450
+2000 Accounts Payable,04/16/2024,Bill,138566,Ransom Brothers Ace,,5399 Supplies/Materials,Ransom Brothers Ace,,35.74
+2000 Accounts Payable,04/16/2024,Bill,4162024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,50
+2000 Accounts Payable,04/16/2024,Bill Payment (Check),4366,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-50
+2000 Accounts Payable,04/17/2024,Bill,4.17.24-01,GreyEagle A Sanchez,,-Split-,GreyEagle A Sanchez,,625
+2000 Accounts Payable,04/17/2024,Bill Payment (Check),4707,Ramco Petroleum #2,,1048 Cash:Cash- EPA,Ramco Petroleum #2,,-826.73
+2000 Accounts Payable,04/17/2024,Bill Payment (Check),4369,Sergio Gutierrez,,1030 Cash:Cash- Tribal- Operations,Sergio Gutierrez,,-200
+2000 Accounts Payable,04/17/2024,Bill Payment (Check),11388,GreyEagle A Sanchez,,1032 Cash:Cash- Grants Account,GreyEagle A Sanchez,,-625
+2000 Accounts Payable,04/17/2024,Bill,4172024,Sergio Gutierrez,,5125 Professional Services,Sergio Gutierrez,,200
+2000 Accounts Payable,04/17/2024,Bill Payment (Check),11387,Cynthia LaChusa,,1032 Cash:Cash- Grants Account,Cynthia LaChusa,,-200
+2000 Accounts Payable,04/17/2024,Bill,882370,Ransom Brothers Lumber Supply,,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,64.83
+2000 Accounts Payable,04/18/2024,Bill,4182024,Curtis V. LaChusa,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Curtis V. LaChusa,,50.88
+2000 Accounts Payable,04/18/2024,Bill,4182024,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,04/19/2024,Bill,3450,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,92.08
+2000 Accounts Payable,04/19/2024,Bill Payment (Check),11389,Curtis V. LaChusa,,1032 Cash:Cash- Grants Account,Curtis V. LaChusa,,-50.88
+2000 Accounts Payable,04/22/2024,Bill Payment (Check),11390,Cynthia LaChusa,,1032 Cash:Cash- Grants Account,Cynthia LaChusa,,-200
+2000 Accounts Payable,04/22/2024,Bill,4222024,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,04/22/2024,Bill Payment (Check),4370,Cynthia LaChusa,,1030 Cash:Cash- Tribal- Operations,Cynthia LaChusa,,-77.88
+2000 Accounts Payable,04/22/2024,Bill,4222024,Cynthia LaChusa,,5450 Postage/Fed/UPS,Cynthia LaChusa,,77.88
+2000 Accounts Payable,04/22/2024,Bill,882689,Ransom Brothers Lumber Supply,,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,1585.12
+2000 Accounts Payable,04/23/2024,Bill Payment (Check),4380,Native Laser LLC,,1030 Cash:Cash- Tribal- Operations,Native Laser LLC,,-175
+2000 Accounts Payable,04/23/2024,Bill,4232024,Samuel Luna,,5125 Professional Services,Samuel Luna,,120
+2000 Accounts Payable,04/23/2024,Bill Payment (Check),4374,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-120
+2000 Accounts Payable,04/23/2024,Bill Payment (Check),4372,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-50
+2000 Accounts Payable,04/23/2024,Bill Payment (Check),4378,Frankie Morreo,,1030 Cash:Cash- Tribal- Operations,Frankie Morreo,,-296
+2000 Accounts Payable,04/23/2024,Bill,4232024,Sergio Gutierrez,,5125 Professional Services,Sergio Gutierrez,,200
+2000 Accounts Payable,04/23/2024,Bill,27648/1,MGBDC,,5503 Repairs & Maintenance:R&M Equipment,MGBDC,,149.57
+2000 Accounts Payable,04/23/2024,Bill Payment (Check),4377,Andrew Stevens,,1030 Cash:Cash- Tribal- Operations,Andrew Stevens,,-248
+2000 Accounts Payable,04/23/2024,Bill Payment (Check),4371,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-740
+2000 Accounts Payable,04/23/2024,Bill Payment (Check),4373,Carlos Chavez,,1030 Cash:Cash- Tribal- Operations,Carlos Chavez,,-240
+2000 Accounts Payable,04/23/2024,Bill,4232024,Frankie Morreo,,5125 Professional Services,Frankie Morreo,,296
+2000 Accounts Payable,04/23/2024,Bill,4232024,Darren Majado,,5125 Professional Services,Darren Majado,,200
+2000 Accounts Payable,04/23/2024,Bill,4232024,Carlos Chavez,,5125 Professional Services,Carlos Chavez,,240
+2000 Accounts Payable,04/23/2024,Bill Payment (Check),4375,Sergio Gutierrez,,1030 Cash:Cash- Tribal- Operations,Sergio Gutierrez,,-200
+2000 Accounts Payable,04/23/2024,Bill,3248,Ballpark Printing & Graphics,,5980 Cultural Events,Ballpark Printing & Graphics,,5108.22
+2000 Accounts Payable,04/23/2024,Bill,4212024,Native Laser LLC,,5980 Cultural Events,Native Laser LLC,,175
+2000 Accounts Payable,04/23/2024,Bill Payment (Check),4379,Ballpark Printing & Graphics,,1030 Cash:Cash- Tribal- Operations,Ballpark Printing & Graphics,,-5108.22
+2000 Accounts Payable,04/23/2024,Bill,4232024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,50
+2000 Accounts Payable,04/23/2024,Bill,4232024,Samuel Luna,,5125 Professional Services,Samuel Luna,,740
+2000 Accounts Payable,04/23/2024,Bill,4232024,Andrew Stevens,,5125 Professional Services,Andrew Stevens,,248
+2000 Accounts Payable,04/23/2024,Bill Payment (Check),4376,Darren Majado,,1030 Cash:Cash- Tribal- Operations,Darren Majado,,-200
+2000 Accounts Payable,04/24/2024,Bill Payment (Check),4381,Indian Land Capital Company,,1030 Cash:Cash- Tribal- Operations,Indian Land Capital Company,,-7039.72
+2000 Accounts Payable,04/24/2024,Bill,4242024,GreyEagle A Sanchez,,5125 Professional Services,GreyEagle A Sanchez,,675
+2000 Accounts Payable,04/24/2024,Bill Payment (Check),11391,Curtis V. LaChusa,,1032 Cash:Cash- Grants Account,Curtis V. LaChusa,,-101.87
+2000 Accounts Payable,04/24/2024,Bill Payment (Check),4383,GreyEagle A Sanchez,,1030 Cash:Cash- Tribal- Operations,GreyEagle A Sanchez,,-675
+2000 Accounts Payable,04/24/2024,Bill,4242024,Frankie Morreo,,5125 Professional Services,Frankie Morreo,,480
+2000 Accounts Payable,04/24/2024,Bill,122110,Indian Land Capital Company,,-Split-,Indian Land Capital Company,,7039.72
+2000 Accounts Payable,04/24/2024,Bill,3952,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,93.21
+2000 Accounts Payable,04/24/2024,Bill,27655/1,MGBDC,,5503 Repairs & Maintenance:R&M Equipment,MGBDC,,114.99
+2000 Accounts Payable,04/24/2024,Bill,4242024,Curtis V. LaChusa,,5302 Communications:Cell Phones,Curtis V. LaChusa,,101.87
+2000 Accounts Payable,04/24/2024,Bill,4242024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,480
+2000 Accounts Payable,04/24/2024,Bill,7092,Webb Pool & Spa,Chlorine,5751 Water Supplies/Testing,Webb Pool & Spa,,37.7
+2000 Accounts Payable,04/24/2024,Bill Payment (Check),4382,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-480
+2000 Accounts Payable,04/25/2024,Bill,3953,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,190.01
+2000 Accounts Payable,04/25/2024,Bill Payment (Check),4390,Frankie Morreo,,1030 Cash:Cash- Tribal- Operations,Frankie Morreo,,-480
+2000 Accounts Payable,04/26/2024,Bill,4262024,Samuel Luna,,5125 Professional Services,Samuel Luna,,240
+2000 Accounts Payable,04/26/2024,Bill Payment (Check),4387,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-240
+2000 Accounts Payable,04/26/2024,Bill,4262024,Sergio Gutierrez,,5125 Professional Services,Sergio Gutierrez,,120
+2000 Accounts Payable,04/26/2024,Bill,4262024,"Gabriel Kitchen, Jr.",,5125 Professional Services,"Gabriel Kitchen, Jr.",,50
+2000 Accounts Payable,04/26/2024,Bill Payment (Check),4385,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-240
+2000 Accounts Payable,04/26/2024,Bill,4242024,"Gabriel Kitchen, Jr.",Road Work 8 hrs,5125 Professional Services,"Gabriel Kitchen, Jr.",,240
+2000 Accounts Payable,04/26/2024,Bill Payment (Check),4384,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-50
+2000 Accounts Payable,04/26/2024,Bill,4262024,"Gabriel Kitchen, Jr.",Roads 8 hrs,5125 Professional Services,"Gabriel Kitchen, Jr.",,240
+2000 Accounts Payable,04/26/2024,Bill Payment (Check),4389,"Gabriel Kitchen, Jr.",,1030 Cash:Cash- Tribal- Operations,"Gabriel Kitchen, Jr.",,-240
+2000 Accounts Payable,04/26/2024,Bill Payment (Check),4388,Sergio Gutierrez,,1030 Cash:Cash- Tribal- Operations,Sergio Gutierrez,,-120
+2000 Accounts Payable,04/26/2024,Bill,3954,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,75
+2000 Accounts Payable,04/28/2024,Bill,3956,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,26.64
+2000 Accounts Payable,04/29/2024,Bill Payment (Check),1275,Turning Pointe School of Dance,,1049 Cash:Cash-Tribal- Youth Acct,Turning Pointe School of Dance,,-432
+2000 Accounts Payable,04/29/2024,Bill,883081,Ransom Brothers Lumber Supply,,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,16.15
+2000 Accounts Payable,04/29/2024,Bill,4292024,Turning Pointe School of Dance,,"5650 Education, Training & Seminars",Turning Pointe School of Dance,,432
+2000 Accounts Payable,04/30/2024,Bill,4032024,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,04/30/2024,Bill,115,Onpoint Construction Company,Tribal Office Remodel,6000 Capital Expenditures,Onpoint Construction Company,,15636
+2000 Accounts Payable,04/30/2024,Bill,3957,Ramco Petroleum #2,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,112.78
+2000 Accounts Payable,04/30/2024,Bill Payment (Check),4711,Ramco Petroleum #2,,1048 Cash:Cash- EPA,Ramco Petroleum #2,,-700.43
+2000 Accounts Payable,04/30/2024,Bill,920-5,Marc Anderson,,5125 Professional Services,Marc Anderson,,1739
+2000 Accounts Payable,04/30/2024,Bill Payment (Check),4708,Marc Anderson,,1048 Cash:Cash- EPA,Marc Anderson,,-1739
+2000 Accounts Payable,04/30/2024,Bill,8007045594,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,249.34
+2000 Accounts Payable,05/01/2024,Bill Payment (Check),11393,DMV,,1032 Cash:Cash- Grants Account,DMV,,-179
+2000 Accounts Payable,05/01/2024,Bill,438995,Ransom Brothers Ace,EPA 319,5399 Supplies/Materials,Ransom Brothers Ace,,38.42
+2000 Accounts Payable,05/01/2024,Bill,3958,Ramco Petroleum #2,EPA 106,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,105.65
+2000 Accounts Payable,05/01/2024,Bill,596,Blue Arrow CPA's,,5100 Prof Serv -  Audit; Acct,Blue Arrow CPA's,,3315
+2000 Accounts Payable,05/01/2024,Bill Payment (Check),11392,Country Tire  Auto,,1032 Cash:Cash- Grants Account,Country Tire  Auto,,-2953.86
+2000 Accounts Payable,05/01/2024,Bill Payment (Check),4391,Ransom Brothers Ace,,1030 Cash:Cash- Tribal- Operations,Ransom Brothers Ace,,-80.52
+2000 Accounts Payable,05/01/2024,Bill,6WEN578,DMV,,5200 Automobile Expenses,DMV,,179
+2000 Accounts Payable,05/01/2024,Bill Payment (Check),4707,Ransom Brothers Lumber Supply,,1048 Cash:Cash- EPA,Ransom Brothers Lumber Supply,,-1717.34
+2000 Accounts Payable,05/01/2024,Bill Payment (Check),4392,Ransom Brothers Lumber Supply,,1030 Cash:Cash- Tribal- Operations,Ransom Brothers Lumber Supply,,-123.36
+2000 Accounts Payable,05/01/2024,Bill,5012024,Country Tire  Auto,,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Country Tire  Auto,,2953.86
+2000 Accounts Payable,05/02/2024,Bill,5022024,GreyEagle A Sanchez,,5125 Professional Services,GreyEagle A Sanchez,,720
+2000 Accounts Payable,05/02/2024,Bill Payment (Check),4393,GreyEagle A Sanchez,,1030 Cash:Cash- Tribal- Operations,GreyEagle A Sanchez,,-720
+2000 Accounts Payable,05/03/2024,Bill Payment (Check),4556,Ramco Petroleum #1,,1030 Cash:Cash- Tribal- Operations,Ramco Petroleum #1,,-139.42
+2000 Accounts Payable,05/03/2024,Bill,5202,Ramco Petroleum #1,Cultural Gathering 2024,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #1,,139.42
+2000 Accounts Payable,05/06/2024,Bill,3960,Ramco Petroleum #2,ATTG,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,91.3
+2000 Accounts Payable,05/06/2024,Bill,5062024,Samuel Luna,,5125 Professional Services,Samuel Luna,,150
+2000 Accounts Payable,05/06/2024,Bill,3959,Ramco Petroleum #2,EPA 106,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,93.35
+2000 Accounts Payable,05/06/2024,Bill Payment (Check),4398,Samuel Luna,,1030 Cash:Cash- Tribal- Operations,Samuel Luna,,-150
+2000 Accounts Payable,05/06/2024,Bill,5365570,"Diamond Environmental Services, LP",,5702 Utilities:Trash & Portable Sanitation,"Diamond Environmental Services, LP",,224.29
+2000 Accounts Payable,05/06/2024,Bill Payment (Check),4397,La Jolla Band of Luiseno' Indians,,1030 Cash:Cash- Tribal- Operations,La Jolla Band of Luiseno' Indians,,-163.52
+2000 Accounts Payable,05/06/2024,Bill Payment (Check),11398,La Jolla Band of Luiseno' Indians,,1032 Cash:Cash- Grants Account,La Jolla Band of Luiseno' Indians,,-122.91
+2000 Accounts Payable,05/06/2024,Bill Payment (Check),4709,La Jolla Band of Luiseno' Indians,,1048 Cash:Cash- EPA,La Jolla Band of Luiseno' Indians,,-258.69
+2000 Accounts Payable,05/06/2024,Bill,108.8,Ransom Brothers Ace,Roads,5399 Supplies/Materials,Ransom Brothers Ace,,108.8
+2000 Accounts Payable,05/06/2024,Bill Payment (Check),11399,Cynthia LaChusa,,1032 Cash:Cash- Grants Account,Cynthia LaChusa,,-200
+2000 Accounts Payable,05/06/2024,Bill,5062024,Cynthia LaChusa,,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,05/07/2024,Bill Payment (Check),11400,"Diamond Environmental Services, LP",,1032 Cash:Cash- Grants Account,"Diamond Environmental Services, LP",,-224.29
+2000 Accounts Payable,05/07/2024,Bill,171650,Ransom Brothers Lumber Supply,Roads,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,103.42
+2000 Accounts Payable,05/09/2024,Bill,139233,Ransom Brothers Ace,Roads,5399 Supplies/Materials,Ransom Brothers Ace,,30.99
+2000 Accounts Payable,05/09/2024,Bill Payment (Check),11409,California Labor Solutions LLC,,1032 Cash:Cash- Grants Account,California Labor Solutions LLC,,-5242.5
+2000 Accounts Payable,05/09/2024,Bill,50901,California Labor Solutions LLC,,5125 Professional Services,California Labor Solutions LLC,,5242.5
+2000 Accounts Payable,05/09/2024,Bill,4589,Ramco Petroleum #1,Roads TTP,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #1,,68.96
+2000 Accounts Payable,05/09/2024,Bill Payment (Check),11442,Ramco Petroleum #1,,1032 Cash:Cash- Grants Account,Ramco Petroleum #1,,-68.96
+2000 Accounts Payable,05/09/2024,Bill,34048.15,Aztec Technology Corp.,,5400 Office Supplies/Office Expenses,Aztec Technology Corp.,,250
+2000 Accounts Payable,05/09/2024,Bill Payment (Check),11404,Aztec Technology Corp.,,1032 Cash:Cash- Grants Account,Aztec Technology Corp.,,-250
+2000 Accounts Payable,05/09/2024,Bill,AR1240741,Advanced Office,,5402 Copier Rental/Lease,Advanced Office,,250
+2000 Accounts Payable,05/10/2024,Bill Payment (Check),11406,Blue Arrow CPA's,,1032 Cash:Cash- Grants Account,Blue Arrow CPA's,,-3315
+2000 Accounts Payable,05/10/2024,Bill,139271,Ransom Brothers Ace,Roads,5399 Supplies/Materials,Ransom Brothers Ace,,19.76
+2000 Accounts Payable,05/10/2024,Bill Payment (Check),11405,Advanced Office,,1032 Cash:Cash- Grants Account,Advanced Office,,-250
+2000 Accounts Payable,05/11/2024,Bill,3961,Ramco Petroleum #2,Cultural Gathering 2024,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,51.07
+2000 Accounts Payable,05/13/2024,Bill,3962,Ramco Petroleum #2,EPA 106,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,95.26
+2000 Accounts Payable,05/14/2024,Bill,884107,Ransom Brothers Lumber Supply,EPA 319,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,17.23
+2000 Accounts Payable,05/14/2024,Bill Payment (Check),4505,MGBDC,,1030 Cash:Cash- Tribal- Operations,MGBDC,,-264.56
+2000 Accounts Payable,05/14/2024,Bill,3963,Ramco Petroleum #2,Cultural Gathering 2024,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,49.88
+2000 Accounts Payable,05/14/2024,Bill,884114,Ransom Brothers Lumber Supply,Tribal Gathering,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,45.85
+2000 Accounts Payable,05/15/2024,Bill Payment (Check),11410,Ramco Petroleum #2,,1032 Cash:Cash- Grants Account,Ramco Petroleum #2,,-731.04
+2000 Accounts Payable,05/15/2024,Bill,122110,Indian Land Capital Company,,-Split-,Indian Land Capital Company,,7039.72
+2000 Accounts Payable,05/15/2024,Bill Payment (Check),4508,Indian Land Capital Company,,1030 Cash:Cash- Tribal- Operations,Indian Land Capital Company,,-7039.72
+2000 Accounts Payable,05/15/2024,Bill Payment (Check),4507,Ramco Petroleum #2,,1030 Cash:Cash- Tribal- Operations,Ramco Petroleum #2,,-26.64
+2000 Accounts Payable,05/15/2024,Bill Payment (Check),1277,Ramco Petroleum #2,,1049 Cash:Cash-Tribal- Youth Acct,Ramco Petroleum #2,,-101.83
+2000 Accounts Payable,05/16/2024,Bill,3964,Ramco Petroleum #2,EPA 106,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,17.64
+2000 Accounts Payable,05/16/2024,Bill Payment (Check),11411,Onpoint Construction Company,,1032 Cash:Cash- Grants Account,Onpoint Construction Company,,-15636
+2000 Accounts Payable,05/20/2024,Bill,5152024,Ransom Pump & Supply,,5503 Repairs & Maintenance:R&M Equipment,Ransom Pump & Supply,,902.99
+2000 Accounts Payable,05/20/2024,Bill,3966,Ramco Petroleum #2,Roads TTP,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,168.4
+2000 Accounts Payable,05/20/2024,Bill,3965,Ramco Petroleum #2,EPA GAP,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,115.24
+2000 Accounts Payable,05/20/2024,Bill Payment (Check),4516,Ransom Pump & Supply,,1030 Cash:Cash- Tribal- Operations,Ransom Pump & Supply,,-902.99
+2000 Accounts Payable,05/21/2024,Bill,884545,Ransom Brothers Lumber Supply,Roads,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,186.33
+2000 Accounts Payable,05/23/2024,Bill,K42116,Ransom Brothers Lumber Supply,Roads,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,63.56
+2000 Accounts Payable,05/23/2024,Bill,7223,Webb Pool & Spa,Chlorine,5751 Water Supplies/Testing,Webb Pool & Spa,,37.7
+2000 Accounts Payable,05/23/2024,Bill,3967,Ramco Petroleum #2,EPA 319,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,81.82
+2000 Accounts Payable,05/24/2024,Bill,3968,Ramco Petroleum #2,Roads TTP,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,168.43
+2000 Accounts Payable,05/25/2024,Bill,3969,Ramco Petroleum #2,Roads TTP,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,89.45
+2000 Accounts Payable,05/25/2024,Bill,884831,Ransom Brothers Lumber Supply,Roads,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,16.8
+2000 Accounts Payable,05/25/2024,Bill,884830,Ransom Brothers Lumber Supply,Tribal Gathering,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,68.92
+2000 Accounts Payable,05/25/2024,Bill,139703,Ransom Brothers Ace,Roads,5399 Supplies/Materials,Ransom Brothers Ace,,22.68
+2000 Accounts Payable,05/25/2024,Bill,3970,Ramco Petroleum #2,Cultural Gathering 2024,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,53.3
+2000 Accounts Payable,05/25/2024,Bill,139702,Ransom Brothers Ace,Tribal Gathering,5399 Supplies/Materials,Ransom Brothers Ace,,94.35
+2000 Accounts Payable,05/27/2024,Bill,139767,Ransom Brothers Ace,Roads,5399 Supplies/Materials,Ransom Brothers Ace,,9.39
+2000 Accounts Payable,05/27/2024,Bill Payment (Check),11443,Ramco Petroleum #2,,1032 Cash:Cash- Grants Account,Ramco Petroleum #2,,-761.15
+2000 Accounts Payable,05/27/2024,Bill,3971,Ramco Petroleum #2,Cultural Gathering 2024,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,55.78
+2000 Accounts Payable,05/27/2024,Bill,3972,Ramco Petroleum #2,Roads TTP,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,165.03
+2000 Accounts Payable,05/28/2024,Bill,3973,Ramco Petroleum #2,EPA 319,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,16.12
+2000 Accounts Payable,05/28/2024,Bill,884895,Ransom Brothers Lumber Supply,EPA 319 Supplies,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,26.93
+2000 Accounts Payable,05/29/2024,Bill Payment (Check),4535,Ransom Brothers Lumber Supply,,1030 Cash:Cash- Tribal- Operations,Ransom Brothers Lumber Supply,,-205.89
+2000 Accounts Payable,05/29/2024,Bill,3974,Ramco Petroleum #2,EPA GAP,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,90
+2000 Accounts Payable,05/29/2024,Bill,139816,Ransom Brothers Ace,Cultural Gathering,5399 Supplies/Materials,Ransom Brothers Ace,,104.56
+2000 Accounts Payable,05/29/2024,Bill Payment (Check),4536,Ransom Brothers Ace,,1030 Cash:Cash- Tribal- Operations,Ransom Brothers Ace,,-333.48
+2000 Accounts Payable,05/29/2024,Bill Payment (Check),4718,Ramco Petroleum #2,,1048 Cash:Cash- EPA,Ramco Petroleum #2,,-615.08
+2000 Accounts Payable,05/29/2024,Bill,884925,Ransom Brothers Lumber Supply,Tribal Gathering,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,91.12
+2000 Accounts Payable,05/29/2024,Bill,139795,Ransom Brothers Ace,Tribal Gathering,5399 Supplies/Materials,Ransom Brothers Ace,,134.57
+2000 Accounts Payable,05/30/2024,Bill,3975,Ramco Petroleum #2,ATTG Honda,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,78.54
+2000 Accounts Payable,05/31/2024,Bill,,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,250.28
+2000 Accounts Payable,05/31/2024,Bill,139882,Ransom Brothers Ace,EPA 106,5399 Supplies/Materials,Ransom Brothers Ace,,19.38
+2000 Accounts Payable,05/31/2024,Bill Payment (Check),4714,Ransom Brothers Ace,,1048 Cash:Cash- EPA,Ransom Brothers Ace,,-57.8
+2000 Accounts Payable,05/31/2024,Bill Payment (Check),4557,Ramco Petroleum #2,,1030 Cash:Cash- Tribal- Operations,Ramco Petroleum #2,,-383.71
+2000 Accounts Payable,05/31/2024,Bill,3977,Ramco Petroleum #2,Cultural Gathering 2024,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,70.04
+2000 Accounts Payable,05/31/2024,Bill,3976,Ramco Petroleum #2,Cultural Gathering 2024,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,103.64
+2000 Accounts Payable,05/31/2024,Bill,885113,Ransom Brothers Lumber Supply,EPA 319 Supplies,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,18.31
+2000 Accounts Payable,06/03/2024,Bill,7276,Webb Pool & Spa,Chlorine,5751 Water Supplies/Testing,Webb Pool & Spa,,37.7
+2000 Accounts Payable,06/03/2024,Bill Payment (Check),11426,Ransom Brothers Ace,,1032 Cash:Cash- Grants Account,Ransom Brothers Ace,,-191.62
+2000 Accounts Payable,06/03/2024,Bill Payment (Check),4713,Ransom Brothers Lumber Supply,,1048 Cash:Cash- EPA,Ransom Brothers Lumber Supply,,-62.47
+2000 Accounts Payable,06/03/2024,Bill Payment (Check),11425,Ransom Brothers Lumber Supply,,1032 Cash:Cash- Grants Account,Ransom Brothers Lumber Supply,,-370.11
+2000 Accounts Payable,06/05/2024,Bill,3978,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,155.5
+2000 Accounts Payable,06/06/2024,Bill,3979,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,105
+2000 Accounts Payable,06/12/2024,Bill,3980,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,75.69
+2000 Accounts Payable,06/21/2024,Bill Payment (Check),11461,Ramco Petroleum #2,,1032 Cash:Cash- Grants Account,Ramco Petroleum #2,,-232.59
+2000 Accounts Payable,06/21/2024,Bill,7393,Webb Pool & Spa,Chlorine,5751 Water Supplies/Testing,Webb Pool & Spa,,37.7
+2000 Accounts Payable,06/21/2024,Bill,3984,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,28.91
+2000 Accounts Payable,06/21/2024,Bill,3982,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,28.06
+2000 Accounts Payable,06/21/2024,Bill,3981,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,89.47
+2000 Accounts Payable,06/21/2024,Bill,3983,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,77.09
+2000 Accounts Payable,06/27/2024,Bill,3985,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,107.07
+2000 Accounts Payable,06/30/2024,Bill,923-7,Marc Anderson,BOR program,5125 Professional Services,Marc Anderson,,975
+2000 Accounts Payable,06/30/2024,Bill,8007675255,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,249.34
+2000 Accounts Payable,06/30/2024,Bill Payment (Check),11482,Onpoint Construction Company,,1032 Cash:Cash- Grants Account,Onpoint Construction Company,,-4251
+2000 Accounts Payable,06/30/2024,Bill,117,Onpoint Construction Company,Tribal Office Remodel,6000 Capital Expenditures,Onpoint Construction Company,,4251
+2000 Accounts Payable,06/30/2024,Bill Payment (Check),11451,Marc Anderson,,1032 Cash:Cash- Grants Account,Marc Anderson,,-975
+2000 Accounts Payable,06/30/2024,Bill,"921-7, 922-7",Marc Anderson,EPA GAP & 106,-Split-,Marc Anderson,,1850
+2000 Accounts Payable,06/30/2024,Bill Payment (Check),4720,Marc Anderson,,1048 Cash:Cash- EPA,Marc Anderson,,-1850
+2000 Accounts Payable,07/08/2024,Bill Payment (Check),11459,Blue Arrow CPA's,,1032 Cash:Cash- Grants Account,Blue Arrow CPA's,,-28335
+2000 Accounts Payable,07/12/2024,Bill Payment (Check),4721,Ramco Petroleum #2,,1048 Cash:Cash- EPA,Ramco Petroleum #2,,-434.2
+2000 Accounts Payable,07/12/2024,Bill,7518,Webb Pool & Spa,Chlorine,5751 Water Supplies/Testing,Webb Pool & Spa,,37.7
+2000 Accounts Payable,07/12/2024,Bill Payment (Check),4733,Carlos Martinez.,,1048 Cash:Cash- EPA,Carlos Martinez.,,-8.61
+2000 Accounts Payable,07/12/2024,Bill,71224,Carlos Martinez.,Reimbursement - Motor Oil,5500 Repairs & Maintenance,Carlos Martinez.,,8.61
+2000 Accounts Payable,07/31/2024,Bill,925-8,Marc Anderson,Professional Services - BOR July 2024,5125 Professional Services,Marc Anderson,,750
+2000 Accounts Payable,07/31/2024,Bill,926-8,Marc Anderson,EPA - GAP July 2024,5125 Professional Services,Marc Anderson,,487.5
+2000 Accounts Payable,07/31/2024,Bill,924-8,Marc Anderson,EPA  GAP July 2024,5125 Professional Services,Marc Anderson,,1776
+2000 Accounts Payable,07/31/2024,Bill Payment (Check),4725,Marc Anderson,,1048 Cash:Cash- EPA,Marc Anderson,,-2263.5
+2000 Accounts Payable,07/31/2024,Bill,8008300823,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,248.4
+2000 Accounts Payable,07/31/2024,Bill,10/09/1901,Blue Arrow CPA's,July Accounting Services Rcd. 11/26/24,5100 Prof Serv -  Audit; Acct,Blue Arrow CPA's,,4170
+2000 Accounts Payable,07/31/2024,Bill,118,Onpoint Construction Company,Tribal Office Remodel,6000 Capital Expenditures,Onpoint Construction Company,,7675
+2000 Accounts Payable,07/31/2024,Bill,8007998141,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,357.63
+2000 Accounts Payable,07/31/2024,Bill Payment (Check),11488,Marc Anderson,,1032 Cash:Cash- Grants Account,Marc Anderson,,-750
+2000 Accounts Payable,07/31/2024,Bill,07/31/2024,Ramco Petroleum #2,"Fuel EPA 106, 319",-Split-,Ramco Petroleum #2,,673.42
+2000 Accounts Payable,08/02/2024,Bill,2901,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,40.99
+2000 Accounts Payable,08/02/2024,Bill,2901,Ramco Petroleum #2,Fuel Cultural,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,41
+2000 Accounts Payable,08/05/2024,Bill,2902,Ramco Petroleum #2,Fuel Cultural,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,82.51
+2000 Accounts Payable,08/06/2024,Bill,2903,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,27.5
+2000 Accounts Payable,08/08/2024,Bill,2904,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,94.13
+2000 Accounts Payable,08/20/2024,Bill,2905,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,98.09
+2000 Accounts Payable,08/20/2024,Bill Payment (Check),4729,Ramco Petroleum #2,,1048 Cash:Cash- EPA,Ramco Petroleum #2,,-673.42
+2000 Accounts Payable,08/20/2024,Bill,2906,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,73.33
+2000 Accounts Payable,08/22/2024,Bill,2907,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,88.58
+2000 Accounts Payable,08/23/2024,Bill,5098,Ramco Petroleum #1,08/23/24 Viejas,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #1,,53.66
+2000 Accounts Payable,08/26/2024,Bill,3765,"Midwest Professonals, P.L.L.C",Audit & Travel 12/31/2023 FYE,5100 Prof Serv -  Audit; Acct,"Midwest Professonals, P.L.L.C",,8944
+2000 Accounts Payable,08/26/2024,Bill,2908,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,30.27
+2000 Accounts Payable,08/26/2024,Bill,5606194,"Diamond Environmental Services, LP",Premier Restroom,5702 Utilities:Trash & Portable Sanitation,"Diamond Environmental Services, LP",,224.29
+2000 Accounts Payable,08/27/2024,Bill Payment (Check),11502,Onpoint Construction Company,,1032 Cash:Cash- Grants Account,Onpoint Construction Company,,-7675
+2000 Accounts Payable,08/27/2024,Bill Payment (Check),11493,"Diamond Environmental Services, LP",,1032 Cash:Cash- Grants Account,"Diamond Environmental Services, LP",,-224.29
+2000 Accounts Payable,08/29/2024,Bill,2910,Ramco Petroleum #2,Fuel,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,94.33
+2000 Accounts Payable,08/29/2024,Bill,82924,Darren Majado,08/29 Roadwork,5125 Professional Services,Darren Majado,,200
+2000 Accounts Payable,08/29/2024,Bill,82924,Francisco Nakai Lopez,08/29/24 Roadwork,5125 Professional Services,Francisco Nakai Lopez,,200
+2000 Accounts Payable,08/31/2024,Bill Payment (Check),4736,Marc Anderson,,1048 Cash:Cash- EPA,Marc Anderson,,-592
+2000 Accounts Payable,08/31/2024,Bill,661,Blue Arrow CPA's,Aug Acct. Svcs. Rcd 11/26/24,5100 Prof Serv -  Audit; Acct,Blue Arrow CPA's,,6690
+2000 Accounts Payable,08/31/2024,Bill,83124,Samuel Luna,08/30 SDGE Monitoring C220 U,-Split-,Samuel Luna,,720
+2000 Accounts Payable,08/31/2024,Bill,83124,Ransom Brothers Lumber Supply,August EPA 319 & GAP,-Split-,Ransom Brothers Lumber Supply,,75.35
+2000 Accounts Payable,08/31/2024,Bill,927-9,Marc Anderson,Professional Svcs - GAP,5125 Professional Services,Marc Anderson,,592
+2000 Accounts Payable,08/31/2024,Bill,928-9,Marc Anderson,Professional Svcs - BOR,5125 Professional Services,Marc Anderson,,112.5
+2000 Accounts Payable,08/31/2024,Bill,8008584893,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,247.46
+2000 Accounts Payable,09/02/2024,Bill,,Ramco Petroleum #2,Cultural Event,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,54.54
+2000 Accounts Payable,09/02/2024,Bill,2911,Ramco Petroleum #2,Cultural Event,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,67.96
+2000 Accounts Payable,09/03/2024,Bill Payment (Check),11504,Darren Majado,,1032 Cash:Cash- Grants Account,Darren Majado,,-200
+2000 Accounts Payable,09/03/2024,Bill Payment (Check),4735,Ransom Brothers Lumber Supply,,1048 Cash:Cash- EPA,Ransom Brothers Lumber Supply,,-75.35
+2000 Accounts Payable,09/03/2024,Bill Payment (Check),11503,Francisco Nakai Lopez,,1032 Cash:Cash- Grants Account,Francisco Nakai Lopez,,-200
+2000 Accounts Payable,09/03/2024,Bill Payment (Check),5033,Samuel Luna,,1035 Cash:Cash - Cultural Account,Samuel Luna,,-720
+2000 Accounts Payable,09/03/2024,Bill Payment (Check),11505,"Midwest Professonals, P.L.L.C",,1032 Cash:Cash- Grants Account,"Midwest Professonals, P.L.L.C",,-8944
+2000 Accounts Payable,09/04/2024,Bill Payment (Check),11507,Marc Anderson,,1032 Cash:Cash- Grants Account,Marc Anderson,,-112.5
+2000 Accounts Payable,09/06/2024,Bill Payment (Check),5036,"Gabriel Kitchen, Jr.",,1035 Cash:Cash - Cultural Account,"Gabriel Kitchen, Jr.",,-780
+2000 Accounts Payable,09/06/2024,Bill,7841,Webb Pool & Spa,Chlorine,5751 Water Supplies/Testing,Webb Pool & Spa,,40.93
+2000 Accounts Payable,09/06/2024,Bill,2912,Ramco Petroleum #2,Fuel ATTG TPA,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,61.56
+2000 Accounts Payable,09/06/2024,Bill,90624,"Gabriel Kitchen, Jr.",SDGE SUG Admin & AC Admin  09/06-09/06,-Split-,"Gabriel Kitchen, Jr.",,780
+2000 Accounts Payable,09/09/2024,Bill,890682,Ransom Brothers Lumber Supply,Supplies,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,135.7
+2000 Accounts Payable,09/10/2024,Bill,23649,HAGUE Quality Water,Water Maintenance GE,5502 Repairs & Maintenance:R&M Buildings & Improvements,HAGUE Quality Water,,734.39
+2000 Accounts Payable,09/10/2024,Bill,2913,Ramco Petroleum #2,Fuel GAP,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,117.81
+2000 Accounts Payable,09/10/2024,Bill,9102024,Edwardo Barron,Alternator Replacement - Wood Truck,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Edwardo Barron,,450
+2000 Accounts Payable,09/11/2024,Bill,2914,Ramco Petroleum #2,TTP Roads,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,243.71
+2000 Accounts Payable,09/13/2024,Bill Payment (Check),5040,Ramco Petroleum #1,,1035 Cash:Cash - Cultural Account,Ramco Petroleum #1,,-53.66
+2000 Accounts Payable,09/13/2024,Bill Payment (Check),11518,Ramco Petroleum #2,,1032 Cash:Cash- Grants Account,Ramco Petroleum #2,,-129.57
+2000 Accounts Payable,09/13/2024,Bill Payment (Check),4738,Ramco Petroleum #2,,1048 Cash:Cash- EPA,Ramco Petroleum #2,,-417.65
+2000 Accounts Payable,09/13/2024,Bill Payment (Check),5047,Ramco Petroleum #2,,1035 Cash:Cash - Cultural Account,Ramco Petroleum #2,,-123.51
+2000 Accounts Payable,09/16/2024,Bill Payment (Check),11515,Edwardo Barron,,1032 Cash:Cash- Grants Account,Edwardo Barron,,-450
+2000 Accounts Payable,09/18/2024,Bill,891209,Ransom Brothers Lumber Supply,Supplies,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,131.64
+2000 Accounts Payable,09/18/2024,Bill,K91426,Ransom Brothers Lumber Supply,Supplies,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,161.52
+2000 Accounts Payable,09/18/2024,Bill,142921,Ransom Brothers Ace,Supplies,5399 Supplies/Materials,Ransom Brothers Ace,,27.99
+2000 Accounts Payable,09/18/2024,Bill,142920,Ransom Brothers Ace,Supplies,5399 Supplies/Materials,Ransom Brothers Ace,,16.77
+2000 Accounts Payable,09/20/2024,Bill,2916,Ramco Petroleum #2,ATTG TPA,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,84.06
+2000 Accounts Payable,09/26/2024,Bill,891691,Ransom Brothers Lumber Supply,Supplies,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,130.88
+2000 Accounts Payable,09/26/2024,Bill,143190,Ransom Brothers Ace,Supplies,5399 Supplies/Materials,Ransom Brothers Ace,,333.27
+2000 Accounts Payable,09/26/2024,Bill,2917,Ramco Petroleum #2,TTP Roads,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,38.17
+2000 Accounts Payable,09/30/2024,Bill,10/22/2024,Procopio,September 2024 Legal Fees,5101 Legal Fees,Procopio,,3377.32
+2000 Accounts Payable,09/30/2024,Bill Payment (Check),11/03/1983,"Big Fire Law & Policy Group, LLP",,-Split-,"Big Fire Law & Policy Group, LLP",,0
+2000 Accounts Payable,09/30/2024,Bill,6507,"Big Fire Law & Policy Group, LLP",September 2024 Legal Services,5101 Legal Fees,"Big Fire Law & Policy Group, LLP",,2220
+2000 Accounts Payable,09/30/2024,Bill,2918,Ramco Petroleum #2,TTP Roads,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,127.71
+2000 Accounts Payable,10/01/2024,Bill Payment (Check),11537,Ransom Brothers Ace,,1032 Cash:Cash- Grants Account,Ransom Brothers Ace,,-378.03
+2000 Accounts Payable,10/01/2024,Bill,930-10,Marc Anderson,Professional Services EPA,-Split-,Marc Anderson,,2035
+2000 Accounts Payable,10/01/2024,Bill Payment (Check),4740,Marc Anderson,,1048 Cash:Cash- EPA,Marc Anderson,,-2035
+2000 Accounts Payable,10/01/2024,Bill,2919,Ramco Petroleum #2,Water Delivery,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,97.94
+2000 Accounts Payable,10/01/2024,Bill Payment (Check),11538,Ransom Brothers Lumber Supply,,1032 Cash:Cash- Grants Account,Ransom Brothers Lumber Supply,,-559.74
+2000 Accounts Payable,10/02/2024,Bill,143334,Ransom Brothers Ace,EPA Keys,5399 Supplies/Materials,Ransom Brothers Ace,,9.02
+2000 Accounts Payable,10/02/2024,Bill Payment (Check),4609,HAGUE Quality Water,,1030 Cash:Cash- Tribal- Operations,HAGUE Quality Water,,-734.39
+2000 Accounts Payable,10/02/2024,Bill,10022024,"Arthur J. Gallagher Risk Mngt Services, LLC",Additional Coverage Polaris & Case,5203 Automobile Expenses:Insurance,"Arthur J. Gallagher Risk Mngt Services, LLC",,56
+2000 Accounts Payable,10/02/2024,Bill,891966,Ransom Brothers Lumber Supply,Roads supplies,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,59.24
+2000 Accounts Payable,10/02/2024,Bill,143333,Ransom Brothers Ace,Supplies Roads,5399 Supplies/Materials,Ransom Brothers Ace,,65.68
+2000 Accounts Payable,10/03/2024,Bill Payment (Check),11551,Blue Arrow CPA's,,1032 Cash:Cash- Grants Account,Blue Arrow CPA's,,-3157.5
+2000 Accounts Payable,10/03/2024,Bill,685,Blue Arrow CPA's,September Professional Fees,5100 Prof Serv -  Audit; Acct,Blue Arrow CPA's,,3157.5
+2000 Accounts Payable,10/04/2024,Bill,2920,Ramco Petroleum #2,Roads,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,265.18
+2000 Accounts Payable,10/08/2024,Bill,892238,Ransom Brothers Lumber Supply,EPA Supplies,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,16.15
+2000 Accounts Payable,10/08/2024,Bill,2921,Ramco Petroleum #2,EPA GAP,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,103.15
+2000 Accounts Payable,10/11/2024,Bill,AR1271684,Advanced Office,Copier Lease,5400 Office Supplies/Office Expenses,Advanced Office,,250
+2000 Accounts Payable,10/15/2024,Bill,2922,Ramco Petroleum #2,Roads,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,162.24
+2000 Accounts Payable,10/15/2024,Bill,2923,Ramco Petroleum #2,EPA GAP,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,67.35
+2000 Accounts Payable,10/15/2024,Bill,145944,Ransom Pump & Supply,Service Call Golden Eagle,5500 Repairs & Maintenance,Ransom Pump & Supply,,150
+2000 Accounts Payable,10/16/2024,Bill,892794,Ransom Brothers Lumber Supply,Roads supplies,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,27.98
+2000 Accounts Payable,10/16/2024,Vendor Credit,892791,Ransom Brothers Lumber Supply,Returned Supplies,5399 Supplies/Materials,Ransom Brothers Lumber Supply,,-78.2
+2000 Accounts Payable,10/16/2024,Bill,2924,Ramco Petroleum #2,Roads,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,121.53
+2000 Accounts Payable,10/18/2024,Bill,2925,Ramco Petroleum #2,Roads,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,184.89
+2000 Accounts Payable,10/18/2024,Bill Payment (Check),4742,Ramco Petroleum #2,,1048 Cash:Cash- EPA,Ramco Petroleum #2,,-117.81
+2000 Accounts Payable,10/18/2024,Bill Payment (Check),5082,Ramco Petroleum #2,,1035 Cash:Cash - Cultural Account,Ramco Petroleum #2,,-122.5
+2000 Accounts Payable,10/18/2024,Bill Payment (Check),11556,Ramco Petroleum #2,,1032 Cash:Cash- Grants Account,Ramco Petroleum #2,,-555.21
+2000 Accounts Payable,10/21/2024,Bill,603,Foley Barrel Company,"15,500 Gal Water Tank - Balance Due",6000 Capital Expenditures,Foley Barrel Company,,18000
+2000 Accounts Payable,10/21/2024,Bill Payment (Check),11557,Foley Barrel Company,,1032 Cash:Cash- Grants Account,Foley Barrel Company,,-18000
+2000 Accounts Payable,10/21/2024,Bill,10212024,Edwardo Barron,Oil Change Dodge Pickup,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Edwardo Barron,,296.63
+2000 Accounts Payable,10/21/2024,Bill,2926,Ramco Petroleum #2,EPA 106,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,107.42
+2000 Accounts Payable,10/22/2024,Bill Payment (Check),4744,Webb Pool & Spa,,1048 Cash:Cash- EPA,Webb Pool & Spa,,-267.13
+2000 Accounts Payable,10/22/2024,Bill,2927,Ramco Petroleum #2,Roads,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,145.92
+2000 Accounts Payable,10/23/2024,Bill Payment (Check),4612,Procopio,,1030 Cash:Cash- Tribal- Operations,Procopio,,-3377.32
+2000 Accounts Payable,10/25/2024,Bill,2928,Ramco Petroleum #2,Roads,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,176.41
+2000 Accounts Payable,10/30/2024,Bill,2929,Ramco Petroleum #2,Roads,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,115.16
+2000 Accounts Payable,10/30/2024,Bill Payment (Check),11564,"Big Fire Law & Policy Group, LLP",,1032 Cash:Cash- Grants Account,"Big Fire Law & Policy Group, LLP",,-2220
+2000 Accounts Payable,10/31/2024,Bill,933-11,Marc Anderson,Prof Svcs BOR,5125 Professional Services,Marc Anderson,,2256.42
+2000 Accounts Payable,10/31/2024,Bill,80088906293,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,122.79
+2000 Accounts Payable,10/31/2024,Bill,932-11,Marc Anderson,Prof Svcs 106,5125 Professional Services,Marc Anderson,,185
+2000 Accounts Payable,10/31/2024,Bill,931-11,Marc Anderson,Prof Svcs EPA GAP,5125 Professional Services,Marc Anderson,,5291
+2000 Accounts Payable,10/31/2024,Bill,119,Onpoint Construction Company,,6000 Capital Expenditures,Onpoint Construction Company,,4968
+2000 Accounts Payable,10/31/2024,Bill,910003,Procopio,Fee to Trust,5101 Legal Fees,Procopio,,1017.5
+2000 Accounts Payable,10/31/2024,Bill,910004,Procopio,Trespass,5101 Legal Fees,Procopio,,0
+2000 Accounts Payable,10/31/2024,Bill,910004,Procopio,Trespass,5101 Legal Fees,Procopio,,12312
+2000 Accounts Payable,10/31/2024,Bill,6631,"Big Fire Law & Policy Group, LLP",Legal Fees Golden Eagle,5101 Legal Fees,"Big Fire Law & Policy Group, LLP",,2072.5
+2000 Accounts Payable,10/31/2024,Bill,706,Blue Arrow CPA's,Professional Accounting Services,5100 Prof Serv -  Audit; Acct,Blue Arrow CPA's,,4140
+2000 Accounts Payable,11/01/2024,Bill Payment (Check),11567,Ransom Brothers Ace,,1032 Cash:Cash- Grants Account,Ransom Brothers Ace,,-65.68
+2000 Accounts Payable,11/01/2024,Bill Payment (Check),4746,Ransom Brothers Ace,,1048 Cash:Cash- EPA,Ransom Brothers Ace,,-9.02
+2000 Accounts Payable,11/01/2024,Bill,8050,Webb Pool & Spa,Chlorine - Water Testing,5751 Water Supplies/Testing,Webb Pool & Spa,,40.93
+2000 Accounts Payable,11/01/2024,Bill,2930,Ramco Petroleum #2,TTP Roads,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,180.75
+2000 Accounts Payable,11/01/2024,Bill Payment (Check),11566,Ransom Brothers Lumber Supply,,1032 Cash:Cash- Grants Account,Ransom Brothers Lumber Supply,,-9.02
+2000 Accounts Payable,11/01/2024,Bill Payment (Check),4745,Ransom Brothers Lumber Supply,,1048 Cash:Cash- EPA,Ransom Brothers Lumber Supply,,-16.15
+2000 Accounts Payable,11/04/2024,Bill,2932,Ramco Petroleum #2,EPA GAP,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,70
+2000 Accounts Payable,11/04/2024,Bill Payment (Check),4750,Edwardo Barron,,1048 Cash:Cash- EPA,Edwardo Barron,,-296.63
+2000 Accounts Payable,11/04/2024,Bill Payment (Check),4748,Marc Anderson,,1048 Cash:Cash- EPA,Marc Anderson,,-7732.42
+2000 Accounts Payable,11/04/2024,Bill,2931,Ramco Petroleum #2,ATTG,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,59.16
+2000 Accounts Payable,11/05/2024,Bill,2933,Ramco Petroleum #2,EPA 106,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,61.6
+2000 Accounts Payable,11/06/2024,Bill,2934,Ramco Petroleum #2,ATTG,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,56.98
+2000 Accounts Payable,11/07/2024,Bill,2935,Ramco Petroleum #2,TNGF Public Works,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,34.2
+2000 Accounts Payable,11/07/2024,Bill,2936,Ramco Petroleum #2,EPA 319,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,117.59
+2000 Accounts Payable,11/08/2024,Bill,286172,Ransom Brothers Lumber Supply,TNFG Tools,5520 Repairs & Maintenance:Small Tools & Non Cap FA,Ransom Brothers Lumber Supply,,66.78
+2000 Accounts Payable,11/08/2024,Bill,894172,Ransom Brothers Lumber Supply,metal cut tools,5520 Repairs & Maintenance:Small Tools & Non Cap FA,Ransom Brothers Lumber Supply,,33.39
+2000 Accounts Payable,11/12/2024,Bill,2937,Ramco Petroleum #2,TNGF Public Works,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,148.58
+2000 Accounts Payable,11/13/2024,Bill Payment (Check),11582,Blue Arrow CPA's,,1032 Cash:Cash- Grants Account,Blue Arrow CPA's,,-4140
+2000 Accounts Payable,11/13/2024,Bill Payment (Check),4615,"Big Fire Law & Policy Group, LLP",,-Split-,"Big Fire Law & Policy Group, LLP",,0
+2000 Accounts Payable,11/13/2024,Bill Payment (Check),11579,Onpoint Construction Company,,1032 Cash:Cash- Grants Account,Onpoint Construction Company,,-4968
+2000 Accounts Payable,11/13/2024,Bill Payment (Check),4614,Procopio,,1030 Cash:Cash- Tribal- Operations,Procopio,,-13329.5
+2000 Accounts Payable,11/14/2024,Bill,2938,Ramco Petroleum #2,TGNF Public Works,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,83.63
+2000 Accounts Payable,11/14/2024,Bill,894536,Ransom Brothers Lumber Supply,brushcutter & small tools,5520 Repairs & Maintenance:Small Tools & Non Cap FA,Ransom Brothers Lumber Supply,,736.07
+2000 Accounts Payable,11/15/2024,Bill Payment (Check),11584,"Big Fire Law & Policy Group, LLP",,1032 Cash:Cash- Grants Account,"Big Fire Law & Policy Group, LLP",,-2072.5
+2000 Accounts Payable,11/15/2024,Bill Payment (Check),4751,Ramco Petroleum #2,,1048 Cash:Cash- EPA,Ramco Petroleum #2,,-277.92
+2000 Accounts Payable,11/15/2024,Bill Payment (Check),11589,Ramco Petroleum #2,,1032 Cash:Cash- Grants Account,Ramco Petroleum #2,,-1269.27
+2000 Accounts Payable,11/19/2024,Bill,2939,Ramco Petroleum #2,EPA 106,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,108.1
+2000 Accounts Payable,11/20/2024,Bill,894828,Ransom Brothers Lumber Supply,Adhesive pro steel,5500 Repairs & Maintenance,Ransom Brothers Lumber Supply,,25.85
+2000 Accounts Payable,11/20/2024,Bill,894908,Ransom Brothers Lumber Supply,chain loop,5520 Repairs & Maintenance:Small Tools & Non Cap FA,Ransom Brothers Lumber Supply,,66.79
+2000 Accounts Payable,11/20/2024,Bill,894907,Ransom Brothers Lumber Supply,chain saw & parts,5520 Repairs & Maintenance:Small Tools & Non Cap FA,Ransom Brothers Lumber Supply,,872.89
+2000 Accounts Payable,11/20/2024,Bill Payment (Check),11602,Ransom Brothers Lumber Supply,,-Split-,Ransom Brothers Lumber Supply,,0
+2000 Accounts Payable,11/20/2024,Bill,894891,Ransom Brothers Lumber Supply,,5500 Repairs & Maintenance,Ransom Brothers Lumber Supply,,35.53
+2000 Accounts Payable,11/22/2024,Bill,2940,Ramco Petroleum #2,TNGF Public Works,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,94.14
+2000 Accounts Payable,11/25/2024,Bill,2941,Ramco Petroleum #2,TNGF Public Works,5202 Automobile Expenses:Fuel Mileage Maint Repair Reg,Ramco Petroleum #2,,49.19
+2000 Accounts Payable,11/26/2024,Bill Payment (Check),11597,Blue Arrow CPA's,,1032 Cash:Cash- Grants Account,Blue Arrow CPA's,,-10860
+2000 Accounts Payable,11/26/2024,Bill,1,All American Drilling and Pump Service,"IHS work completed 10/24 $24,350.00 - Retention $-1217.50",6000 Capital Expenditures,All American Drilling and Pump Service,,23132.5
+2000 Accounts Payable,11/26/2024,Bill Payment (Check),11598,All American Drilling and Pump Service,,1032 Cash:Cash- Grants Account,All American Drilling and Pump Service,,-23132.5
+2000 Accounts Payable,11/26/2024,Bill,895166,Ransom Brothers Lumber Supply,Chainsaw,5500 Repairs & Maintenance,Ransom Brothers Lumber Supply,,538.74
+2000 Accounts Payable,11/26/2024,Bill,895171,Ransom Brothers Lumber Supply,pole runner & bar,5520 Repairs & Maintenance:Small Tools & Non Cap FA,Ransom Brothers Lumber Supply,,921.24
+2000 Accounts Payable,11/26/2024,Bill,AC00104,Cynthia LaChusa,Accounting Services 11262024,5125 Professional Services,Cynthia LaChusa,,140
+2000 Accounts Payable,11/30/2024,Bill,8009185124,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,262.76
+2000 Accounts Payable,11/30/2024,Bill,935-12,Marc Anderson,Professional Services - GAP,5125 Professional Services,Marc Anderson,,4403
+2000 Accounts Payable,11/30/2024,Bill Payment (Check),11606,Marc Anderson,,1032 Cash:Cash- Grants Account,Marc Anderson,,-1350
+2000 Accounts Payable,11/30/2024,Bill,730,Blue Arrow CPA's,Professional Acctg. Svcs - Nov. 2024,5100 Prof Serv -  Audit; Acct,Blue Arrow CPA's,,2557.5
+2000 Accounts Payable,11/30/2024,Bill,12112024-02,All American Drilling and Pump Service,Nov. Work - Black Canyon Ball Pk Well,6000 Capital Expenditures,All American Drilling and Pump Service,,114140.79
+2000 Accounts Payable,11/30/2024,Bill,914333,Procopio,Legal Fees November 2024,5101 Legal Fees,Procopio,,18444
+2000 Accounts Payable,11/30/2024,Bill,936-12,Marc Anderson,Professional Svcs - BOR,5125 Professional Services,Marc Anderson,,1350
+2000 Accounts Payable,11/30/2024,Bill,1562,Cultural Graphics Consulting,Professional Services for November 2024,5125 Professional Services,Cultural Graphics Consulting,,7525.95
+2000 Accounts Payable,12/02/2024,Bill Payment (Check),11604,Ransom Brothers Lumber Supply,,1032 Cash:Cash- Grants Account,Ransom Brothers Lumber Supply,,-1775.92
+2000 Accounts Payable,12/02/2024,Bill Payment (Check),4754,Ransom Brothers Lumber Supply,,1048 Cash:Cash- EPA,Ransom Brothers Lumber Supply,,-1521.36
+2000 Accounts Payable,12/03/2024,Bill Payment (Check),4755,Marc Anderson,,1048 Cash:Cash- EPA,Marc Anderson,,-4403
+2000 Accounts Payable,12/03/2024,Bill,120324,Cynthia LaChusa,Cleaning Tribal Office,5504 Janitorial,Cynthia LaChusa,,100
+2000 Accounts Payable,12/04/2024,Bill,25956,"Terraphase Engineering, Inc.",Phase 1 ESA - Trust Transfer,5125 Professional Services,"Terraphase Engineering, Inc.",,6500
+2000 Accounts Payable,12/04/2024,Bill Payment (Check),11608,Cynthia LaChusa,,1032 Cash:Cash- Grants Account,Cynthia LaChusa,,-240
+2000 Accounts Payable,12/10/2024,Bill Payment (Check),5131,Cultural Graphics Consulting,,1035 Cash:Cash - Cultural Account,Cultural Graphics Consulting,,-7525.95
+2000 Accounts Payable,12/11/2024,Bill Payment (Check),11616,Blue Arrow CPA's,,1032 Cash:Cash- Grants Account,Blue Arrow CPA's,,-2557.5
+2000 Accounts Payable,12/11/2024,Bill Payment (Check),4624,Procopio,,1030 Cash:Cash- Tribal- Operations,Procopio,,-18444
+2000 Accounts Payable,12/12/2024,Bill,578757,All State Propane,Propane - Tribal Office,5701 Utilities:Electricity & Propane,All State Propane,,422.65
+2000 Accounts Payable,12/12/2024,Bill,578679,All State Propane,Propane - Generator Tank,5701 Utilities:Electricity & Propane,All State Propane,,433.35
+2000 Accounts Payable,12/13/2024,Bill Payment (Check),4756,Mesa Grande Band -  Housing Authority,,1048 Cash:Cash- EPA,Mesa Grande Band -  Housing Authority,,-9498.8
+2000 Accounts Payable,12/13/2024,Bill Payment (Check),11620,All State Propane,,1032 Cash:Cash- Grants Account,All State Propane,,-856
+2000 Accounts Payable,12/13/2024,Bill,12132024,Mesa Grande Band -  Housing Authority,Reimbursement for Disposal Services,5702 Utilities:Trash & Portable Sanitation,Mesa Grande Band -  Housing Authority,,9498.8
+2000 Accounts Payable,12/17/2024,Bill Payment (Check),4757,Ramco Petroleum #2,,1048 Cash:Cash- EPA,Ramco Petroleum #2,,-357.29
+2000 Accounts Payable,12/17/2024,Bill Payment (Check),11626,Ramco Petroleum #2,,1032 Cash:Cash- Grants Account,Ramco Petroleum #2,,-706.63
+2000 Accounts Payable,12/18/2024,Bill Payment (Check),11684,"Arthur J. Gallagher Risk Mngt Services, LLC",,1032 Cash:Cash- Grants Account,"Arthur J. Gallagher Risk Mngt Services, LLC",,-27235.87
+2000 Accounts Payable,12/18/2024,Bill,5354371,"Arthur J. Gallagher Risk Mngt Services, LLC","Auto, Commercial & Workers Comp 1st Installment",-Split-,"Arthur J. Gallagher Risk Mngt Services, LLC",,27235.87
+2000 Accounts Payable,12/23/2024,Bill Payment (Check),11631,All American Drilling and Pump Service,,1032 Cash:Cash- Grants Account,All American Drilling and Pump Service,,-114140.79
+2000 Accounts Payable,12/31/2024,Bill,122624&AC00106,Cynthia LaChusa,Cleaning & Accounting Services 12/2024,-Split-,Cynthia LaChusa,,570
+2000 Accounts Payable,12/31/2024,Bill,937-1,Marc Anderson,Professional Svcs Dec 24 EPA GAP,5125 Professional Services,Marc Anderson,,1184
+2000 Accounts Payable,12/31/2024,Bill,744,Blue Arrow CPA's,Professional Accounting Services Dec. 2024,5100 Prof Serv -  Audit; Acct,Blue Arrow CPA's,,5850
+2000 Accounts Payable,12/31/2024,Bill,8009789609,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,263.98
+2000 Accounts Payable,12/31/2024,Bill,8009485765,Stericycle/Shred-it,Shredding,5125 Professional Services,Stericycle/Shred-it,,262.87
+2000 Accounts Payable,12/31/2024,Bill Payment (Check),11633,Marc Anderson,,1032 Cash:Cash- Grants Account,Marc Anderson,,-562.5
+2000 Accounts Payable,12/31/2024,Bill,938-1,Marc Anderson,Professional Svcs. Dec 24,5125 Professional Services,Marc Anderson,,562.5
+2001 Accounts Payable - Tribal,01/01/2024,Journal Entry,JE_AP2023R,,Ap Accrual FY 2023,-Split-,,,-62326.31
+2001 Accounts Payable - Tribal,01/01/2024,Journal Entry,Accrual PR 12302024R,,Paychex,-Split-,,,-790.08
+2109 Check Clearing,11/22/2024,Check,4545,Carlos Lopez,Payroll Check Paychex #4545,1031 Cash:Cash- Payroll,Carlos Lopez,TNGF 2024 - 2025:Public Works,-1710.15
+2109 Check Clearing,11/22/2024,Journal Entry,PR112224,,Manual Checks,-Split-,,TNGF 2024 - 2025:Public Works,4965.34
+2109 Check Clearing,11/22/2024,Check,4546,Samuel Luna,Payroll Check Paychex #4546,1031 Cash:Cash- Payroll,Samuel Luna,TNGF 2024 - 2025:Public Works,-1545.04
+2109 Check Clearing,11/22/2024,Check,4547,Darren Mojado,Payroll Check Paychex #4547,1031 Cash:Cash- Payroll,Darren Mojado,TNGF 2024 - 2025:Public Works,-1710.15
+2109 Check Clearing,12/06/2024,Check,1044,Darren Majado,Replacement Check,1031 Cash:Cash- Payroll,Darren Majado,TNGF 2024 - 2025:Public Works,-1696.54
+2109 Check Clearing,12/06/2024,Check,1042,Samuel Luna,Replacement Check,1031 Cash:Cash- Payroll,Samuel Luna,TNGF 2024 - 2025:Public Works,-1701.79
+2109 Check Clearing,12/06/2024,Journal Entry,Payroll12062024,,1043 Carlos Lopez,-Split-,,,1696.54
+2109 Check Clearing,12/06/2024,Journal Entry,Payroll12062024,,1042 Samuel Luna,-Split-,,,1701.79
+2109 Check Clearing,12/06/2024,Journal Entry,Payroll12062024,,1044 Darren Mojado,-Split-,,,1696.54
+2109 Check Clearing,12/06/2024,Check,1043,Carlos Lopez,Replacement Check,1031 Cash:Cash- Payroll,Carlos Lopez,TNGF 2024 - 2025:Public Works,-1696.54
+2110 Accrued Payroll and Tax,01/01/2024,Journal Entry,Accrual PR 12302024R,,401k,-Split-,,,-357.19
+2110 Accrued Payroll and Tax,01/01/2024,Journal Entry,Accrual PR 12302024R,,Direct Deposit,-Split-,,,-11719.21
+2110 Accrued Payroll and Tax,01/01/2024,Journal Entry,Accrual PR 12302024R,,Payroll Taxes,-Split-,,,-5385.5
+   2201 BIA ATTG,09/30/2024,Journal Entry,GrantPay09/30,,,-Split-,,BIA:BIA - ATTG 25-26-27,3987
+   2202 BIA Roads,09/30/2024,Journal Entry,GrantPay09/30,,,-Split-,,BIA:BIA - Roads 18-19-20,8358.98
+2301 Note Payable - Pinnacle,03/31/2024,Journal Entry,JE SPUse 033124,,Pinnacle Loan,-Split-,,,-125096.03
+2301 Note Payable - Pinnacle,06/18/2024,Expense,L00582745,Pinnacle Bank,,1034 Cash:Cash - Special Use Account,Pinnacle Bank,,-125096.03
+2301 Note Payable - Pinnacle,09/30/2024,Journal Entry,SPUseTransfers09/24,,Pinnacle Bank,-Split-,,,-128304.2
+2301 Note Payable - Pinnacle,12/31/2024,Journal Entry,SPUse123124,,Pinnacle bank - Golden Eagle payment,-Split-,,Tribal General:Golden Eagle Ranch,-128304.2
+2303 Note Payable - ILCC,08/31/2024,Journal Entry,BK1033 -083124,,Ind Land Capital Co 08/12/24 Delgado,-Split-,,,-11048.01
+2303 Note Payable - ILCC,08/31/2024,Journal Entry,BK1033 -083124,,Ind Land Capital Co 08/01/24 Terebessey,-Split-,,,-7039.72
+2303 Note Payable - ILCC,09/30/2024,Journal Entry,CapLoanPmts 09/24,,09/03 IndLandCap Terebessey,-Split-,,,-7039.72
+2303 Note Payable - ILCC,09/30/2024,Journal Entry,CapLoanPmts 09/24,,09/03 IndLandCap Delgado,-Split-,,,-11048.01
+2303 Note Payable - ILCC,10/01/2024,Expense,122694,Indian Land Capital Company,Delgado Loan Payment,1033 Cash:Cash- Tribal- Revenue Share,Indian Land Capital Company,Tribal General:Delgado,-3733.81
+2303 Note Payable - ILCC,11/01/2024,Journal Entry,LnPmt 11012024,,Loan Payment Terrebessy Property,-Split-,,Tribal General:Terebessy,-2644.81
+2303 Note Payable - ILCC,12/02/2024,Journal Entry,Loan120224,,Loan ID: 122110-Terrebessy principle,-Split-,,Tribal General:Terebessy,-2490.17
+2305 Note Payable ILCC-2,01/19/2024,Bill,122694,Indian Land Capital Company,Principal,2000 Accounts Payable,Indian Land Capital Company,Tribal General:Tribal Revenue Share,-4117.9
+2305 Note Payable ILCC-2,02/16/2024,Bill,122694,Indian Land Capital Company,,2000 Accounts Payable,Indian Land Capital Company,Tribal General:Tribal Revenue Share,-2544.27
+2305 Note Payable ILCC-2,03/15/2024,Bill,122694,Indian Land Capital Company,Principal,2000 Accounts Payable,Indian Land Capital Company,,-2560.1
+2305 Note Payable ILCC-2,04/15/2024,Bill,4152024,Indian Land Capital Company,,2000 Accounts Payable,Indian Land Capital Company,Tribal General:Tribal Revenue Share,-4958.77
+2305 Note Payable ILCC-2,04/24/2024,Bill,122110,Indian Land Capital Company,,2000 Accounts Payable,Indian Land Capital Company,Tribal General:Terebessy,-2617.46
+2305 Note Payable ILCC-2,05/15/2024,Bill,122110,Indian Land Capital Company,Terebessy,2000 Accounts Payable,Indian Land Capital Company,Tribal General:Terebessy,-3575.48
+2305 Note Payable ILCC-2,07/01/2024,Journal Entry,IndianLandCap070124,,Terebessy Principal 06/15/24,-Split-,,,-2617.46
+2305 Note Payable ILCC-2,07/01/2024,Journal Entry,IndianLandCap070124,,Delgado Principal 07/01/24,-Split-,,Tribal General:Delgado,-4958.77
+2305 Note Payable ILCC-2,07/01/2024,Journal Entry,IndianLandCap070124,,Delgado Principal 06/15/24,-Split-,,Tribal General:Delgado,-4958.77
+2305 Note Payable ILCC-2,10/01/2024,Expense,122110,Indian Land Capital Company,Terebessy,1033 Cash:Cash- Tribal- Revenue Share,Indian Land Capital Company,Tribal General:Terebessy,-2672.39
+2305 Note Payable ILCC-2,11/01/2024,Journal Entry,LnPmt 11012024,,Loan Payment Delgado Property,-Split-,,Tribal General:Delgado,-3054.2
+2305 Note Payable ILCC-2,12/02/2024,Journal Entry,Loan120224,,Loan ID: 122694-Delgado principle,-Split-,,Tribal General:Delgado,-3072.26

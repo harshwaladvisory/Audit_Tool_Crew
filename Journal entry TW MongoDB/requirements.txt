@@ -1,0 +1,16 @@
+email-validator
+flask
+flask-sqlalchemy
+google-genai
+gunicorn
+numpy
+openpyxl
+pandas
+pdfplumber
+psycopg2-binary
+scikit-learn
+werkzeug
+
+# MongoDB
+pymongo
+python-dotenv

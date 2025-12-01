@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}Aging Analysis - Securities Deposits Analysis{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">
+                <i class="fas fa-clock me-2 text-primary"></i>
+                Aging Analysis
+            </h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <button class="btn btn-primary" onclick="runAgingAnalysis()" data-testid="button-run-analysis">
+                    <i class="fas fa-play me-1"></i> Run Analysis
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Analysis Summary -->
+<div class="row mb-4">
+    <div class="col-lg-4 col-md-6 mb-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title" data-testid="text-total-analyzed">
+                            {{ aging_data.total_deposits if aging_data and aging_data.total_deposits else 0 }}
+                        </h4>
+                        <p class="card-text">Deposits Analyzed</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-search fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 mb-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title" data-testid="text-high-risk">
+                            {% if aging_data and aging_data.risk_distribution %}
+                                {{ (aging_data.risk_distribution.high|default(0)) + (aging_data.risk_distribution.critical|default(0)) }}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </h4>
+                        <p class="card-text">High Risk Items</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-exclamation-triangle fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 mb-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title" data-testid="text-compliant">
+                            {% if aging_data and aging_data.risk_distribution %}
+                                {{ (aging_data.risk_distribution.low|default(0)) + (aging_data.risk_distribution.medium|default(0)) }}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </h4>
+                        <p class="card-text">Low-Medium Risk</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-check-circle fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Aging Buckets Chart -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-chart-bar me-2"></i>Aging Distribution
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if aging_data and aging_data.bucket_summary and aging_data.bucket_summary|length > 0 %}
+                    <canvas id="agingChart" data-testid="chart-aging-distribution" style="max-height: 300px;"></canvas>
+                {% else %}
+                    <div class="text-center text-muted py-5">
+                        <i class="fas fa-chart-bar fa-3x mb-3 d-block"></i>
+                        <p>No aging data available. Run analysis to generate charts.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Risk Distribution Chart -->
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-chart-pie me-2"></i>Risk Distribution
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if aging_data and aging_data.risk_distribution %}
+                    <canvas id="riskChart" data-testid="chart-risk-distribution" style="max-height: 300px;"></canvas>
+                {% else %}
+                    <div class="text-center text-muted py-5">
+                        <i class="fas fa-chart-pie fa-3x mb-3 d-block"></i>
+                        <p>No risk data available. Run analysis to generate charts.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Detailed Results -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="fas fa-list me-2"></i>Detailed Analysis Results
+                </h5>
+                <div class="data-table-controls">
+                    <input type="text" class="form-control form-control-sm search-input" placeholder="Search deposits..." data-testid="input-search-deposits">
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0" data-testid="table-aging-results">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Account Number</th>
+                                <th>Customer Name</th>
+                                <th>Amount</th>
+                                <th>Days Since Maturity</th>
+                                <th>Days Since Activity</th>
+                                <th>Aging Bucket</th>
+                                <th>Risk Level</th>
+                                <th>Compliance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if aging_data and aging_data.detailed_results and aging_data.detailed_results|length > 0 %}
+                                {% for result in aging_data.detailed_results %}
+                                    <tr data-testid="row-deposit-{{ loop.index }}">
+                                        <td>{{ result.account_number }}</td>
+                                        <td>{{ result.customer_name }}</td>
+                                        <td>${{ "%.2f"|format(result.amount) }}</td>
+                                        <td>
+                                            {% if result.days_since_maturity is not none %}
+                                                {{ result.days_since_maturity }} days
+                                            {% else %}
+                                                <span class="text-muted">N/A</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ result.days_since_last_activity or 0 }} days</td>
+                                        <td>
+                                            <span class="aging-bucket aging-{{ result.aging_bucket.replace('-', '').replace('+', '') }}">
+                                                {{ result.aging_bucket }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge risk-{{ result.risk_level }}">
+                                                {{ result.risk_level.title() }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-{{ 'success' if result.compliance_status == 'compliant' else 'warning' if result.compliance_status == 'under-review' else 'danger' }}">
+                                                {{ result.compliance_status.replace('-', ' ').title() }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="8" class="text-center text-muted py-4" data-testid="text-no-data">
+                                        <i class="fas fa-info-circle fa-2x mb-3 d-block"></i>
+                                        No aging analysis data available. 
+                                        <button class="btn btn-link p-0" onclick="runAgingAnalysis()">Run analysis</button> to get started.
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function runAgingAnalysis() {
+    const button = document.querySelector('[data-testid="button-run-analysis"]');
+    button.disabled = true;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Running...';
+    
+    // For now, just reload the page - in a full implementation, this would make an API call
+    setTimeout(() => {
+        window.location.reload();
+    }, 2000);
+}
+
+// Initialize charts if data is available
+document.addEventListener('DOMContentLoaded', function() {
+    {% if aging_data and aging_data.bucket_summary and aging_data.bucket_summary|length > 0 %}
+        const agingData = {{ aging_data.bucket_summary | tojson }};
+        createAgingChart(agingData);
+    {% endif %}
+    
+    {% if aging_data and aging_data.risk_distribution %}
+        const riskData = {{ aging_data.risk_distribution | tojson }};
+        createRiskDistributionChart(riskData);
+    {% endif %}
+});
+</script>
+{% endblock %}

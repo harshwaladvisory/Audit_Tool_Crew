@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}R&M Testwork Agent{% endblock %}</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body style="background: #F7F7FB;">
+    <!-- Main content uses individual page headers -->
+    <main class="container my-4">
+        {% if error_message %}
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-exclamation-triangle fa-3x mb-3" style="color: #413178;"></i>
+                            <h4>Error</h4>
+                            <p class="text-muted">{{ error_message }}</p>
+                            <a href="{{ url_for('web.dashboard') }}" class="btn" style="background: #413178; color: white; border: none; text-decoration: none;">
+                                <i class="fas fa-home me-2"></i>Return to Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            {% block content %}{% endblock %}
+        {% endif %}
+    </main>
+
+    <footer style="background: #F1EEFA; border-top: 1px solid #E9E7F2; padding: 2rem 0; margin-top: 3rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 style="color: #413178; font-weight: 600;">R&M Testwork Agent</h6>
+                    <p class="text-muted small">Automated Repair & Maintenance audit testing platform</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p class="text-muted small">
+                        Built with Flask, SQLAlchemy, and Bootstrap<br>
+                        <i class="fas fa-shield-alt me-1"></i>Audit trail enabled
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

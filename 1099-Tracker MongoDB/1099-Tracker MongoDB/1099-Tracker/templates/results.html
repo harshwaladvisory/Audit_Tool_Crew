@@ -1,0 +1,358 @@
+{% extends "base.html" %}
+
+{% block title %}Classification Results | Vendor Dashboard{% endblock %}
+
+<!-- Vendor Table Macro -->
+{% macro render_vendor_table(vendor_list, table_id) %}
+<div class="table-wrapper">
+    <table class="vendors-table" id="{{ table_id }}">
+        <thead>
+            <tr>
+                <th>Vendor Name</th>
+                <th>SSN/EIN No.</th>
+                <th>Total Paid</th>
+                <th>Transactions</th>
+                <th>Classification</th>
+                <th>1099 Form</th>
+                <th>AI Reasoning</th>
+                <th>Accounts</th>
+                <th>Notes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vendor in vendor_list %}
+            <tr class="vendor-row" data-index="{{ loop.index0 }}" data-vendor-id="{{ vendor.vendor_id }}">
+                <td class="vendor-name">{{ vendor.vendor_name }}</td>
+                <td>{{ vendor.vendor_id or '-' }}</td>
+                <td class="amount">${{ "%.2f"|format(vendor.total_paid) }}</td>
+                <td class="transaction-count">{{ vendor.transaction_count or 1 }}</td>
+                <td class="editable classification" data-field="classification">
+                    {% if vendor.classification %}
+                        <span class="classification-badge classification-{{ vendor.classification|replace(' ', '_')|replace('-', '_')|lower }}">
+                            {{ vendor.classification }}
+                        </span>
+                    {% else %}
+                        <span class="unclassified">Unclassified</span>
+                    {% endif %}
+                </td>
+                <td class="editable form" data-field="form">
+                    {% if vendor.form %}
+                        <span class="form-badge">{{ vendor.form }}</span>
+                    {% else %}
+                        <span class="no-form">-</span>
+                    {% endif %}
+                </td>
+                <td class="editable reason" data-field="reason">
+                    <span class="reason-text">{{ vendor.reason or '-' }}</span>
+                </td>
+                <td class="accounts-cell">{{ vendor.accounts or '-' }}</td>
+                <td class="editable notes" data-field="notes">
+                    <span class="notes-text">{{ vendor.notes or 'Click to add notes' }}</span>
+                </td>
+                <td class="transfer-actions">
+                    {% if vendor.classification == '1099-Eligible' %}
+                        <button class="btn-transfer btn-to-nonreportable" onclick="transferVendor({{ vendor.global_index }}, 'Non-Reportable')" title="Transfer to Non-Reportable">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>To Non-Reportable</span>
+                        </button>
+                    {% elif vendor.classification == 'Non-Reportable' %}
+                        <button class="btn-transfer btn-to-eligible" onclick="transferVendor({{ vendor.global_index }}, '1099-Eligible')" title="Transfer to 1099-Eligible">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>To 1099-Eligible</span>
+                        </button>
+                    {% else %}
+                        <span class="no-transfer">-</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endmacro %}
+
+{% block content %}
+<div class="container">
+    <!-- Results Header -->
+    <div class="results-header">
+        <h1>
+            <i class="fas fa-chart-line"></i>
+            <span>Vendor Classification Dashboard</span>
+        </h1>
+        <p>Complete analysis of your vendor data with AI-powered 2024 IRS 1099 classification.</p>
+        
+        <div class="action-buttons">
+            <button onclick="classifyVendors()" class="btn btn-primary" id="classify-btn">
+                <i class="fas fa-robot"></i>
+                <span>Classify with AI</span>
+            </button>
+            <div class="export-buttons">
+                <a href="{{ url_for('export_data', format_type='csv') }}" class="btn btn-secondary">
+                    <i class="fas fa-file-csv"></i>
+                    <span>Export CSV</span>
+                </a>
+                <a href="{{ url_for('export_data', format_type='excel') }}" class="btn btn-secondary">
+                    <i class="fas fa-file-excel"></i>
+                    <span>Export Excel</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Dashboard -->
+    <section class="dashboard-section">
+        <!-- Overview Stats -->
+        <div class="stats-grid">
+            <div class="stat-card primary">
+                <div class="stat-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number">{{ stats.total_vendors }}</div>
+                    <div class="stat-label">Total Vendors</div>
+                </div>
+            </div>
+            
+            <div class="stat-card success">
+                <div class="stat-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number">${{ "{:,.2f}".format(stats.total_amount) }}</div>
+                    <div class="stat-label">Total Amount Paid</div>
+                </div>
+            </div>
+            
+            <div class="stat-card info">
+                <div class="stat-icon">
+                    <i class="fas fa-receipt"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number">{{ stats.total_transactions }}</div>
+                    <div class="stat-label">Total Transactions</div>
+                </div>
+            </div>
+            
+            <div class="stat-card warning">
+                <div class="stat-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-number">{{ stats.over_600_count }}</div>
+                    <div class="stat-label">Above $600 Threshold</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Breakdown -->
+        <div class="category-breakdown">
+            <h2>
+                <i class="fas fa-chart-pie"></i>
+                <span>1099 Classification Breakdown</span>
+            </h2>
+            <div class="category-cards">
+                <!-- 1099-Eligible Category -->
+                <div class="category-card eligible">
+                    <div class="category-header">
+                        <h3>
+                            <i class="fas fa-check-circle"></i>
+                            <span>1099-Eligible</span>
+                        </h3>
+                        <span class="category-count">{{ stats.categories['1099-Eligible'].count }}</span>
+                    </div>
+                    <div class="category-amount">${{ "{:,.2f}".format(stats.categories['1099-Eligible'].total_amount) }}</div>
+                    <div class="category-percentage">{{ "{:.1f}".format(stats.categories['1099-Eligible'].percentage) }}% of vendors</div>
+                    <div class="category-description">Vendors requiring 1099 forms (NEC/MISC) for IRS reporting</div>
+                </div>
+                
+                <!-- Non-Reportable Category -->
+                <div class="category-card non-reportable">
+                    <div class="category-header">
+                        <h3>
+                            <i class="fas fa-times-circle"></i>
+                            <span>Non-Reportable</span>
+                        </h3>
+                        <span class="category-count">{{ stats.categories['Non-Reportable'].count }}</span>
+                    </div>
+                    <div class="category-amount">${{ "{:,.2f}".format(stats.categories['Non-Reportable'].total_amount) }}</div>
+                    <div class="category-percentage">{{ "{:.1f}".format(stats.categories['Non-Reportable'].percentage) }}% of vendors</div>
+                    <div class="category-description">No 1099 required (corporations, utilities, under $600)</div>
+                </div>
+                
+                <!-- W-9 Required Category -->
+                <div class="category-card w9-required">
+                    <div class="category-header">
+                        <h3>
+                            <i class="fas fa-question-circle"></i>
+                            <span>W-9 Required</span>
+                        </h3>
+                        <span class="category-count">{{ stats.categories['W-9 Required'].count }}</span>
+                    </div>
+                    <div class="category-amount">${{ "{:,.2f}".format(stats.categories['W-9 Required'].total_amount) }}</div>
+                    <div class="category-percentage">{{ "{:.1f}".format(stats.categories['W-9 Required'].percentage) }}% of vendors</div>
+                    <div class="category-description">Need W-9 form to collect tax information for classification</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Type Statistics -->
+        <div class="form-stats">
+            <h3>
+                <i class="fas fa-file-alt"></i>
+                <span>Form Type Distribution</span>
+            </h3>
+            <div class="form-grid">
+                {% for form_type, form_data in stats.forms.items() %}
+                <div class="form-stat">
+                    <div class="form-name">{{ form_type }}</div>
+                    <div class="form-count">{{ form_data.count }} vendors</div>
+                    <div class="form-amount">${{ "{:,.2f}".format(form_data.total_amount) }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Vendor Categories Tabs -->
+    <section class="vendor-categories">
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="showCategory('1099-Eligible', this)">
+                <i class="fas fa-check-circle"></i>
+                <span>1099-Eligible ({{ stats.categories['1099-Eligible'].count }})</span>
+            </button>
+            <button class="tab-btn" onclick="showCategory('Non-Reportable', this)">
+                <i class="fas fa-times-circle"></i>
+                <span>Non-Reportable ({{ stats.categories['Non-Reportable'].count }})</span>
+            </button>
+            <button class="tab-btn" onclick="showCategory('W-9 Required', this)">
+                <i class="fas fa-question-circle"></i>
+                <span>W-9 Required ({{ stats.categories['W-9 Required'].count }})</span>
+            </button>
+            <button class="tab-btn" onclick="showCategory('All', this)">
+                <i class="fas fa-list"></i>
+                <span>All Vendors ({{ stats.total_vendors }})</span>
+            </button>
+        </div>
+
+        <!-- 1099-Eligible Vendors -->
+        <div id="category-1099-Eligible" class="category-content active">
+            <div class="category-info eligible">
+                <h3>
+                    <i class="fas fa-info-circle"></i>
+                    <span>1099-Eligible Vendors</span>
+                </h3>
+                <p>
+                    These vendors require 1099 forms to be filed with the IRS. 
+                    Total reportable amount: <strong>${{ "{:,.2f}".format(stats.categories['1099-Eligible'].total_amount) }}</strong>
+                </p>
+            </div>
+            <div class="table-container">
+                {% if vendor_categories['1099-Eligible'] %}
+                    {{ render_vendor_table(vendor_categories['1099-Eligible'], '1099-eligible') }}
+                {% else %}
+                    <div class="empty-category">
+                        <i class="fas fa-check-circle"></i>
+                        <h4>No 1099-Eligible Vendors Found</h4>
+                        <p>All vendors are either non-reportable or need W-9 classification.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Non-Reportable Vendors -->
+        <div id="category-Non-Reportable" class="category-content">
+            <div class="category-info non-reportable">
+                <h3>
+                    <i class="fas fa-info-circle"></i>
+                    <span>Non-Reportable Vendors</span>
+                </h3>
+                <p>
+                    These vendors do not require 1099 forms (corporations, utilities, payments under $600, etc.). 
+                    Total amount: <strong>${{ "{:,.2f}".format(stats.categories['Non-Reportable'].total_amount) }}</strong>
+                </p>
+            </div>
+            <div class="table-container">
+                {% if vendor_categories['Non-Reportable'] %}
+                    {{ render_vendor_table(vendor_categories['Non-Reportable'], 'non-reportable') }}
+                {% else %}
+                    <div class="empty-category">
+                        <i class="fas fa-times-circle"></i>
+                        <h4>No Non-Reportable Vendors Found</h4>
+                        <p>All vendors require further classification or 1099 filing.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- W-9 Required Vendors -->
+        <div id="category-W-9 Required" class="category-content">
+            <div class="category-info w9-required">
+                <h3>
+                    <i class="fas fa-info-circle"></i>
+                    <span>W-9 Required Vendors</span>
+                </h3>
+                <p>
+                    These vendors need W-9 forms to collect tax information for proper classification. 
+                    Total amount: <strong>${{ "{:,.2f}".format(stats.categories['W-9 Required'].total_amount) }}</strong>
+                </p>
+            </div>
+            <div class="table-container">
+                {% if vendor_categories['W-9 Required'] %}
+                    {{ render_vendor_table(vendor_categories['W-9 Required'], 'w9-required') }}
+                {% else %}
+                    <div class="empty-category">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>No W-9 Required Vendors Found</h4>
+                        <p>All vendors have been properly classified with available information.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- All Vendors -->
+        <div id="category-All" class="category-content">
+            <div class="category-info all">
+                <h3>
+                    <i class="fas fa-info-circle"></i>
+                    <span>All Vendors</span>
+                </h3>
+                <p>
+                    Complete list of all {{ stats.total_vendors }} vendors. 
+                    Classified: <strong>{{ stats.classified_count }}</strong>, 
+                    Unclassified: <strong>{{ stats.unclassified_count }}</strong>
+                </p>
+            </div>
+            <div class="table-container">
+                {{ render_vendor_table(vendors, 'all-vendors') }}
+            </div>
+        </div>
+    </section>
+
+    <!-- Empty State (if no vendors) -->
+    {% if not vendors %}
+    <div class="empty-state">
+        <i class="fas fa-file-upload"></i>
+        <h3>No vendor data available</h3>
+        <p>Please upload a vendor data file to get started with classification.</p>
+        <a href="{{ url_for('index') }}" class="btn btn-primary">
+            <i class="fas fa-upload"></i>
+            <span>Upload File</span>
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Loading Modal -->
+<div id="loading-modal" class="modal">
+    <div class="modal-content">
+        <div class="loading-spinner"></div>
+        <h3>Processing Vendors with AI</h3>
+        <p>Analyzing vendors using 2024 IRS 1099 rules. This may take a few moments...</p>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-text" id="progress-text">0% complete</div>
+    </div>
+</div>
+{% endblock %}

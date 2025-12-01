@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload - Securities Deposits Analysis</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Logo Ribbon -->
+    <div class="top-logo-ribbon">
+        <div class="container-fluid">
+            <div class="ribbon-content">
+                <!-- Company Logo - Left Side -->
+                <div class="company-logo">
+                    <img src="{{ url_for('static', filename='images/Logo_.png') }}" alt="Company Logo" class="logo-img">
+                </div>
+                
+                <!-- Project Logo - Right Side -->
+                <div class="project-logo">
+                    <img src="{{ url_for('static', filename='images/Coverlogo.png') }}" alt="Project Logo" class="project-logo-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-chart-line me-2"></i>Securities Deposits Analysis
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-tachometer-alt me-1"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/file-upload"><i class="fas fa-upload me-1"></i> File Upload</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/deposits-analysis"><i class="fas fa-table me-1"></i> Deposits</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-chart-bar me-1"></i> Analysis
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/aging-analysis">
+                                <i class="fas fa-clock me-1"></i> Aging Analysis
+                            </a></li>
+                            <li><a class="dropdown-item" href="/interest-accrual">
+                                <i class="fas fa-percentage me-1"></i> Interest Accrual
+                            </a></li>
+                            <li><a class="dropdown-item" href="/unclaimed-deposits">
+                                <i class="fas fa-exclamation-triangle me-1"></i> Unclaimed Deposits
+                            </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/audit-program"><i class="fas fa-clipboard-list me-1"></i> Audit Program</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reports"><i class="fas fa-file-alt me-1"></i> Reports</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">
+                            <i class="fas fa-cloud-upload-alt me-2"></i>Upload Securities Deposits File
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Upload Area -->
+                        <div id="uploadArea" class="upload-area">
+                            <i class="fas fa-cloud-upload-alt fa-4x text-primary mb-3"></i>
+                            <h5>Drag & Drop your file here</h5>
+                            <p class="text-muted mb-3">or</p>
+                            <button id="browseBtn" class="btn btn-primary btn-lg">
+                                <i class="fas fa-folder-open me-2"></i>Browse Files
+                            </button>
+                            <input type="file" id="fileInput" class="d-none" accept=".xlsx,.xls,.csv,.pdf">
+                            <p class="text-muted mt-3 mb-0">
+                                <small>Supported formats: Excel (.xlsx, .xls), CSV (.csv), PDF (.pdf) - Max 16MB</small>
+                            </p>
+                        </div>
+
+                        <!-- Selected Files List -->
+                        <div id="fileList" class="mt-4"></div>
+
+                        <!-- Upload Button -->
+                        <div class="text-center mt-4">
+                            <button id="uploadBtn" class="btn btn-success btn-lg" disabled>
+                                <i class="fas fa-upload me-2"></i>Upload & Process
+                            </button>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div id="progressContainer" class="progress-container">
+                            <div class="progress" style="height: 30px;">
+                                <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" 
+                                     role="progressbar" style="width: 0%">
+                                    <span id="progressText">Uploading...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Format Requirements -->
+                <div class="card shadow mt-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-info-circle me-2"></i>File Format Requirements
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-primary">Required Columns</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Account Number</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Customer Name</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Deposit Type</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Amount</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Deposit Date</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-secondary">Optional Columns</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-circle text-muted me-2" style="font-size: 0.5em;"></i>Interest Rate</li>
+                                    <li><i class="fas fa-circle text-muted me-2" style="font-size: 0.5em;"></i>Maturity Date</li>
+                                    <li><i class="fas fa-circle text-muted me-2" style="font-size: 0.5em;"></i>Last Activity Date</li>
+                                    <li><i class="fas fa-circle text-muted me-2" style="font-size: 0.5em;"></i>Branch Code</li>
+                                    <li><i class="fas fa-circle text-muted me-2" style="font-size: 0.5em;"></i>Product Code</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="alert alert-info mt-3 mb-0">
+                            <i class="fas fa-lightbulb me-2"></i>
+                            <strong>Tip:</strong> The system automatically maps various column name variations. 
+                            For example, "Account No", "Acct Number", "Certificate No" all work for Account Number.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light border-top mt-5">
+        <div class="container-fluid py-3">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <small class="text-muted">
+                        © 2025 Securities Deposits Analysis AI Agent
+                    </small>
+                </div>
+                <div class="col-md-6 text-end">
+                    <small class="text-muted">
+                        Powered by AI-driven Financial Analysis
+                    </small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

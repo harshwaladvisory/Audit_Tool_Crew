@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capital Addition Sampling & Testwork Agent</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Modern Header with Logos -->
+    <nav class="navbar navbar-expand-lg navbar-modern shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <!-- Brand Logo (Left) -->
+                <div class="header-logo">
+                    <img src="{{ url_for('static', filename='harshwal.png') }}" alt="Harshwal Logo">
+                </div>
+                
+                <!-- Text Content -->
+                <!-- <div class="ms-3">
+                    <div class="brand-title">CapEx Analyzer</div>
+                    <div class="brand-subtitle">Capital Addition Sampling & Testwork Agent</div>
+                </div> -->
+            </a>
+            
+            <!-- Right Side: Tool Logo + Actions -->
+            <div class="d-flex align-items-center">
+
+                <a href="{{ url_for('view_history') }}" class="btn btn-outline-brand me-4">
+                    <i class="fas fa-history me-2"></i>
+                    <span>History</span>
+                </a>
+
+                <!-- Tool Logo (Right) -->
+                <div class="header-logo header-logo--right me-4">
+                    <img src="{{ url_for('static', filename='tool.png') }}" alt="Tool Logo">
+                </div>
+                
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <!-- Flash Messages (PRESERVED) -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show modern-alert"
+            role="alert">
+            <i class="fas fa-{{ 'exclamation-triangle' if category == 'error' else 'check-circle' }} me-2"></i>
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- Welcome Section -->
+        <div class="welcome-header mb-4">
+            <h1 class="welcome-title">Dashboard</h1>
+            <p class="welcome-subtitle">Upload your data files and run comprehensive capital expenditure analysis</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Upload Section (PRESERVED FORM) -->
+            <div class="col-lg-6">
+                <div class="card modern-card h-100">
+                    <div class="card-header modern-card-header">
+                        <div class="d-flex align-items-center">
+                            <div class="header-icon">
+                                <i class="fas fa-upload"></i>
+                            </div>
+                            <h5 class="card-title mb-0 ms-3">File Upload</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- PRESERVED: Original form with all IDs and names -->
+                        <form id="uploadForm" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="files" class="form-label fw-semibold">
+                                    Upload Data Files
+                                    <span class="badge bg-light text-dark ms-2">CSV, Excel, PDF, TXT</span>
+                                </label>
+                                <input class="form-control form-control-modern" type="file" id="files" name="files[]" multiple
+                                    accept=".csv,.xlsx,.xls,.pdf,.txt">
+                                <div class="form-text">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    Upload General Ledger, Trial Balance, Capitalization Policy, and other supporting documents
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-brand w-100">
+                                <i class="fas fa-upload me-2"></i>
+                                Upload Files
+                            </button>
+                        </form>
+
+                        <!-- PRESERVED: Uploaded files list with delete functionality -->
+                        {% if uploaded_files %}
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="mb-0 text-muted">Uploaded Files</h6>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="clearAllFiles()">
+                                    <i class="fas fa-broom me-1"></i>
+                                    Clear All
+                                </button>
+                            </div>
+                            <div class="uploaded-files-list">
+                                {% for file in uploaded_files %}
+                                <div class="uploaded-file-item">
+                                    <div class="d-flex align-items-center flex-grow-1 min-width-0">
+                                        <div class="file-icon">
+                                            <i class="fas fa-file"></i>
+                                        </div>
+                                        <div class="file-details">
+                                            <div class="file-name">{{ file.original_filename or file.filename }}</div>
+                                            {% if file.uploaded_on %}
+                                            <small class="text-muted">{{ file.uploaded_on.strftime('%Y-%m-%d %H:%M') }}</small>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-danger" type="button" onclick="deleteFile('{{ file.filename }}')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Parameters (PRESERVED FORM) -->
+            <div class="col-lg-6">
+                <div class="card modern-card h-100">
+                    <div class="card-header modern-card-header">
+                        <div class="d-flex align-items-center">
+                            <div class="header-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h5 class="card-title mb-0 ms-3">Analysis Parameters</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- PRESERVED: Original form with all IDs and names -->
+                        <form id="analysisForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="cap_threshold" class="form-label fw-semibold">
+                                        Capitalization Threshold ($)
+                                    </label>
+                                    <input type="number" class="form-control form-control-modern" id="cap_threshold"
+                                        name="cap_threshold" value="500" min="0" step="0.01">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="isi_level" class="form-label fw-semibold">
+                                        ISI Level ($)
+                                    </label>
+                                    <input type="number" class="form-control form-control-modern" id="isi_level" name="isi_level"
+                                        value="10000" min="0" step="0.01">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="coverage_target" class="form-label fw-semibold">
+                                        Coverage Target (%)
+                                    </label>
+                                    <input type="number" class="form-control form-control-modern" id="coverage_target"
+                                        name="coverage_target" value="75" min="1" max="100" step="1">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="materiality" class="form-label fw-semibold">
+                                        Materiality ($)
+                                    </label>
+                                    <input type="number" class="form-control form-control-modern" id="materiality" name="materiality"
+                                        value="50000" min="0" step="0.01">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success-modern w-100 mt-4" id="analyzeBtn">
+                                <i class="fas fa-play me-2"></i>
+                                Run Analysis
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRESERVED: Results Section (populated by JavaScript) -->
+        <div class="row mt-4" id="resultsSection" style="display: none;">
+            <div class="col-12">
+                <div class="card modern-card">
+                    <div class="card-header modern-card-header">
+                        <div class="d-flex align-items-center">
+                            <div class="header-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h5 class="card-title mb-0 ms-3">Analysis Results</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- PRESERVED: Results populated by script.js -->
+                        <div id="resultsContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRESERVED: Output Files Section -->
+        {% if output_files %}
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card modern-card">
+                    <div class="card-header modern-card-header">
+                        <div class="d-flex align-items-center">
+                            <div class="header-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <h5 class="card-title mb-0 ms-3">Generated Reports</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-modern">
+                            {% for file in output_files %}
+                            <a href="{{ url_for('download_file', filename=file) }}"
+                                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                <span>
+                                    <i class="fas fa-{{ 'file-excel' if file.endswith('.xlsx') else 'file-text' }} me-2 text-success"></i>
+                                    {{ file }}
+                                </span>
+                                <span class="badge bg-brand rounded-pill">Download</span>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer class="footer-modern mt-5">
+        <div class="container text-center py-4">
+            <small class="text-muted">
+                Capital Addition Sampling & Testwork Agent - Professional Audit Tool
+            </small>
+        </div>
+    </footer>
+
+    <!-- PRESERVED: All original scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

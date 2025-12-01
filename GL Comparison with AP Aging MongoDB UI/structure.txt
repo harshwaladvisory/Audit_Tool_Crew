@@ -1,0 +1,18 @@
+GL-COMPARISON-WITH-AP-AG.../
+│
+├── attached_assets/                # Reference or resource files (images, templates, etc.)
+│
+├── static/                         # Frontend static assets (CSS, JS)
+│   └── style.css
+│
+├── templates/                      # Flask HTML templates
+│   └── index.html
+│
+├── uploads/                        # Directory for uploaded files (e.g., Excel, CSV)
+│
+├── test file                       # Temporary or miscellaneous test resource                        # Replit environment configuration
+│
+├── app.py                          # Main Flask application entry point
+├── init_mongodb.py                 # MongoDB initialization / configuration module (new)
+├── structure.txt                   # Text record of folder structure or documentation
+

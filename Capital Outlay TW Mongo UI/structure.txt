@@ -1,0 +1,34 @@
+CAPITAL-OUTLAY-TW-MONGO/
+│
+├── __pycache__/                    # Compiled Python bytecode
+│
+├── .local/                         # Local environment or configuration files
+│
+├── attached_assets/                # Possibly contains static attachments (uploads, references, or external data)
+│
+├── static/                         # Frontend static assets
+│   ├── script.js                   # JavaScript for client-side logic
+│   └── style.css                   # Styling for the web interface
+│
+├── templates/                      # HTML templates for Flask views
+│   ├── history.html                # Displays previous records or transaction logs
+│   ├── index.html                  # Main upload/input form page
+│   └── results.html                # Page showing processed results or analysis
+│
+├── uploads/                        # Directory for user-uploaded files
+│
+├── venv/                           # Virtual environment for dependencies
+│
+├── app.py                          # Main Flask application entry point
+│
+├── capex_analyzer.py               # Custom module for CapEx (Capital Expenditure) analysis logic
+│
+├── gemini_integration.py           # Custom integration module for Gemini (likely API or AI model integration)
+│
+├── main.py                         # Orchestrator script; possibly initializes app or batch processes
+│
+├── setup_db.py                     # Script for setting up MongoDB collections and indexes
+│
+├── structure.txt                   # Text file describing or defining project or database schema
+│
+└── requirements.txt                # Python dependency list

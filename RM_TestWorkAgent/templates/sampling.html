@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sampling - {{ run.name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="/static/css/app.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Ribbon with Both Logos -->
+    <div class="header-ribbon">
+        <div class="logo-container">
+            <img src="/static/images/Logo_.png" alt="Company Logo" class="company-logo">
+            <img src="/static/images/Coverlogo.png" alt="R&M TestWork Agent" class="project-logo">
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid" style="padding: 0 2rem;">
+            <a class="navbar-brand" href="/" style="color: white;">
+                <i class="bi bi-clipboard-data"></i> Sampling
+            </a>
+            <a href="/runs/{{ run.id }}" class="btn btn-sm" style="background: rgba(255,255,255,0.2); border: none; color: white; text-decoration: none;">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+        </div>
+    </nav>
+
+    <div class="container-fluid" style="padding: 2rem;">
+        <!-- Page Title -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 style="color: #413178; font-weight: 600; font-size: 1.5rem;">
+                    <i class="bi bi-collection"></i> Sampling - {{ run.name }}
+                </h2>
+            </div>
+        </div>
+
+        <!-- Main Card -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="background: #FFFFFF; border: 1px solid #E9E7F2; border-radius: 16px; box-shadow: 0 2px 8px rgba(65, 49, 120, 0.08); overflow: hidden; padding: 0;">
+                    <div style="background: #413178; color: white; padding: 1rem 1.5rem;">
+                        <h5 class="mb-0" style="font-weight: 600;"><i class="bi bi-gear"></i> Generate Samples</h5>
+                    </div>
+                    <div style="padding: 2rem;">
+                        <p style="color: #413178; margin-bottom: 1.5rem;">Click the button below to generate stratified samples based on materiality thresholds.</p>
+                        <button class="btn" style="background: #413178; color: white; border: none; font-weight: 600; padding: 12px 24px;" onclick="generateSamples()">
+                            <i class="bi bi-gear"></i> Generate Samples
+                        </button>
+                        <div id="message" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card" style="background: #F1EEFA; border: 1px solid #E9E7F2; border-radius: 16px; border-left: 4px solid #413178; padding: 1.5rem;">
+                    <h6 style="color: #413178; font-weight: 600; margin-bottom: 1rem;"><i class="bi bi-info-circle"></i> Sampling Information</h6>
+                    <ul style="color: #413178; margin-bottom: 0; line-height: 1.8;">
+                        <li><strong>Stratified Sampling:</strong> Samples are generated based on amount bands</li>
+                        <li><strong>Risk-Based:</strong> Higher value transactions are given priority</li>
+                        <li><strong>Materiality Threshold:</strong> Based on configured materiality levels</li>
+                        <li><strong>Random Selection:</strong> Random sampling within each stratum</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function generateSamples() {
+            const btn = event.target;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Generating...';
+            
+            fetch('/api/runs/{{ run.id }}/generate-samples', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('message').innerHTML = 
+                            '<div class="alert" style="background: #E5DFF7; color: #342961; border-left: 4px solid #413178; border-radius: 8px;"><i class="bi bi-check-circle"></i> <strong>Success!</strong> Samples generated successfully!</div>';
+                        setTimeout(() => location.reload(), 1500);
+                    } else {
+                        document.getElementById('message').innerHTML = 
+                            '<div class="alert" style="background: #F1EEFA; color: #342961; border-left: 4px solid #342961; border-radius: 8px;"><i class="bi bi-exclamation-triangle"></i> <strong>Error:</strong> ' + data.error + '</div>';
+                        btn.disabled = false;
+                        btn.innerHTML = '<i class="bi bi-gear"></i> Generate Samples';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('message').innerHTML = 
+                        '<div class="alert" style="background: #F1EEFA; color: #342961; border-left: 4px solid #342961; border-radius: 8px;"><i class="bi bi-exclamation-triangle"></i> <strong>Error:</strong> ' + error.message + '</div>';
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="bi bi-gear"></i> Generate Samples';
+                });
+        }
+    </script>
+</body>
+</html>

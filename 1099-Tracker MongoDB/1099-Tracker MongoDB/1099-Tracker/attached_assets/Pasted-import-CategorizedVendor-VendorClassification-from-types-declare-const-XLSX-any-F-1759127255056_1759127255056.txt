@@ -1,0 +1,72 @@
+import { CategorizedVendor, VendorClassification } from '../types';
+
+declare const XLSX: any; // From script tag in index.html
+
+const HEADERS = [
+    'Vendor Name',
+    'Vendor ID/Tax ID',
+    'Total Paid',
+    'Classification',
+    'Likely 1099 Form',
+    'AI Reason',
+    'Accounts',
+    'Manual Notes'
+];
+
+const vendorToRow = (vendor: CategorizedVendor): (string | number | null)[] => [
+    vendor.vendorName,
+    vendor.vendorId || '',
+    vendor.totalPaid,
+    vendor.classification,
+    vendor.form,
+    vendor.reason,
+    vendor.accounts.join(', '),
+    vendor.notes
+];
+
+
+export const exportToCsv = (vendors: CategorizedVendor[], fileName: string) => {
+    const csvContent = [
+        HEADERS.join(','),
+        ...vendors.map(v => vendorToRow(v)
+            .map(val => (typeof val === 'string' && val.includes(',')) ? `"${val}"` : val)
+            .join(',')
+        )
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    if (link.href) {
+        URL.revokeObjectURL(link.href);
+    }
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', fileName);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
+
+
+export const exportToExcel = (vendorGroups: { [key in VendorClassification]: CategorizedVendor[] }, fileName: string) => {
+    const wb = XLSX.utils.book_new();
+
+    Object.entries(vendorGroups).forEach(([classification, vendors]) => {
+        if (vendors.length > 0) {
+            const wsData = [
+                HEADERS,
+                ...vendors.map(vendorToRow)
+            ];
+            const ws = XLSX.utils.aoa_to_sheet(wsData);
+            
+            // Auto-fit columns
+            const colWidths = HEADERS.map((h, i) => ({
+                wch: Math.max(h.length, ...wsData.slice(1).map(row => (row[i] || '').toString().length)) + 2
+            }));
+            ws['!cols'] = colWidths;
+            
+            XLSX.utils.book_append_sheet(wb, ws, classification.replace(/ /g, '_'));
+        }
+    });
+
+    XLSX.writeFile(wb, fileName);
+};
