@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+
+{% block title %}Statistics - Accufund Formatter{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header">
+    <h1>
+        <i class="fas fa-chart-line"></i>
+        Statistics Dashboard
+    </h1>
+    <a href="/" class="btn btn-primary">
+        <i class="fas fa-upload"></i>
+        Upload New File
+    </a>
+</div>
+
+<!-- Main Statistics at TOP -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-info">
+            <div class="stat-label">Total Files</div>
+            <div class="stat-value">{{ stats.total_files }}</div>
+            <div class="stat-desc">
+                <i class="fas fa-file"></i>
+                All files uploaded
+            </div>
+        </div>
+        <div class="stat-icon-wrapper">
+            <i class="fas fa-folder"></i>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-info">
+            <div class="stat-label">Processed</div>
+            <div class="stat-value">{{ stats.processed }}</div>
+            <div class="stat-desc">
+                <i class="fas fa-check-circle"></i>
+                Successfully completed
+            </div>
+        </div>
+        <div class="stat-icon-wrapper">
+            <i class="fas fa-file-circle-check"></i>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-info">
+            <div class="stat-label">Failed</div>
+            <div class="stat-value">{{ stats.failed }}</div>
+            <div class="stat-desc">
+                <i class="fas fa-times-circle"></i>
+                Processing errors
+            </div>
+        </div>
+        <div class="stat-icon-wrapper">
+            <i class="fas fa-times-circle"></i>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-info">
+            <div class="stat-label">Total Downloads</div>
+            <div class="stat-value">{{ stats.total_downloads }}</div>
+            <div class="stat-desc">
+                <i class="fas fa-download"></i>
+                Files downloaded
+            </div>
+        </div>
+        <div class="stat-icon-wrapper">
+            <i class="fas fa-cloud-download-alt"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Success Rate -->
+<div class="content-section">
+    <div class="section-header">
+        <h2 class="section-title">
+            <i class="fas fa-chart-pie"></i>
+            Success Rate
+        </h2>
+    </div>
+
+    {% set success_rate = (stats.processed / stats.total_files * 100) if stats.total_files > 0 else 0 %}
+    
+    <div style="display: flex; align-items: center; gap: 40px;">
+        <div style="flex: 1;">
+            <div style="background: #e9ecef; border-radius: 50px; height: 24px; overflow: hidden;">
+                <div style="background: linear-gradient(90deg, #413178 0%, #5a4699 100%); height: 100%; width: {{ success_rate }}%; transition: width 1s ease;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 8px; color: #6c757d; font-size: 13px;">
+                <span>0%</span>
+                <span style="font-weight: 600; color: #413178;">{{ '%.1f'|format(success_rate) }}%</span>
+                <span>100%</span>
+            </div>
+        </div>
+        <div style="text-align: center; min-width: 150px;">
+            <div style="font-size: 42px; font-weight: 700; color: #413178;">
+                {{ '%.1f'|format(success_rate) }}%
+            </div>
+            <div style="color: #6c757d; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;">Success Rate</div>
+        </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px;">
+        <div style="text-align: center; padding: 16px; background: #f8f9fa; border-radius: 6px;">
+            <div style="color: #413178; font-size: 28px; font-weight: 700;">{{ stats.processed }}</div>
+            <div style="color: #6c757d; font-size: 12px; text-transform: uppercase; margin-top: 4px;">Successful</div>
+        </div>
+        <div style="text-align: center; padding: 16px; background: #f8f9fa; border-radius: 6px;">
+            <div style="color: #413178; font-size: 28px; font-weight: 700;">{{ stats.failed }}</div>
+            <div style="color: #6c757d; font-size: 12px; text-transform: uppercase; margin-top: 4px;">Failed</div>
+        </div>
+        <div style="text-align: center; padding: 16px; background: #f8f9fa; border-radius: 6px;">
+            <div style="color: #413178; font-size: 28px; font-weight: 700;">{{ stats.total_files }}</div>
+            <div style="color: #6c757d; font-size: 12px; text-transform: uppercase; margin-top: 4px;">Total</div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activity -->
+<div class="content-section" style="padding: 0;">
+    <div class="section-header" style="padding: 28px 28px 0;">
+        <h2 class="section-title">
+            <i class="fas fa-clock-rotate-left"></i>
+            Recent Processing Logs
+        </h2>
+    </div>
+
+    {% if stats.recent_logs %}
+    <div class="data-table-wrapper" style="border-radius: 0; box-shadow: none;">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th><i class="fas fa-file"></i> File Name</th>
+                    <th><i class="fas fa-calendar"></i> Timestamp</th>
+                    <th><i class="fas fa-info-circle"></i> Status</th>
+                    <th><i class="fas fa-list-ol"></i> Rows Processed</th>
+                    <th><i class="fas fa-trash"></i> Rows Removed</th>
+                    <th><i class="fas fa-message"></i> Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in stats.recent_logs %}
+                <tr>
+                    <td>
+                        <i class="fas fa-file-excel" style="color: #413178; margin-right: 8px;"></i>
+                        {{ log.original_filename }}
+                    </td>
+                    <td>{{ log.timestamp.strftime('%m/%d/%Y, %I:%M:%S %p') if log.timestamp else 'N/A' }}</td>
+                    <td>
+                        {% if log.success %}
+                            <span class="badge badge-success">
+                                <i class="fas fa-check-circle"></i> Success
+                            </span>
+                        {% else %}
+                            <span class="badge badge-danger">
+                                <i class="fas fa-times-circle"></i> Failed
+                            </span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <span style="color: #413178; font-weight: 600;">{{ log.rows_processed or 0 }}</span>
+                    </td>
+                    <td>
+                        <span style="color: #413178; font-weight: 600;">{{ log.rows_removed or 0 }}</span>
+                    </td>
+                    <td>
+                        {% if log.error_message %}
+                            <span style="color: #6c757d; font-size: 12px;">{{ log.error_message[:50] }}...</span>
+                        {% else %}
+                            <span style="color: #413178; font-size: 12px;">
+                                <i class="fas fa-check"></i> Processed successfully
+                            </span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div style="padding: 28px;">
+        <div class="empty-state">
+            <div class="empty-icon">
+                <i class="fas fa-clipboard-list"></i>
+            </div>
+            <h3 class="empty-title">No Processing Logs Yet</h3>
+            <p class="empty-text">Processing logs will appear here once you start uploading files</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- System Information -->
+<div class="content-section">
+    <div class="section-header">
+        <h2 class="section-title">
+            <i class="fas fa-server"></i>
+            System Information
+        </h2>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-database"></i>
+            </div>
+            <div class="feature-title">Database Status</div>
+            <div class="feature-desc">
+                <span style="color: #413178;">
+                    <i class="fas fa-circle" style="font-size: 8px;"></i> Connected & Operational
+                </span>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-hdd"></i>
+            </div>
+            <div class="feature-title">Storage Location</div>
+            <div class="feature-desc">MongoDB: accufund_formatter</div>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-shield-halved"></i>
+            </div>
+            <div class="feature-title">Security</div>
+            <div class="feature-desc">UUID-based file naming & Session verification</div>
+        </div>
+    </div>
+</div>
+
+<!-- Download Statistics -->
+<div class="content-section">
+    <div class="section-header">
+        <h2 class="section-title">
+            <i class="fas fa-download"></i>
+            Download Analytics
+        </h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+        <div style="background: #f8f9fa; border-left: 4px solid #413178; border-radius: 6px; padding: 24px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="width: 56px; height: 56px; background: #413178; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-download" style="font-size: 24px; color: #ffffff;"></i>
+                </div>
+                <div>
+                    <div style="color: #6c757d; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Total Downloads</div>
+                    <div style="color: #2c3e50; font-size: 32px; font-weight: 700;">{{ stats.total_downloads }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: #f8f9fa; border-left: 4px solid #413178; border-radius: 6px; padding: 24px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div style="width: 56px; height: 56px; background: #413178; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-chart-line" style="font-size: 24px; color: #ffffff;"></i>
+                </div>
+                <div>
+                    <div style="color: #6c757d; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Avg Downloads/File</div>
+                    <div style="color: #2c3e50; font-size: 32px; font-weight: 700;">
+                        {{ '%.1f'|format(stats.total_downloads / stats.total_files) if stats.total_files > 0 else '0.0' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

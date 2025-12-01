@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}Download Ready - Accufund Formatter{% endblock %}
+
+{% block content %}
+<!-- Processing Summary at TOP -->
+<div class="content-section" style="margin-bottom: 24px;">
+    <div class="section-header">
+        <h2 class="section-title">
+            <i class="fas fa-list-check"></i>
+            What Was Done
+        </h2>
+    </div>
+    <div class="section-body">
+        <div class="row g-3">
+            <div class="col-md-4 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Account Splitting</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-scissors"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1rem;">Fund, Dept, MEPA</div>
+                    <div class="stat-label">
+                        <i class="fas fa-check"></i>
+                        <span>Split into columns</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Fiscal Year</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1rem;">Oct-Sept Logic</div>
+                    <div class="stat-label">
+                        <i class="fas fa-check"></i>
+                        <span>Calculated for each</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Type Category</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1rem;">5 Types</div>
+                    <div class="stat-label">
+                        <i class="fas fa-check"></i>
+                        <span>Asset, Revenue, etc</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Balance</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1rem;">Debit - Credit</div>
+                    <div class="stat-label">
+                        <i class="fas fa-check"></i>
+                        <span>Computed for all</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Data Cleanup</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-filter"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1rem;">Totals Removed</div>
+                    <div class="stat-label">
+                        <i class="fas fa-check"></i>
+                        <span>Headers filtered</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Styling</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-paintbrush"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1rem;">Professional</div>
+                    <div class="stat-label">
+                        <i class="fas fa-check"></i>
+                        <span>Borders & formats</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Section -->
+<div class="content-section">
+    <div class="section-body">
+        <div class="success-container">
+            <div class="success-icon-lg">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2 class="success-title">File Processed Successfully!</h2>
+            <p class="success-text">Your Accufund file has been formatted and is ready for download</p>
+
+            <div class="file-details">
+                <p><strong>Original File:</strong> {{ filename }}</p>
+                <p><strong>Processed:</strong> Just now</p>
+                <p><strong>Status:</strong> <span class="badge badge-success">Ready for Download</span></p>
+            </div>
+
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="{{ url_for('download_file', unique_id=unique_id) }}" class="btn btn-success">
+                    <i class="fas fa-download me-2"></i>
+                    Download Formatted File
+                </a>
+                <a href="/" class="btn btn-primary">
+                    <i class="fas fa-upload me-2"></i>
+                    Upload Another File
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Output Details -->
+<div class="content-section">
+    <div class="section-header">
+        <h2 class="section-title">
+            <i class="fas fa-folder-open"></i>
+            Output Details
+        </h2>
+    </div>
+    <div class="section-body">
+        <div class="info-box">
+            <p style="color: var(--text-primary); margin-bottom: 1rem; font-size: 15px;">
+                <i class="fas fa-info-circle" style="color: #0066cc;"></i>
+                Your formatted data has been saved in a new worksheet called <strong style="color: var(--primary-color);">#Formatted</strong> within the same Excel file.
+            </p>
+            <p style="color: var(--text-secondary); font-size: 14px; margin: 0;">
+                The original data remains intact in the first sheet. You can switch between worksheets using the tabs at the bottom of your Excel file.
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

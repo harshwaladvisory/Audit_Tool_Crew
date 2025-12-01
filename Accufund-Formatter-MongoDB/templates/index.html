@@ -1,0 +1,278 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Accufund Formatter{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="section-header" style="background: transparent; border: none; padding: 0 0 1.5rem 0;">
+    <h1 class="section-title">
+        <i class="fas fa-tachometer-alt"></i>
+        Dashboard
+    </h1>
+    <button class="btn-refresh" onclick="location.reload()">
+        <i class="fas fa-sync-alt"></i>
+        Refresh
+    </button>
+</div>
+
+<!-- Statistics Cards at TOP - Same as Statistics Page -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-info">
+            <div class="stat-label">Total Files</div>
+            <div class="stat-value">{{ stats.total_files if stats else 0 }}</div>
+            <div class="stat-desc">
+                <i class="fas fa-file"></i>
+                All files uploaded
+            </div>
+        </div>
+        <div class="stat-icon-wrapper">
+            <i class="fas fa-folder"></i>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-info">
+            <div class="stat-label">Processed</div>
+            <div class="stat-value">{{ stats.processed if stats else 0 }}</div>
+            <div class="stat-desc">
+                <i class="fas fa-check-circle"></i>
+                Successfully completed
+            </div>
+        </div>
+        <div class="stat-icon-wrapper">
+            <i class="fas fa-file-circle-check"></i>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-info">
+            <div class="stat-label">Failed</div>
+            <div class="stat-value">{{ stats.failed if stats else 0 }}</div>
+            <div class="stat-desc">
+                <i class="fas fa-times-circle"></i>
+                Processing errors
+            </div>
+        </div>
+        <div class="stat-icon-wrapper">
+            <i class="fas fa-times-circle"></i>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-info">
+            <div class="stat-label">Total Downloads</div>
+            <div class="stat-value">{{ stats.total_downloads if stats else 0 }}</div>
+            <div class="stat-desc">
+                <i class="fas fa-download"></i>
+                Files downloaded
+            </div>
+        </div>
+        <div class="stat-icon-wrapper">
+            <i class="fas fa-cloud-download-alt"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Upload Section -->
+<div class="content-section">
+    <div class="section-header">
+        <h2 class="section-title">
+            <i class="fas fa-cloud-upload-alt"></i>
+            Upload Excel File
+        </h2>
+    </div>
+    <div class="section-body">
+        <form action="/upload" method="POST" enctype="multipart/form-data" id="uploadForm">
+            <div class="upload-zone" id="uploadZone">
+                <div class="upload-icon-box">
+                    <i class="fas fa-file-excel"></i>
+                </div>
+                <h3 class="upload-title">Drop your Excel file here</h3>
+                <p class="upload-subtitle">or click the button below to browse</p>
+                <input type="file" name="file" id="fileInput" accept=".xlsx" required style="display: none;">
+                <label for="fileInput" class="btn btn-primary">
+                    <i class="fas fa-folder-open"></i>
+                    Choose File
+                </label>
+                <div id="selectedFile" style="margin-top: 1rem; color: var(--primary-color); font-weight: 600;"></div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-box-title">
+                    <i class="fas fa-info-circle"></i>
+                    File Requirements
+                </div>
+                <ul>
+                    <li><i class="fas fa-check"></i> <strong>Format:</strong> Only .xlsx format is accepted</li>
+                    <li><i class="fas fa-check"></i> <strong>Size:</strong> Maximum file size: 16 MB</li>
+                    <li><i class="fas fa-check"></i> <strong>Data:</strong> File should contain Accufund financial data</li>
+                    <li><i class="fas fa-check"></i> <strong>Header:</strong> First row will be treated as disposable header</li>
+                </ul>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <i class="fas fa-upload"></i>
+                    Upload & Process File
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- How It Works -->
+<div class="content-section">
+    <div class="section-header">
+        <h2 class="section-title">
+            <i class="fas fa-lightbulb"></i>
+            How It Works
+        </h2>
+    </div>
+    <div class="section-body">
+        <div class="row g-3">
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Step 1</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1.2rem;">Upload</div>
+                    <div class="stat-label">
+                        <i class="fas fa-file-excel"></i>
+                        <span>Select your Excel file</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Step 2</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1.2rem;">Process</div>
+                    <div class="stat-label">
+                        <i class="fas fa-check"></i>
+                        <span>Auto formatting</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Step 3</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-paintbrush"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1.2rem;">Format</div>
+                    <div class="stat-label">
+                        <i class="fas fa-magic"></i>
+                        <span>Professional styling</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div>
+                            <div class="stat-title">Step 4</div>
+                        </div>
+                        <div class="stat-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" style="font-size: 1.2rem;">Download</div>
+                    <div class="stat-label">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Get formatted file</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput = document.getElementById('fileInput');
+    const selectedFile = document.getElementById('selectedFile');
+    const uploadForm = document.getElementById('uploadForm');
+
+    // Prevent default drag behaviors
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        uploadZone.addEventListener(eventName, preventDefaults, false);
+        document.body.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    // Highlight drop zone when dragging
+    ['dragenter', 'dragover'].forEach(eventName => {
+        uploadZone.addEventListener(eventName, () => {
+            uploadZone.classList.add('drag-over');
+        }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        uploadZone.addEventListener(eventName, () => {
+            uploadZone.classList.remove('drag-over');
+        }, false);
+    });
+
+    // Handle dropped files
+    uploadZone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        
+        if (files.length) {
+            fileInput.files = files;
+            displayFileName(files[0]);
+        }
+    });
+
+    // Handle file input change
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length) {
+            displayFileName(e.target.files[0]);
+        }
+    });
+
+    function displayFileName(file) {
+        selectedFile.innerHTML = `<i class="fas fa-file-excel" style="color: #28a745;"></i> ${file.name}`;
+    }
+
+    // Handle form submission - prevent double submission
+    let isSubmitting = false;
+    uploadForm.addEventListener('submit', function(e) {
+        if (isSubmitting) {
+            e.preventDefault();
+            return false;
+        }
+        
+        isSubmitting = true;
+        const submitBtn = this.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+    });
+</script>
+{% endblock %}

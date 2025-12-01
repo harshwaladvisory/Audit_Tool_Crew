@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Accufund Formatter{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Top Ribbon Header -->
+    <header class="top-ribbon">
+        <div class="ribbon-container">
+            <div class="ribbon-left">
+                <img src="{{ url_for('static', filename='images/Logo_.png') }}" alt="Harshwal & Company LLP" class="company-logo">
+            </div>
+            <div class="ribbon-right">
+                <img src="{{ url_for('static', filename='images/Coverlogo.png') }}" alt="Harshwal & Company LLP" class="company-logo">
+            </div>
+        </div>
+    </header>
+
+    <!-- Purple Navigation Bar -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <div class="nav-title">Accufund Formatter</div>
+            <ul class="nav-menu">
+                <li>
+                    <a href="/" class="{% if request.endpoint == 'index' %}active{% endif %}">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="/history" class="{% if request.endpoint == 'file_history' %}active{% endif %}">
+                        <i class="fas fa-history"></i> History
+                    </a>
+                </li>
+                <li>
+                    <a href="/stats" class="{% if request.endpoint == 'statistics' %}active{% endif %}">
+                        <i class="fas fa-chart-line"></i> Statistics
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash-alert flash-{{ category }}">
+                        <i class="fas fa-{{ 'check-circle' if category == 'success' else 'exclamation-circle' }}"></i>
+                        <span>{{ message }}</span>
+                        <button class="flash-close" onclick="this.parentElement.remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content Area -->
+    <main class="content-wrapper">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Harshwal & Company LLP. All rights reserved.</p>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
