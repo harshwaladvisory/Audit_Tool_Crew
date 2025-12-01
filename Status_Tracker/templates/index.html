@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charity Registration Status Checker</title>
+    <link rel="icon" href="{{ url_for('static', filename='Logo_.png') }}" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-navbar">
+        <div class="logo-section">
+            <img src="{{ url_for('static', filename='Logo_.png') }}" alt="Harshwal Logo">
+        </div>
+        <div class="logo-section">
+            <img src="{{ url_for('static', filename='name.png') }}" alt="Harshwal Logo">
+        </div>
+        <!-- <h1 class="greeting">RRF Status Tracker</h1> -->
+    </nav>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid fade-in">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-title">Total Processed</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+                <div class="stat-value">0</div>
+                <div class="stat-label">
+                    <i class="fas fa-arrow-up"></i>
+                    <span class="stat-trend">Ready to process</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-title">Success Rate</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+                <div class="stat-value">100%</div>
+                <div class="stat-label">
+                    <i class="fas fa-arrow-up"></i>
+                    <span class="stat-trend">Excellent</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-title">Monday.com</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                </div>
+                <div class="stat-value">Synced</div>
+                <div class="stat-label">
+                    <i class="fas fa-check"></i>
+                    <span class="stat-trend">Real-time updates</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-title">Avg Time</div>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                </div>
+                <div class="stat-value">2-3s</div>
+                <div class="stat-label">
+                    <i class="fas fa-arrow-right"></i>
+                    <span class="stat-trend">Per EIN</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Upload Card -->
+        <div class="main-card fade-in">
+            <div class="card-header">
+                <div class="card-header-icon">
+                    <i class="fas fa-file-upload"></i>
+                </div>
+                <div class="card-header-content">
+                    <h2>Upload Excel File</h2>
+                    <p>Upload Excel file to check California DOJ charity registration statuses</p>
+                </div>
+            </div>
+
+            <!-- Requirements -->
+            <div class="requirements-list">
+                <div class="requirement-item">
+                    <div class="requirement-icon">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <div class="requirement-text">
+                        <strong>Excel Format</strong>
+                        <span>File must be in .xlsx format</span>
+                    </div>
+                </div>
+
+                <div class="requirement-item">
+                    <div class="requirement-icon">
+                        <i class="fas fa-columns"></i>
+                    </div>
+                    <div class="requirement-text">
+                        <strong>EIN Number Column</strong>
+                        <span>Must contain an "EIN Number" column header</span>
+                    </div>
+                </div>
+
+                <div class="requirement-item">
+                    <div class="requirement-icon">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <div class="requirement-text">
+                        <strong>Valid EIN Format</strong>
+                        <span>EIN numbers should be 9 digits (XX-XXXXXXX)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Form -->
+            <form id="upload-form" enctype="multipart/form-data" class="upload-section">
+                <div class="file-input-wrapper">
+                    <label class="file-input-label">
+                        <i class="fas fa-paperclip"></i> Select Excel File
+                    </label>
+                    <label for="file-input" class="file-input-custom">
+                        <div class="file-upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <div class="file-upload-text">
+                            <h4>Click to browse or drag and drop</h4>
+                            <p id="file-name">Only .xlsx files are supported</p>
+                        </div>
+                        <input type="file" id="file-input" name="file" accept=".xlsx" required>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary" id="upload-btn">
+                    <i class="fas fa-rocket"></i>
+                    <span>Upload and Process File</span>
+                </button>
+            </form>
+
+            <!-- Loading Section -->
+            <div id="loading-section" style="display: none; text-align: center; padding: 2rem;">
+                <div class="spinner" style="margin: 0 auto 1rem;"></div>
+                <h5 style="color: var(--text-primary); margin-bottom: 1rem;">Uploading and validating file...</h5>
+                <div class="progress-bar-custom">
+                    <div class="progress-bar-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+
+            <!-- Error Section -->
+            <div id="error-section" class="alert-custom alert-danger" style="display: none;">
+                <div class="alert-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div>
+                    <h6 style="margin-bottom: 0.5rem; font-weight: 600;">Error</h6>
+                    <p id="error-message" style="margin: 0;"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="main-card fade-in">
+            <div class="card-header">
+                <div class="card-header-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="card-header-content">
+                    <h2>How It Works</h2>
+                    <p>Simple 4-step process to check charity registration statuses</p>
+                </div>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h6>Upload Excel File</h6>
+                    <p>Upload your clients.xlsx file containing EIN numbers</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h6>Automated Scraping</h6>
+                    <p>Each EIN is automatically checked against California DOJ database</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h6>Status Extraction</h6>
+                    <p>RRF-1 registry status is extracted and validated from search results</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h6>Download Results</h6>
+                    <p>Get your updated Excel file with RRF-1 Status column added</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // File input display
+        const fileInput = document.getElementById('file-input');
+        const fileName = document.getElementById('file-name');
+        
+        fileInput.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                fileName.textContent = e.target.files[0].name;
+                fileName.style.color = 'var(--primary-color)';
+                fileName.style.fontWeight = '600';
+            }
+        });
+
+        // Form submission
+        const uploadForm = document.getElementById('upload-form');
+        const uploadSection = document.querySelector('.upload-section');
+        const loadingSection = document.getElementById('loading-section');
+        const errorSection = document.getElementById('error-section');
+        const uploadBtn = document.getElementById('upload-btn');
+
+        uploadForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                showError('Please select a file');
+                return;
+            }
+            
+            formData.append('file', file);
+            
+            // Show loading
+            uploadSection.style.display = 'none';
+            loadingSection.style.display = 'block';
+            errorSection.style.display = 'none';
+            uploadBtn.disabled = true;
+            
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.task_id) {
+                    // Redirect to progress page
+                    window.location.href = `/progress_page/${data.task_id}`;
+                } else {
+                    showError(data.error || 'Upload failed');
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            }
+        });
+        
+        function showError(message) {
+            uploadSection.style.display = 'block';
+            loadingSection.style.display = 'none';
+            errorSection.style.display = 'flex';
+            document.getElementById('error-message').textContent = message;
+            uploadBtn.disabled = false;
+        }
+
+        // Drag and drop functionality
+        const fileInputCustom = document.querySelector('.file-input-custom');
+
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            fileInputCustom.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            fileInputCustom.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            fileInputCustom.addEventListener(eventName, unhighlight, false);
+        });
+
+        fileInputCustom.addEventListener('drop', handleDrop, false);
+
+        function highlight(e) {
+            fileInputCustom.style.borderColor = 'var(--primary-color)';
+            fileInputCustom.style.background = 'white';
+        }
+
+        function unhighlight(e) {
+            fileInputCustom.style.borderColor = '';
+            fileInputCustom.style.background = '';
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+
+            if (files.length > 0) {
+                fileInput.files = files;
+                const event = new Event('change', { bubbles: true });
+                fileInput.dispatchEvent(event);
+            }
+        }
+    </script>
+</body>
+</html>
