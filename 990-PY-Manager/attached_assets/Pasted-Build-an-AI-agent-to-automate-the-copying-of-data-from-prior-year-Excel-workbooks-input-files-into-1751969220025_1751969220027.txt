@@ -1,0 +1,51 @@
+Build an AI agent to automate the copying of data from prior year Excel workbooks (input files) into current year blank Excel templates (output files) based on standardized structure and mapping logic.
+🗂️ File Inputs and Outputs:
+•	The user will provide:
+1.	One or more input Excel files (prior year workbooks)
+2.	One blank Excel template (output file) for each input
+•	The agent should:
+o	Process each input file one at a time
+o	Generate one output file per input file, based on the mapping instructions below
+🧠 General Instructions:
+•	Each Excel workbook contains three sheets:
+o	SOR – Statement of Revenue
+o	SOFE – Statement of Functional Expenses
+o	SOFP – Statement of Financial Position
+•	Header rows are not always at the top:
+o	In SOR, the column headers are on row 3
+o	In SOFE and SOFP, the column headers span row 2 and 3
+•	When pasting data into the output file:
+o	Keep formatting unchanged
+o	Ensure:
+	Font: Calibri (Body)
+	Font size: 11
+	Font color: same as input file
+📝 Sheet-by-Sheet Instructions:
+1️⃣ SOR Sheet:
+•	Find the row that starts with "Particulars" in row 3 (i.e., column headers)
+•	For each row under the "Particulars" header:
+a. Copy values from:
+o	"Particulars" → paste under same header in output
+o	"Amount (CY)" → paste into "Amount (LY)" in output
+o	"990 Mapping (CY)" → paste into "990 Mapping (LY)" in output
+2️⃣ SOFE Sheet:
+•	Identify rows starting from the "Particulars" column (header starts from row 2–3)
+•	For each row under the "Particulars" header:
+a. Copy values from:
+o	"Particulars" → paste under same header in output
+o	"Total (CY)" → paste into "Total (LY)" in output
+o	"990 Mapping (CY)" → paste into "990 Mapping (LY)" in output
+3️⃣ SOFP Sheet:
+•	Again, headers span rows 2–3
+•	For each row under "Particulars":
+a. Copy values from:
+o	"Particulars" → paste under same header in output
+o	Amount: Go to the 2nd column after "Particulars", copy its value → paste it in the 1st column after "Particulars" in output
+o	"990 Mapping (CY)" → paste into "990 Mapping (LY)" in output
+🔁 Multi-File Support:
+•	The user may upload multiple input files
+•	For each input file, repeat the above logic and generate an individual output file
+•	Name each output file same as the input file name just change the year like if input file is for 2023 then change year to 2024, if 2024 then 2025 and so on.
+📦 Output:
+•	Deliver one output file per input file after transformation
+•	Maintain the blank format styling, column layout, and appearance in output

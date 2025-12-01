@@ -1,0 +1,14 @@
+streamlit
+pandas
+openpyxl
+
+# MongoDB Dependencies
+pymongo
+dnspython  # Required for MongoDB Atlas (mongodb+srv://)
+
+# Configuration Management
+python-dotenv
+
+# Image Processing (already used in your project)
+Pillow
+requests

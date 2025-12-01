@@ -1,0 +1,47 @@
+990_PY_Manager/
+├── .streamlit/
+│   └── config.toml                      # Streamlit configuration file (theme settings)
+├── attached_assets/                     # Asset files (logos, images)
+├── static/                              # Static resources (logos and other images)
+├── 990_PY_Manager.py                    # Main Streamlit entry point (app code)
+├── excel_processor.py                   # Logic for processing Excel files
+├── file_utils.py                        # Utility functions for file handling
+├── requirements.txt                     # Python dependencies (Streamlit, etc.)
+└── structure.txt                        # Text file describing project structure
+
+
+
+990_PY_Manager/
+├── .streamlit/
+│   └── config.toml                      # Streamlit configuration file (theme settings)
+│
+├── attached_assets/                     # Asset files (logos, images)
+│
+├── static/                              # Static resources (logos and other images)
+│   └── HCLLP.ico                       # Application icon
+│
+├── 990_PY_Manager.py                    # ⭐ UPDATED: Main Streamlit app with MongoDB integration
+│
+├── excel_processor.py                   # Logic for processing Excel files
+│
+├── file_utils.py                        # Utility functions for file handling
+│
+├── mongo_utils.py                       # ⭐ NEW: MongoDB operations and database management
+│
+├── config.py                            # ⭐ NEW: Configuration management module
+│
+├── db_manager.py                        # ⭐ NEW: CLI tool for database management
+│
+├── requirements.txt                     # ⭐ UPDATED: Python dependencies (includes MongoDB)
+│
+├── .env                                 # ⭐ NEW: Environment variables (DO NOT COMMIT!)
+│
+├── .env.example                         # ⭐ NEW: Template for environment variables
+│
+├── .gitignore                           # ⭐ NEW: Git ignore file (includes .env)
+│
+├── MONGODB_SETUP.md                     # ⭐ NEW: MongoDB setup and usage guide
+│
+├── structure.txt                        # Original project structure description
+│
+└── README.md                            # ⭐ UPDATED: Project documentation
